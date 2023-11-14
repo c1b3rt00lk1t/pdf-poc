@@ -5,7 +5,6 @@
  * - Add page numbers to pdf files
  * It will use the following libraries: pdf-lib, react-pdf, react-dropzone
  * It will have light and dark mode
- * It will have a simple UI, made with Chakra UI
  * The home page has to display the three actions the user can do
  * The App has to have a Layout component that will be used in all pages
  *
