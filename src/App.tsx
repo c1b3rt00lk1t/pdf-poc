@@ -11,6 +11,7 @@
  */
 
 import "./App.css";
+import DropArea from "./components/DropArea";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 
@@ -22,6 +23,7 @@ function App() {
       </header>
       <main>
         <Sidebar />
+        <DropArea />
       </main>
     </>
   );
