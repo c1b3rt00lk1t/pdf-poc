@@ -10,6 +10,7 @@
  * The App must work offline and online
  */
 
+import { ChangeEvent, useState } from "react";
 import "./index.css";
 import DropArea from "./components/DropArea";
 import Header from "./components/Header";
@@ -18,6 +19,15 @@ import Transformations from "./components/Transformations";
 import styles from "./App.module.css";
 
 function App() {
+  const [files, setFiles] = useState<File[]>([]);
+
+  const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files.length > 0) {
+      setFiles(Array.from(event.target.files));
+      console.log(event.target.files[0]);
+    }
+  };
+
   return (
     <div className={styles.App}>
       <header className={styles.header}>
@@ -25,7 +35,7 @@ function App() {
       </header>
       <main className={styles.main}>
         <Sidebar />
-        <DropArea />
+        <DropArea handleChangeInput={handleChangeInput} />
         <Transformations />
       </main>
       <footer className={styles.footer}>Footer</footer>
