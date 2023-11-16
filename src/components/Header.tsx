@@ -1,5 +1,5 @@
 const Header = () => {
-  return <div>PDF Utils</div>;
+  return <h2>PDF Utils</h2>;
 };
 
 export default Header;
