@@ -36,7 +36,7 @@ function App() {
       <main className={styles.main}>
         <Sidebar />
         <DropArea handleChangeInput={handleChangeInput} />
-        <Transformations />
+        <Transformations files={files} action={"pages"} />
       </main>
       <footer className={styles.footer}>Footer</footer>
     </div>
