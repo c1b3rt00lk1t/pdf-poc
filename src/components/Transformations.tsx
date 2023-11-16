@@ -33,6 +33,7 @@ const Transformations = ({ files, action }: TransformationsProps) => {
   // in the first mvp it will add a sequential number to each page, starting from 2 and excluding the first page
   // it will use the pdf-lib library
   // it will use a font type Arial and a font size of 12
+  // it will add the page centered in the middle of the page and in the bottom of the page
   async function addPageNumbers() {
     const reader = new FileReader();
     reader.readAsArrayBuffer(files[0]);
@@ -47,9 +48,9 @@ const Transformations = ({ files, action }: TransformationsProps) => {
       pages.forEach((page, index) => {
         if (index !== 0) {
           page.drawText((index + 1).toString(), {
-            x: 50,
-            y: 50,
-            size: 12,
+            x: page.getWidth() / 2,
+            y: 10,
+            size: 9,
             font: helveticaFont,
             color: PDFLib.rgb(0, 0, 0),
           });
@@ -60,7 +61,7 @@ const Transformations = ({ files, action }: TransformationsProps) => {
       const blob = new Blob([pdfBytes], { type: "application/pdf" });
       const url = URL.createObjectURL(blob);
       const downloadLink = document.createElement("a");
-      const fileName = "combined.pdf";
+      const fileName = `${files[0].name.slice(0, -4)} - pages.pdf`;
 
       downloadLink.href = url;
       downloadLink.download = fileName;
