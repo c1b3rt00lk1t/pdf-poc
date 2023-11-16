@@ -12,6 +12,7 @@
 
 import "./App.css";
 import Header from "./components/Header";
+import Sidebar from "./components/Sidebar";
 
 function App() {
   return (
@@ -19,7 +20,9 @@ function App() {
       <header>
         <Header />
       </header>
-      <main></main>
+      <main>
+        <Sidebar />
+      </main>
     </>
   );
 }
