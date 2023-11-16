@@ -13,22 +13,6 @@ interface TransformationsProps {
 }
 
 const Transformations = ({ files, action }: TransformationsProps) => {
-  // when the button is clicked the files[0] will be donwloaded
-  // this is achieved by a download <a> tag
-  function handleClickDownload() {
-    const reader = new FileReader();
-    reader.readAsDataURL(files[0]);
-    reader.onloadend = function () {
-      const base64data = reader.result;
-      const downloadLink = document.createElement("a");
-      const fileName = "combined.pdf";
-
-      downloadLink.href = base64data as string;
-      downloadLink.download = fileName;
-      downloadLink.click();
-    };
-  }
-
   // addPageNumbers will add page numbers to the pdf file
   // in the first mvp it will add a sequential number to each page, starting from 2 and excluding the first page
   // it will use the pdf-lib library
@@ -74,7 +58,6 @@ const Transformations = ({ files, action }: TransformationsProps) => {
       <h1>{action === "pages" && "Add page numbers"}</h1>
       <p>{files[0] && files[0].name}</p>
       <button onClick={addPageNumbers}>Add page numbers</button>
-      <button onClick={handleClickDownload}>Download</button>
     </div>
   );
 };
