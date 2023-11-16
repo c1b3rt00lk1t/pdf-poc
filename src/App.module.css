@@ -10,10 +10,10 @@
 
 .header {
   background-color: #282c34;
-  min-height: 10vh;
+  min-height: 12vh;
   display: flex;
   justify-content: flex-start;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(8px + 2vmin);
   color: white;
 }
 
