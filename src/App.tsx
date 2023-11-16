@@ -11,16 +11,9 @@
  */
 
 import "./App.css";
-import { Fragment } from "react";
-import CssBaseline from "@material-ui/core/CssBaseline";
 
 function App() {
-  return (
-    <Fragment>
-      <CssBaseline />
-      <div className="App">hello world</div>
-    </Fragment>
-  );
+  return <div>hello world</div>;
 }
 
 export default App;
