@@ -10,24 +10,26 @@
  * The App must work offline and online
  */
 
-import "./App.css";
+import "./index.css";
 import DropArea from "./components/DropArea";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import Transformations from "./components/Transformations";
+import styles from "./App.module.css";
 
 function App() {
   return (
-    <>
-      <header>
+    <div className={styles.App}>
+      <header className={styles.header}>
         <Header />
       </header>
-      <main>
+      <main className={styles.main}>
         <Sidebar />
         <DropArea />
         <Transformations />
       </main>
-    </>
+      <footer className={styles.footer}>Footer</footer>
+    </div>
   );
 }
 

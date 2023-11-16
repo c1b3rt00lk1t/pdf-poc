@@ -1,0 +1,27 @@
+.App {
+  display: grid;
+  grid-template-rows: 10vh 85vh 5vh;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.header {
+  background-color: #282c34;
+  min-height: 10vh;
+  display: flex;
+  justify-content: flex-start;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.footer {
+  background-color: #282c34;
+  height: 5vh;
+  display: flex;
+  justify-content: flex-start;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
