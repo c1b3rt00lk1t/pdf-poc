@@ -1,4 +1,6 @@
-/** In a first mvp the component will have an input that allows to select on pdf file from one folder and stores its content to be able to modify it in a later stage*/
+/** In a first mvp the component will have an input that allows to select on pdf file from one folder and stores its content to be able to modify it in a later stage
+ * Only pdf files will be allowed
+ */
 
 import { ChangeEvent } from "react";
 
@@ -10,7 +12,7 @@ const DropArea = ({ handleChangeInput }: DropAreaProps) => {
   return (
     <div>
       <h1>Drop Area</h1>
-      <input type="file" onChange={handleChangeInput} />
+      <input type="file" accept=".pdf" onChange={handleChangeInput} />
     </div>
   );
 };
