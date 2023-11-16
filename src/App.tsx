@@ -14,6 +14,7 @@ import "./App.css";
 import DropArea from "./components/DropArea";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
+import Transformations from "./components/Transformations";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <main>
         <Sidebar />
         <DropArea />
+        <Transformations />
       </main>
     </>
   );
