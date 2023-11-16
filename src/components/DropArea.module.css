@@ -1,0 +1,8 @@
+.DropArea {
+  display: flex;
+  flex-direction: column;
+}
+
+.button {
+  width: min-content;
+}

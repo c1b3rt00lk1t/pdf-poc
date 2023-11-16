@@ -27,6 +27,9 @@ function App() {
       console.log(event.target.files[0]);
     }
   };
+  const handleClickReset = () => {
+    setFiles([]);
+  };
 
   return (
     <div className={styles.App}>
@@ -35,7 +38,10 @@ function App() {
       </header>
       <main className={styles.main}>
         <Sidebar />
-        <DropArea handleChangeInput={handleChangeInput} />
+        <DropArea
+          handleChangeInput={handleChangeInput}
+          handleClickReset={handleClickReset}
+        />
         <Transformations files={files} action={"pages"} />
       </main>
       <footer className={styles.footer}>Footer</footer>

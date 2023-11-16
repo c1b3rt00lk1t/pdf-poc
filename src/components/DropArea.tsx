@@ -2,17 +2,42 @@
  * Only pdf files will be allowed
  */
 
-import { ChangeEvent } from "react";
+import { ChangeEvent, useRef } from "react";
+import styles from "./DropArea.module.css";
 
 export interface DropAreaProps {
   handleChangeInput: (event: ChangeEvent<HTMLInputElement>) => void;
+  handleClickReset: () => void;
 }
 
-const DropArea = ({ handleChangeInput }: DropAreaProps) => {
+const DropArea = ({ handleChangeInput, handleClickReset }: DropAreaProps) => {
+  const refInput = useRef<HTMLInputElement>(null);
+  const resetInput = (ref: React.RefObject<HTMLInputElement>) => {
+    if (ref.current) {
+      ref.current.value = "";
+    }
+  };
+
   return (
-    <div>
-      <h1>Drop Area</h1>
-      <input type="file" accept=".pdf" onChange={handleChangeInput} />
+    <div className={styles.DropArea}>
+      <div>
+        <h1>Drop Area</h1>
+        <input
+          type="file"
+          accept=".pdf"
+          onChange={handleChangeInput}
+          ref={refInput}
+        />
+      </div>
+      <button
+        className={styles.button}
+        onClick={() => {
+          handleClickReset();
+          resetInput(refInput);
+        }}
+      >
+        Reset
+      </button>
     </div>
   );
 };
