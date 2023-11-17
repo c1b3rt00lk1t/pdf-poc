@@ -1,9 +1,10 @@
 /** In a first mvp the component will have an input that allows to select on pdf file from one folder and stores its content to be able to modify it in a later stage
  * Only pdf files will be allowed
- * The input must be able to optionally accept multiple files. A checkbox will allow to select if the user wants to select one or multiple files
+ * Initially, the input must be able to optionally accept multiple files. A checkbox will allow to select if the user wants to select one or multiple files. In the final implementation the option to select multiple files will depend on the action the user wants to do
  */
 
-import { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent, useRef } from "react";
+// import { useState } from "react";
 import styles from "./DropArea.module.css";
 
 export interface DropAreaProps {
