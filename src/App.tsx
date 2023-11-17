@@ -20,6 +20,7 @@ import styles from "./App.module.css";
 
 function App() {
   const [files, setFiles] = useState<File[]>([]);
+  const [action, setAction] = useState<"combine" | "split" | "pages">("pages");
 
   const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -31,18 +32,23 @@ function App() {
     setFiles([]);
   };
 
+  const handleClickAction = (action: "combine" | "split" | "pages") => {
+    setAction(action);
+  };
+
   return (
     <div className={styles.App}>
       <header className={styles.header}>
         <Header />
       </header>
       <main className={styles.main}>
-        <Sidebar />
+        <Sidebar handleClickAction={handleClickAction} />
         <DropArea
           handleChangeInput={handleChangeInput}
           handleClickReset={handleClickReset}
+          action={action}
         />
-        <Transformations files={files} action={"pages"} />
+        <Transformations files={files} action={action} />
       </main>
       <footer className={styles.footer}>Footer</footer>
     </div>
