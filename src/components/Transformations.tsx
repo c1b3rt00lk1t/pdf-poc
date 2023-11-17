@@ -5,7 +5,7 @@
  * It will provide a button to download the modified pdf file
  */
 
-import * as PDFLib from "pdf-lib";
+import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 
 interface TransformationsProps {
   action: "combine" | "split" | "pages";
@@ -23,11 +23,9 @@ const Transformations = ({ files, action }: TransformationsProps) => {
     reader.readAsArrayBuffer(files[0]);
     reader.onloadend = async () => {
       const pdfData = reader.result as ArrayBuffer;
-      const pdfDoc = await PDFLib.PDFDocument.load(pdfData);
+      const pdfDoc = await PDFDocument.load(pdfData);
       const pages = pdfDoc.getPages();
-      const helveticaFont = await pdfDoc.embedFont(
-        PDFLib.StandardFonts.Helvetica
-      );
+      const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
 
       pages.forEach((page, index) => {
         if (index !== 0) {
@@ -36,7 +34,7 @@ const Transformations = ({ files, action }: TransformationsProps) => {
             y: 10,
             size: 9,
             font: helveticaFont,
-            color: PDFLib.rgb(0, 0, 0),
+            color: rgb(0, 0, 0),
           });
         }
       });
@@ -58,11 +56,13 @@ const Transformations = ({ files, action }: TransformationsProps) => {
   // the output file will be a file that contains all the pages of the input files
 
   async function combineFiles() {
-    const outputDoc = await PDFLib.PDFDocument.create();
+    const outputDoc = await PDFDocument.create();
 
-    for (const file of files) {
+    const orderedFiles = [...files].sort((a, b) => (a > b ? 1 : -1));
+
+    for (const file of orderedFiles) {
       const fileArrayBuffer = await file.arrayBuffer();
-      const inputDoc = await PDFLib.PDFDocument.load(fileArrayBuffer);
+      const inputDoc = await PDFDocument.load(fileArrayBuffer);
       const pages = await outputDoc.copyPages(
         inputDoc,
         inputDoc.getPageIndices()
@@ -83,6 +83,52 @@ const Transformations = ({ files, action }: TransformationsProps) => {
     downloadLink.click();
   }
 
+  // splitFiles will split the pdf file using the input that the user provides
+  // a comma separated list of pages will be provided where a - will indicate a range of pages
+  // it will use the pdf-lib library
+  // example: 1,2,3-5 would split the pdf file in three files: one with page 1, one with page 2 and one with pages 3, 4 and 5
+  // in the event that the pages provided are not valid, the app will show an error message
+  async function splitFiles(pageRanges: string) {
+    const reader = new FileReader();
+    reader.readAsArrayBuffer(files[0]);
+    reader.onloadend = async () => {
+      const pdfData = reader.result as ArrayBuffer;
+      const inputDoc = await PDFDocument.load(pdfData);
+      const ranges = pageRanges
+        .split(",")
+        .map((range) => range.split("-").map(Number));
+      console.log(ranges);
+      const outputDocs = await Promise.all(
+        ranges.map(async (range) => {
+          const outputDoc = await PDFDocument.create();
+          const pages = await outputDoc.copyPages(
+            inputDoc,
+            range[1] === undefined
+              ? [range[0] - 1]
+              : Array.from(
+                  { length: range[1] - range[0] + 1 },
+                  (_, i) => i + range[0] - 1
+                )
+          );
+          for (const page of pages) {
+            outputDoc.addPage(page);
+          }
+          return outputDoc;
+        })
+      );
+
+      for (let i = 0; i < outputDocs.length; i++) {
+        const pdfBytes = await outputDocs[i].save();
+        const blob = new Blob([pdfBytes], { type: "application/pdf" });
+        const url = URL.createObjectURL(blob);
+        const downloadLink = document.createElement("a");
+        downloadLink.href = url;
+        downloadLink.download = `output${i + 1}.pdf`;
+        downloadLink.click();
+      }
+    };
+  }
+
   const actionTitles = {
     combine: "Combine files",
     split: "Split files",
@@ -92,8 +138,25 @@ const Transformations = ({ files, action }: TransformationsProps) => {
   return (
     <div>
       <h1>{actionTitles[action]}</h1>
-      <p>{files[0] && files[0].name}</p>
-      <button onClick={addPageNumbers}>Add page numbers</button>
+      {action === "pages" && files.length > 0 && (
+        <>
+          <p>{files[0] && files[0].name}</p>
+          <button onClick={addPageNumbers}>Add page numbers</button>
+        </>
+      )}
+      {action === "combine" && files.length > 0 && (
+        <>
+          <p>{files.length} files selected</p>
+          <button onClick={combineFiles}>Combine files</button>
+        </>
+      )}
+      {action === "split" && files.length > 0 && (
+        <>
+          <p>{files[0] && files[0].name}</p>
+          <input type="text" placeholder="1,2,3-5" />
+          <button onClick={() => splitFiles("1-4,3-5")}>Split files</button>
+        </>
+      )}
     </div>
   );
 };
