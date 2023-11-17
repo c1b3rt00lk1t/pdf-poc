@@ -53,9 +53,15 @@ const Transformations = ({ files, action }: TransformationsProps) => {
     };
   }
 
+  const actionTitles = {
+    combine: "Combine files",
+    split: "Split files",
+    pages: "Add page numbers",
+  };
+
   return (
     <div>
-      <h1>{action === "pages" && "Add page numbers"}</h1>
+      <h1>{actionTitles[action]}</h1>
       <p>{files[0] && files[0].name}</p>
       <button onClick={addPageNumbers}>Add page numbers</button>
     </div>
