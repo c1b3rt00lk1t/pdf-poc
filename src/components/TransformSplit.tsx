@@ -1,25 +1,35 @@
 import { PDFDocument } from "pdf-lib";
+import { useState } from "react";
 
 interface TransformSplitProps {
   file: File | null;
 }
 
 const TransformSplit = ({ file }: TransformSplitProps) => {
+  const [pageRanges, setPageRanges] = useState<string>("");
+
   // splitFiles will split the pdf file using the input that the user provides
   // a comma separated list of pages will be provided where a - will indicate a range of pages
   // it will use the pdf-lib library
   // example: 1,2,3-5 would split the pdf file in three files: one with page 1, one with page 2 and one with pages 3, 4 and 5
-  // in the event that the pages provided are not valid, the app will show an error message
+  // in the event that the pages provided are not valid, only the valid ranges will be processed
   async function splitFiles(pageRanges: string, file: File) {
     const reader = new FileReader();
     reader.readAsArrayBuffer(file);
     reader.onloadend = async () => {
       const pdfData = reader.result as ArrayBuffer;
       const inputDoc = await PDFDocument.load(pdfData);
+      const numPages = inputDoc.getPages().length;
       const ranges = pageRanges
         .split(",")
-        .map((range) => range.split("-").map(Number));
-      console.log(ranges);
+        .map((range) => range.split("-").map(Number))
+        .filter(
+          (range) =>
+            range[0] > 0 &&
+            range[0] <= numPages &&
+            (range[1] === undefined || (range[1] > 0 && range[1] <= numPages))
+        );
+
       const outputDocs = await Promise.all(
         ranges.map(async (range) => {
           const outputDoc = await PDFDocument.create();
@@ -54,9 +64,20 @@ const TransformSplit = ({ file }: TransformSplitProps) => {
   return (
     <>
       <p>{file && file.name}</p>
-      {file && <input type="text" placeholder="1,2,3-5" />}
       {file && (
-        <button onClick={() => splitFiles("1-4,3-5", file)}>Split files</button>
+        <input
+          onChange={(ev) => {
+            setPageRanges(ev.target.value);
+          }}
+          type="text"
+          placeholder="1,2,3-5"
+          value={pageRanges}
+        />
+      )}
+      {file && (
+        <button onClick={() => splitFiles(pageRanges, file)}>
+          Split files
+        </button>
       )}
     </>
   );
