@@ -9,10 +9,15 @@ import styles from "./DropArea.module.css";
 export interface DropAreaProps {
   handleChangeInput: (event: ChangeEvent<HTMLInputElement>) => void;
   handleClickReset: () => void;
+  action: "combine" | "split" | "pages";
 }
 
-const DropArea = ({ handleChangeInput, handleClickReset }: DropAreaProps) => {
-  const [multipleFiles, setMultipleFiles] = useState<boolean>(false);
+const DropArea = ({
+  handleChangeInput,
+  handleClickReset,
+  action,
+}: DropAreaProps) => {
+  // const [multipleFiles, setMultipleFiles] = useState<boolean>(false);
 
   const refInput = useRef<HTMLInputElement>(null);
   const resetInput = (ref: React.RefObject<HTMLInputElement>) => {
@@ -28,7 +33,7 @@ const DropArea = ({ handleChangeInput, handleClickReset }: DropAreaProps) => {
         <input
           type="file"
           accept=".pdf"
-          multiple={multipleFiles}
+          multiple={action === "combine"}
           onChange={handleChangeInput}
           ref={refInput}
         />
@@ -43,11 +48,11 @@ const DropArea = ({ handleChangeInput, handleClickReset }: DropAreaProps) => {
         >
           Reset
         </button>
-        <input
+        {/* <input
           type="checkbox"
           onChange={() => setMultipleFiles((multipleFiles) => !multipleFiles)}
         />{" "}
-        Allow multiple files
+        Allow multiple files */}
       </div>
     </div>
   );
