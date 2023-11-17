@@ -53,6 +53,36 @@ const Transformations = ({ files, action }: TransformationsProps) => {
     };
   }
 
+  // combineFiles will combine the pdf files that the user has selected
+  // it will use the pdf-lib library
+  // the output file will be a file that contains all the pages of the input files
+
+  async function combineFiles() {
+    const outputDoc = await PDFLib.PDFDocument.create();
+
+    for (const file of files) {
+      const fileArrayBuffer = await file.arrayBuffer();
+      const inputDoc = await PDFLib.PDFDocument.load(fileArrayBuffer);
+      const pages = await outputDoc.copyPages(
+        inputDoc,
+        inputDoc.getPageIndices()
+      );
+      for (const page of pages) {
+        outputDoc.addPage(page);
+      }
+    }
+
+    const pdfBytes = await outputDoc.save();
+    const blob = new Blob([pdfBytes], { type: "application/pdf" });
+    const url = URL.createObjectURL(blob);
+    const downloadLink = document.createElement("a");
+    const fileName = "combined.pdf";
+
+    downloadLink.href = url;
+    downloadLink.download = fileName;
+    downloadLink.click();
+  }
+
   const actionTitles = {
     combine: "Combine files",
     split: "Split files",

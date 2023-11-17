@@ -25,7 +25,7 @@ function App() {
   const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       setFiles(Array.from(event.target.files));
-      console.log(event.target.files[0]);
+      console.log(event.target.files);
     }
   };
   const handleClickReset = () => {
