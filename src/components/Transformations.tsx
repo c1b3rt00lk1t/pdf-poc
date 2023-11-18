@@ -7,6 +7,7 @@
 
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 import TransformSplit from "./TransformSplit";
+import TransformPages from "./TransformPages";
 
 interface TransformationsProps {
   action: "combine" | "split" | "pages";
@@ -94,10 +95,7 @@ const Transformations = ({ files, action }: TransformationsProps) => {
     <div>
       <h1>{actionTitles[action]}</h1>
       {action === "pages" && files.length > 0 && (
-        <>
-          <p>{files[0] && files[0].name}</p>
-          <button onClick={addPageNumbers}>Add page numbers</button>
-        </>
+        <TransformPages file={files[0]} />
       )}
       {action === "combine" && files.length > 0 && (
         <>
