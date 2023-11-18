@@ -6,6 +6,7 @@
 import { ChangeEvent, useRef } from "react";
 // import { useState } from "react";
 import styles from "./FileSelection.module.css";
+import DropArea from "./DropArea";
 
 export interface FileSelectionProps {
   handleChangeInput: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -18,8 +19,6 @@ const FileSelection = ({
   handleClickReset,
   action,
 }: FileSelectionProps) => {
-  // const [multipleFiles, setMultipleFiles] = useState<boolean>(false);
-
   const refInput = useRef<HTMLInputElement>(null);
   const resetInput = (ref: React.RefObject<HTMLInputElement>) => {
     if (ref.current) {
@@ -31,6 +30,7 @@ const FileSelection = ({
     <div className={styles.FileSelection}>
       <div>
         <h1>File Selection</h1>
+        <DropArea />
         <input
           type="file"
           accept=".pdf"
@@ -38,8 +38,6 @@ const FileSelection = ({
           onChange={handleChangeInput}
           ref={refInput}
         />
-      </div>
-      <div>
         <button
           className={styles.button}
           onClick={() => {
@@ -49,11 +47,6 @@ const FileSelection = ({
         >
           Reset
         </button>
-        {/* <input
-          type="checkbox"
-          onChange={() => setMultipleFiles((multipleFiles) => !multipleFiles)}
-        />{" "}
-        Allow multiple files */}
       </div>
     </div>
   );
