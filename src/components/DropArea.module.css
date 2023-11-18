@@ -1,0 +1,12 @@
+.DropArea {
+  width: 90%;
+  height: 100%;
+  background-color: rgb(222, 184, 135, 0.3);
+  border: solid 1px black;
+  border-radius: 10px;
+  border-style: dashed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
