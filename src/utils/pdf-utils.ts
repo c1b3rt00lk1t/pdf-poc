@@ -1,5 +1,23 @@
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 
+/**
+ * Basic functions used in the different actions
+ */
+
+async function createFile(pdfDoc: PDFDocument) {
+  const pdfBytes = await pdfDoc.save();
+  const blob = new Blob([pdfBytes], { type: "application/pdf" });
+  return blob;
+}
+
+function downloadFile(file: Blob, fileName: string) {
+  const url = URL.createObjectURL(file);
+  const downloadLink = document.createElement("a");
+  downloadLink.href = url;
+  downloadLink.download = fileName;
+  downloadLink.click();
+}
+
 // addPageNumbers will add page numbers to the pdf file
 // in the first mvp it will add a sequential number to each page, starting from 2 and excluding the first page
 // it will use the pdf-lib library
@@ -26,15 +44,9 @@ export async function addPageNumbers(file: File) {
       }
     });
 
-    const pdfBytes = await pdfDoc.save();
-    const blob = new Blob([pdfBytes], { type: "application/pdf" });
-    const url = URL.createObjectURL(blob);
-    const downloadLink = document.createElement("a");
+    const blob = await createFile(pdfDoc);
     const fileName = `${file.name.slice(0, -4)} - pages.pdf`;
-
-    downloadLink.href = url;
-    downloadLink.download = fileName;
-    downloadLink.click();
+    downloadFile(blob, fileName);
   };
 }
 
@@ -89,13 +101,8 @@ export async function splitFiles(pageRanges: string, file: File) {
 
     // For each output document, save it as a PDF file and trigger a download
     for (let i = 0; i < outputDocs.length; i++) {
-      const pdfBytes = await outputDocs[i].save();
-      const blob = new Blob([pdfBytes], { type: "application/pdf" });
-      const url = URL.createObjectURL(blob);
-      const downloadLink = document.createElement("a");
-      downloadLink.href = url;
-      downloadLink.download = `output${i + 1}.pdf`;
-      downloadLink.click();
+      const blob = await createFile(outputDocs[i]);
+      downloadFile(blob, `output${i + 1}.pdf`);
     }
   };
 }
