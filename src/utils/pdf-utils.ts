@@ -4,7 +4,7 @@ import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
  * Basic functions used in the different actions
  */
 
-async function createFile(pdfDoc: PDFDocument) {
+async function createBlob(pdfDoc: PDFDocument) {
   const pdfBytes = await pdfDoc.save();
   const blob = new Blob([pdfBytes], { type: "application/pdf" });
   return blob;
@@ -16,6 +16,31 @@ function downloadFile(file: Blob, fileName: string) {
   downloadLink.href = url;
   downloadLink.download = fileName;
   downloadLink.click();
+}
+
+/**
+ * combineFiles combines the pdf files that the user has selected
+ */
+
+export async function combineFiles(files: File[]) {
+  const outputDoc = await PDFDocument.create();
+
+  const orderedFiles = [...files].sort((a, b) => (a.name > b.name ? 1 : -1));
+
+  for (const file of orderedFiles) {
+    const fileArrayBuffer = await file.arrayBuffer();
+    const inputDoc = await PDFDocument.load(fileArrayBuffer);
+    const pages = await outputDoc.copyPages(
+      inputDoc,
+      inputDoc.getPageIndices()
+    );
+    for (const page of pages) {
+      outputDoc.addPage(page);
+    }
+  }
+
+  const blob = await createBlob(outputDoc);
+  downloadFile(blob, "combined.pdf");
 }
 
 /**
@@ -47,7 +72,7 @@ export async function addPageNumbers(file: File) {
       }
     });
 
-    const blob = await createFile(pdfDoc);
+    const blob = await createBlob(pdfDoc);
     const fileName = `${file.name.slice(0, -4)} - pages.pdf`;
     downloadFile(blob, fileName);
   };
@@ -104,7 +129,7 @@ export async function splitFiles(pageRanges: string, file: File) {
 
     // For each output document, save it as a PDF file and trigger a download
     for (let i = 0; i < outputDocs.length; i++) {
-      const blob = await createFile(outputDocs[i]);
+      const blob = await createBlob(outputDocs[i]);
       downloadFile(blob, `output${i + 1}.pdf`);
     }
   };
