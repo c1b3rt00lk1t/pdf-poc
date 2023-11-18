@@ -12,7 +12,7 @@
 
 import { ChangeEvent, useState } from "react";
 import "./index.css";
-import DropArea from "./components/DropArea";
+import FileSelection from "./components/FileSelection";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import Transformations from "./components/Transformations";
@@ -42,7 +42,7 @@ function App() {
       </header>
       <main className={styles.main}>
         <Sidebar handleClickAction={handleClickAction} />
-        <DropArea
+        <FileSelection
           handleChangeInput={handleChangeInput}
           handleClickReset={handleClickReset}
           action={action}
