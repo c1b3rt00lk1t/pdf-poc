@@ -2,7 +2,7 @@ import { PDFDocument } from "pdf-lib";
 import { useState } from "react";
 
 interface TransformSplitProps {
-  file: File | null;
+  file: File;
 }
 
 const TransformSplit = ({ file }: TransformSplitProps) => {
@@ -13,7 +13,7 @@ const TransformSplit = ({ file }: TransformSplitProps) => {
   // it will use the pdf-lib library
   // example: 1,2,3-5 would split the pdf file in three files: one with page 1, one with page 2 and one with pages 3, 4 and 5
   // in the event that the pages provided are not valid, only the valid ranges will be processed
-  async function splitFiles(pageRanges: string, file: File) {
+  async function splitFiles(pageRanges: string) {
     const reader = new FileReader();
     reader.readAsArrayBuffer(file);
     reader.onloadend = async () => {
@@ -64,21 +64,15 @@ const TransformSplit = ({ file }: TransformSplitProps) => {
   return (
     <>
       <p>{file && file.name}</p>
-      {file && (
-        <input
-          onChange={(ev) => {
-            setPageRanges(ev.target.value);
-          }}
-          type="text"
-          placeholder="1,2,3-5"
-          value={pageRanges}
-        />
-      )}
-      {file && (
-        <button onClick={() => splitFiles(pageRanges, file)}>
-          Split files
-        </button>
-      )}
+      <input
+        onChange={(ev) => {
+          setPageRanges(ev.target.value);
+        }}
+        type="text"
+        placeholder="1,2,3-5"
+        value={pageRanges}
+      />
+      <button onClick={() => splitFiles(pageRanges)}>Split files</button>
     </>
   );
 };
