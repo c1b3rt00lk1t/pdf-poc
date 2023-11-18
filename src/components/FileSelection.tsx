@@ -3,19 +3,21 @@
  * Initially, the input must be able to optionally accept multiple files. A checkbox will allow to select if the user wants to select one or multiple files. In the final implementation the option to select multiple files will depend on the action the user wants to do
  */
 
-import { ChangeEvent, useRef } from "react";
+import { useRef } from "react";
 
 import styles from "./FileSelection.module.css";
 import DropArea from "./DropArea";
 
 export interface FileSelectionProps {
-  handleChangeInput: (event: ChangeEvent<HTMLInputElement>) => void;
+  files: File[];
+  setFiles: (files: File[]) => void;
   handleClickReset: () => void;
   action: "combine" | "split" | "pages";
 }
 
 const FileSelection = ({
-  handleChangeInput,
+  files,
+  setFiles,
   handleClickReset,
   action,
 }: FileSelectionProps) => {
@@ -30,14 +32,6 @@ const FileSelection = ({
     <div className={styles.FileSelection}>
       <div>
         <h1>File Selection</h1>
-        <DropArea />
-        <input
-          type="file"
-          accept=".pdf"
-          multiple={action === "combine"}
-          onChange={handleChangeInput}
-          ref={refInput}
-        />
         <button
           className={styles.button}
           onClick={() => {
@@ -47,6 +41,7 @@ const FileSelection = ({
         >
           Reset
         </button>
+        <DropArea action={action} files={files} setFiles={setFiles} />
       </div>
     </div>
   );

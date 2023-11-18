@@ -1,9 +1,12 @@
 import styles from "./DropArea.module.css";
-import { useState } from "react";
 
-const DropArea = () => {
-  const [file, setFile] = useState<File | null>(null);
+interface DropAreaProps {
+  action: "combine" | "split" | "pages";
+  files: File[];
+  setFiles: (files: File[]) => void;
+}
 
+const DropArea = ({ action, files, setFiles }: DropAreaProps) => {
   const handleDragOver = (event: React.DragEvent) => {
     event.stopPropagation();
     event.preventDefault();
@@ -12,10 +15,9 @@ const DropArea = () => {
 
   const handleDrop = (event: React.DragEvent) => {
     event.preventDefault();
-    console.log(event.dataTransfer.files[0]);
     if (event.dataTransfer && event.dataTransfer.items) {
       if (event.dataTransfer.files[0].type === "application/pdf") {
-        setFile(event.dataTransfer.files[0]);
+        setFiles(Array.from(event.dataTransfer.files));
       } else {
         alert("Please drop a pdf file");
       }
@@ -26,8 +28,13 @@ const DropArea = () => {
     const input = document.createElement("input");
     input.type = "file";
     input.accept = ".pdf";
+    input.multiple = action === "combine" ? true : false;
     input.onchange = (event) => {
-      setFile((event.target as HTMLInputElement).files![0]);
+      const target = event.target as HTMLInputElement;
+      const files = target.files;
+      if (files && files.length > 0) {
+        setFiles(Array.from(files));
+      }
     };
     input.click();
   };
@@ -39,7 +46,15 @@ const DropArea = () => {
       onDrop={handleDrop}
       onClick={handleClick}
     >
-      {file ? file.name : "Drop file here or click to select"}
+      {files[0] ? (
+        <ul>
+          {files.map((f) => (
+            <li key={f.name}>{f.name}</li>
+          ))}
+        </ul>
+      ) : (
+        "Drop file here or click to select"
+      )}
     </div>
   );
 };

@@ -3,14 +3,14 @@
  * - Combine pdf files
  * - Split pdf files
  * - Add page numbers to pdf files
- * It will use the following libraries: pdf-lib, react-pdf, react-dropzone
+ * It will use the following libraries: pdf-lib
  * It will have light and dark mode
  * The home page has to display the three actions the user can do
  * The App must have a Layout, Header, Footer and Sidebar components that will be used in all pages
  * The App must work offline and online
  */
 
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import "./index.css";
 import FileSelection from "./components/FileSelection";
 import Header from "./components/Header";
@@ -22,11 +22,6 @@ function App() {
   const [files, setFiles] = useState<File[]>([]);
   const [action, setAction] = useState<"combine" | "split" | "pages">("pages");
 
-  const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files.length > 0) {
-      setFiles(Array.from(event.target.files));
-    }
-  };
   const handleClickReset = () => {
     setFiles([]);
   };
@@ -48,7 +43,8 @@ function App() {
       <main className={styles.main}>
         <Sidebar handleClickAction={handleClickAction} />
         <FileSelection
-          handleChangeInput={handleChangeInput}
+          files={files}
+          setFiles={setFiles}
           handleClickReset={handleClickReset}
           action={action}
         />
