@@ -60,7 +60,7 @@ const Transformations = ({ files, action }: TransformationsProps) => {
     const outputDoc = await PDFDocument.create();
 
     const orderedFiles = [...files].sort((a, b) => (a.name > b.name ? 1 : -1));
-    console.log(orderedFiles);
+
     for (const file of orderedFiles) {
       const fileArrayBuffer = await file.arrayBuffer();
       const inputDoc = await PDFDocument.load(fileArrayBuffer);
