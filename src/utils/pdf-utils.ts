@@ -18,11 +18,14 @@ function downloadFile(file: Blob, fileName: string) {
   downloadLink.click();
 }
 
-// addPageNumbers will add page numbers to the pdf file
-// in the first mvp it will add a sequential number to each page, starting from 2 and excluding the first page
-// it will use the pdf-lib library
-// it will use a font type Arial and a font size of 12
-// it will add the page centered in the middle of the page and in the bottom of the page
+/**
+ * addPageNumbers adds page numbers to the pdf file
+ * by default it adds the page number in the bottom center of the page
+ * it adds a sequential number to each page
+ * by default, starting from 2 and excluding the first page
+ * by default it uses a font type Helvetica and a font size of 12
+ */
+
 export async function addPageNumbers(file: File) {
   const reader = new FileReader();
   reader.readAsArrayBuffer(file);
