@@ -4,7 +4,7 @@
  */
 
 import { ChangeEvent, useRef } from "react";
-// import { useState } from "react";
+
 import styles from "./FileSelection.module.css";
 import DropArea from "./DropArea";
 
