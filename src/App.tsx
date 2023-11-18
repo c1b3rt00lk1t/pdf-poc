@@ -35,8 +35,13 @@ function App() {
     setAction(action);
   };
 
+  const handleDragOver = (event: React.DragEvent) => {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = "none";
+  };
+
   return (
-    <div className={styles.App}>
+    <div className={styles.App} onDragOver={handleDragOver}>
       <header className={styles.header}>
         <Header />
       </header>
