@@ -41,7 +41,9 @@ const DropArea = ({ action, files, setFiles }: DropAreaProps) => {
 
   return (
     <div
-      className={styles.DropArea}
+      className={`${styles.DropArea} ${
+        files[0] ? styles.DropAreaDropped : styles.DropAreaPending
+      }`}
       onDragOver={handleDragOver}
       onDrop={handleDrop}
       onClick={handleClick}
