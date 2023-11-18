@@ -30,7 +30,7 @@ const FileSelection = ({
   return (
     <div className={styles.FileSelection}>
       <div>
-        <h1>Drop Area</h1>
+        <h1>File Selection</h1>
         <input
           type="file"
           accept=".pdf"
