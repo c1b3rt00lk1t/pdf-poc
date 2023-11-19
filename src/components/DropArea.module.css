@@ -2,7 +2,7 @@
 
 .DropArea {
   width: 40vw;
-  height: 30vh;
+  height: 50vh;
   border: solid 1px black;
   border-radius: 10px;
   border-style: dashed;
@@ -16,6 +16,12 @@
 
 .DropArea::-webkit-scrollbar {
   display: none;
+}
+
+.DropArea li {
+  font-family: "Courier New", Courier, monospace;
+  font-size: small;
+  list-style-type: none;
 }
 
 .DropAreaPending {
