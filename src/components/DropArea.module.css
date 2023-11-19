@@ -1,7 +1,8 @@
+/*the scroll bar should be hidden*/
+
 .DropArea {
   width: 40vw;
   height: 30vh;
-  /* background-color: rgb(222, 184, 135, 0.3); */
   border: solid 1px black;
   border-radius: 10px;
   border-style: dashed;
@@ -9,6 +10,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+.DropArea::-webkit-scrollbar {
+  display: none;
 }
 
 .DropAreaPending {
