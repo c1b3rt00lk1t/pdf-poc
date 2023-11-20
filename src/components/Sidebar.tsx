@@ -10,9 +10,10 @@
  * Clicking on each action will change the action
  */
 import styles from "./Sidebar.module.css";
+import { Action } from "../types";
 
 interface SidebarProps {
-  handleClickAction: (action: "combine" | "split" | "pages") => void;
+  handleClickAction: (action: Action) => void;
 }
 
 const Sidebar = ({ handleClickAction }: SidebarProps) => {
