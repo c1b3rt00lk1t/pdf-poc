@@ -8,9 +8,10 @@
 import TransformSplit from "./TransformSplit";
 import TransformPages from "./TransformPages";
 import TransformCombine from "./TransformCombine";
+import { Action } from "../types";
 
 interface TransformationsProps {
-  action: "combine" | "split" | "pages";
+  action: Action;
   files: File[];
 }
 
