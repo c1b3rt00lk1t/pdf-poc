@@ -4,7 +4,7 @@
  */
 
 import { useRef } from "react";
-
+import { Action } from "../types";
 import styles from "./FileSelection.module.css";
 import DropArea from "./DropArea";
 
@@ -12,7 +12,7 @@ export interface FileSelectionProps {
   files: File[];
   setFiles: (files: File[]) => void;
   handleClickReset: () => void;
-  action: "combine" | "split" | "pages";
+  action: Action;
 }
 
 const FileSelection = ({
