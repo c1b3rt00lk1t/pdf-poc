@@ -23,9 +23,9 @@
 }
 
 .DropAreaPending {
-  background-color: rgb(222, 184, 135, 0.3);
+  background-color: rgba(82, 109, 173, 0.3);
 }
 
 .DropAreaDropped {
-  background-color: rgb(173, 255, 47, 0.3);
+  background-color: rgba(84, 172, 128, 0.3);
 }
