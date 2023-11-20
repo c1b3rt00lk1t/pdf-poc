@@ -9,6 +9,7 @@ import TransformSplit from "./TransformSplit";
 import TransformPages from "./TransformPages";
 import TransformCombine from "./TransformCombine";
 import { Action } from "../types";
+import styles from "./Transformations.module.css";
 
 interface TransformationsProps {
   action: Action;
@@ -23,7 +24,7 @@ const Transformations = ({ files, action }: TransformationsProps) => {
   };
 
   return (
-    <div>
+    <div className={styles.Transformations}>
       <h1>{actionTitles[action]}</h1>
       {action === "pages" && files.length > 0 && (
         <TransformPages file={files[0]} />
