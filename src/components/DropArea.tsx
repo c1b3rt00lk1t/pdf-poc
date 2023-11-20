@@ -1,7 +1,8 @@
 import styles from "./DropArea.module.css";
+import { Action } from "../types";
 
 interface DropAreaProps {
-  action: "combine" | "split" | "pages";
+  action: Action;
   files: File[];
   setFiles: (files: File[]) => void;
 }
