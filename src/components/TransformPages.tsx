@@ -77,7 +77,6 @@ const TransformPages = ({ file }: TransformPagesProps) => {
 
   return (
     <>
-      <p>{file.name}</p>
       <form>
         <div>
           <label htmlFor="initialPage">Initial page</label>
