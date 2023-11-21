@@ -61,15 +61,15 @@ export async function combineFiles(files: File[]) {
  */
 
 export type AddPageOptions = {
-  initialPage?: number;
-  startNumber?: number;
-  yCentimeters?: number;
-  xPosition?: "center" | "left" | "right";
-  fontSize?: number;
-  fontType?: FontType;
+  initialPage: number;
+  startNumber: number;
+  yCentimeters: number;
+  xPosition: "center" | "left" | "right";
+  fontSize: number;
+  fontType: FontType;
 };
 
-export const addPageDefaultOptions = {
+export const addPageDefaultOptions: AddPageOptions = {
   initialPage: 2,
   startNumber: 2,
   yCentimeters: 0.35,
