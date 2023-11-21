@@ -64,7 +64,7 @@ const TransformPages = ({ file }: TransformPagesProps) => {
       <p>{file.name}</p>
       <form>
         <div>
-          <label htmlFor="initialPage">Initial Page</label>
+          <label htmlFor="initialPage">Initial page</label>
           <input
             type="number"
             id="initialPage"
@@ -75,7 +75,7 @@ const TransformPages = ({ file }: TransformPagesProps) => {
           />
         </div>
         <div>
-          <label htmlFor="startNumber">Start Number</label>
+          <label htmlFor="startNumber">Start number</label>
           <input
             type="number"
             id="startNumber"
