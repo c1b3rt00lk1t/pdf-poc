@@ -71,15 +71,27 @@ export async function combineFiles(files: File[]) {
  * by default it uses a font type Helvetica and a font size of 12
  */
 
-export async function addPageNumbers(
-  file: File,
-  initialPage: number = 2,
-  startNumber: number = 2,
-  yCentimeters: number = 0.35,
-  xPosition: "left" | "center" | "right" = "center",
-  fontSize: number = 12,
-  fontType: FontType = "Helvetica"
-) {
+export const addPageDefaultOptions = {
+  initialPage: 2,
+  startNumber: 2,
+  yCentimeters: 0.35,
+  xPosition: "center",
+  fontSize: 12,
+  fontType: "Helvetica",
+};
+
+export type AddPageOptions = typeof addPageDefaultOptions;
+
+export async function addPageNumbers(file: File, options: AddPageOptions) {
+  const {
+    initialPage,
+    startNumber,
+    yCentimeters,
+    xPosition,
+    fontSize,
+    fontType,
+  } = { ...addPageDefaultOptions, ...options };
+
   const reader = new FileReader();
   reader.readAsArrayBuffer(file);
   reader.onloadend = async () => {
