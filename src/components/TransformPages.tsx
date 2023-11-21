@@ -12,7 +12,7 @@ interface TransformPagesProps {
 function addPagesReducer(state: AddPageOptions, action: any) {
   switch (action.type) {
     case "initialPage":
-      return { ...state, initialPage: action.value };
+      return action.value > 0 ? { ...state, initialPage: action.value } : state;
     default:
       throw new Error();
   }
@@ -25,7 +25,6 @@ const TransformPages = ({ file }: TransformPagesProps) => {
   );
 
   function handleChangeInitialPage(event: React.ChangeEvent<HTMLInputElement>) {
-    if (Number(event.target.value) < 1) return;
     dispatch({ type: "initialPage", value: Number(event.target.value) });
   }
 
