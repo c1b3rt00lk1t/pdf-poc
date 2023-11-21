@@ -55,6 +55,7 @@ export async function addPageNumbers(
   file: File,
   initialPage: number = 1,
   startNumber: number = 2,
+  yCentimeters: number = 0.35,
   fontSize: number = 12
 ) {
   const reader = new FileReader();
@@ -65,11 +66,13 @@ export async function addPageNumbers(
     const pages = pdfDoc.getPages();
     const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
 
+    const yPosition = (yCentimeters / 2.54) * 72;
+
     pages.forEach((page, index) => {
       if (index !== initialPage - 1) {
         page.drawText((index + startNumber - initialPage).toString(), {
           x: page.getWidth() / 2,
-          y: 10,
+          y: yPosition,
           size: fontSize,
           font: helveticaFont,
           color: rgb(0, 0, 0),
