@@ -21,18 +21,7 @@ function downloadFile(file: Blob, fileName: string) {
 export const availableFonts = {
   Courier: true,
   Helvetica: true,
-  // "Symbol",
-  // "ZapfDingbats",
-  // "CourierBold",
-  // "CourierOblique",
-  // "CourierBoldOblique",
-  // "HelveticaBold",
-  // "HelveticaOblique",
-  // "HelveticaBoldOblique",
   TimesRoman: true,
-  // "TimesRomanBold",
-  // "TimesRomanItalic",
-  // "TimesRomanBoldItalic",
 };
 
 /*The following type extracts the keys of the availableFonts object*/
@@ -71,6 +60,15 @@ export async function combineFiles(files: File[]) {
  * by default it uses a font type Helvetica and a font size of 12
  */
 
+export type AddPageOptions = {
+  initialPage?: number;
+  startNumber?: number;
+  yCentimeters?: number;
+  xPosition?: "center" | "left" | "right";
+  fontSize?: number;
+  fontType?: FontType;
+};
+
 export const addPageDefaultOptions = {
   initialPage: 2,
   startNumber: 2,
@@ -79,8 +77,6 @@ export const addPageDefaultOptions = {
   fontSize: 12,
   fontType: "Helvetica",
 };
-
-export type AddPageOptions = typeof addPageDefaultOptions;
 
 export async function addPageNumbers(file: File, options: AddPageOptions) {
   const {
