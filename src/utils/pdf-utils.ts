@@ -78,8 +78,7 @@ export async function addPageNumbers(
   yCentimeters: number = 0.35,
   xPosition: "left" | "center" | "right" = "center",
   fontSize: number = 12,
-  fontType: FontType = "Helvetica",
-  fontColor: string = "000000"
+  fontType: FontType = "Helvetica"
 ) {
   const reader = new FileReader();
   reader.readAsArrayBuffer(file);
