@@ -22,6 +22,10 @@ function addPagesReducer(state: AddPageOptions, action: any) {
       return action.value > 0
         ? { ...state, yCentimeters: action.value }
         : state;
+    case "xPosition":
+      return { ...state, xPosition: action.value };
+    case "fontSize":
+      return action.value > 0 ? { ...state, fontSize: action.value } : state;
     default:
       throw new Error();
   }
@@ -45,6 +49,14 @@ const TransformPages = ({ file }: TransformPagesProps) => {
     event: React.ChangeEvent<HTMLInputElement>
   ) {
     dispatch({ type: "yCentimeters", value: Number(event.target.value) });
+  }
+
+  function handleChangeXPosition(event: React.ChangeEvent<HTMLSelectElement>) {
+    dispatch({ type: "xPosition", value: event.target.value });
+  }
+
+  function handleChangeFontSize(event: React.ChangeEvent<HTMLInputElement>) {
+    dispatch({ type: "fontSize", value: Number(event.target.value) });
   }
 
   function handleSelectFont(event: React.ChangeEvent<HTMLSelectElement>) {
@@ -93,6 +105,29 @@ const TransformPages = ({ file }: TransformPagesProps) => {
             value={options.yCentimeters.toFixed(2)}
             step="0.01"
             onChange={handleChangeYCentimeters}
+          />
+        </div>
+        <div>
+          <label htmlFor="xPosition">Horizontal alignment</label>
+          <select
+            id="xPosition"
+            name="xPosition"
+            defaultValue={options.xPosition}
+            onChange={handleChangeXPosition}
+          >
+            <option value="center">Center</option>
+            <option value="left">Left</option>
+            <option value="right">Right</option>
+          </select>
+        </div>
+        <div>
+          <label htmlFor="fontSize">Font size</label>
+          <input
+            type="number"
+            id="fontSize"
+            name="fontSize"
+            value={options.fontSize.toString()}
+            onChange={handleChangeFontSize}
           />
         </div>
         <div>
