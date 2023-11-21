@@ -59,7 +59,7 @@ const TransformPages = ({ file }: TransformPagesProps) => {
     dispatch({ type: "fontSize", value: Number(event.target.value) });
   }
 
-  function handleSelectFont(event: React.ChangeEvent<HTMLSelectElement>) {
+  function handleChangeFontType(event: React.ChangeEvent<HTMLSelectElement>) {
     dispatch({ type: "fontType", value: event.target.value });
   }
 
@@ -135,7 +135,7 @@ const TransformPages = ({ file }: TransformPagesProps) => {
           <select
             id="font"
             name="font"
-            onChange={handleSelectFont}
+            onChange={handleChangeFontType}
             defaultValue={addPageDefaultOptions.fontType}
           >
             {Object.entries(availableFonts).map(([fontKey, fontDesc]) => (
