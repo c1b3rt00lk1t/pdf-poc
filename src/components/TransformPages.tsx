@@ -13,6 +13,8 @@ function addPagesReducer(state: AddPageOptions, action: any) {
   switch (action.type) {
     case "initialPage":
       return action.value > 0 ? { ...state, initialPage: action.value } : state;
+    case "startNumber":
+      return action.value > 0 ? { ...state, startNumber: action.value } : state;
     default:
       throw new Error();
   }
@@ -28,6 +30,10 @@ const TransformPages = ({ file }: TransformPagesProps) => {
     dispatch({ type: "initialPage", value: Number(event.target.value) });
   }
 
+  function handleChangeStartNumber(event: React.ChangeEvent<HTMLInputElement>) {
+    dispatch({ type: "startNumber", value: Number(event.target.value) });
+  }
+
   function handleClickAddPageNumbers(
     event: React.MouseEvent<HTMLButtonElement>
   ) {
@@ -39,15 +45,27 @@ const TransformPages = ({ file }: TransformPagesProps) => {
     <>
       <p>{file.name}</p>
       <form>
-        <label htmlFor="initialPage">Initial Page</label>
-        <input
-          type="number"
-          id="initialPage"
-          name="initialPage"
-          value={options.initialPage}
-          onChange={handleChangeInitialPage}
-          placeholder={options.initialPage.toString()}
-        />
+        <div>
+          <label htmlFor="initialPage">Initial Page</label>
+          <input
+            type="number"
+            id="initialPage"
+            name="initialPage"
+            value={options.initialPage}
+            onChange={handleChangeInitialPage}
+            placeholder={options.initialPage.toString()}
+          />
+        </div>
+        <div>
+          <label htmlFor="startNumber">Start Number</label>
+          <input
+            type="number"
+            id="startNumber"
+            name="startNumber"
+            value={options.startNumber.toString()}
+            onChange={handleChangeStartNumber}
+          />
+        </div>
         <button onClick={handleClickAddPageNumbers}>Add page numbers</button>
       </form>
     </>
