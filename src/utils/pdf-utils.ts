@@ -19,12 +19,12 @@ function downloadFile(file: Blob, fileName: string) {
 }
 
 export const availableFonts = {
-  Courier: true,
-  Helvetica: true,
-  TimesRoman: true,
-};
+  Courier: "Courier",
+  Helvetica: "Helvetica",
+  "Times-Roman": "Times New Roman",
+} as const;
 
-/*The following type extracts the keys of the availableFonts object*/
+/*The following type extracts the literal values of the availableFonts object*/
 type FontType = keyof typeof availableFonts;
 
 /**
