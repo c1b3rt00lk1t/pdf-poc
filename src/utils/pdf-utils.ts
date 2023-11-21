@@ -56,7 +56,7 @@ export async function addPageNumbers(
   initialPage: number = 1,
   startNumber: number = 2,
   yCentimeters: number = 0.35,
-
+  xPosition: "left" | "center" | "right" = "center",
   fontSize: number = 12
 ) {
   const reader = new FileReader();
@@ -71,8 +71,15 @@ export async function addPageNumbers(
 
     pages.forEach((page, index) => {
       if (index !== initialPage - 1) {
+        const xPoints =
+          xPosition === "center"
+            ? page.getWidth() / 2
+            : xPosition === "left"
+            ? 50
+            : page.getWidth() - 50;
+
         page.drawText((index + startNumber - initialPage).toString(), {
-          x: page.getWidth() / 2,
+          x: xPoints,
           y: yPoints,
           size: fontSize,
           font: helveticaFont,
