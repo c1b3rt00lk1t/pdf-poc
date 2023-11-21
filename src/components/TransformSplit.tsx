@@ -19,7 +19,12 @@ const TransformSplit = ({ file }: TransformSplitProps) => {
         placeholder="1,2,3-5"
         value={pageRanges}
       />
-      <button onClick={() => splitFiles(pageRanges, file)}>Split files</button>
+      <button
+        disabled={!file}
+        onClick={() => file && splitFiles(pageRanges, file)}
+      >
+        Split files
+      </button>
     </>
   );
 };

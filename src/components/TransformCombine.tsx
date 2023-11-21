@@ -7,7 +7,12 @@ const TransformCombine = ({ files }: TransformCombineProps) => {
   return (
     <>
       <p>{files.length} files selected</p>
-      <button onClick={() => combineFiles(files)}>Combine files</button>
+      <button
+        disabled={!files.length}
+        onClick={() => files.length && combineFiles(files)}
+      >
+        Combine files
+      </button>
     </>
   );
 };

@@ -67,8 +67,7 @@ const TransformPages = ({ file }: TransformPagesProps) => {
     event: React.MouseEvent<HTMLButtonElement>
   ) {
     event.preventDefault();
-    console.log(options);
-    addPageNumbers(file, options);
+    if (file) addPageNumbers(file, options);
   }
 
   function handleClickReset(event: React.MouseEvent<HTMLButtonElement>) {
@@ -166,7 +165,11 @@ const TransformPages = ({ file }: TransformPagesProps) => {
           </select>
         </div>
         <div>
-          <button onClick={handleClickAddPageNumbers} className={styles.button}>
+          <button
+            disabled={!file}
+            onClick={handleClickAddPageNumbers}
+            className={styles.button}
+          >
             Add numbers
           </button>
           <button onClick={handleClickReset} className={styles.button}>
