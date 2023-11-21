@@ -51,7 +51,7 @@ export async function combineFiles(files: File[]) {
  * by default it uses a font type Helvetica and a font size of 12
  */
 
-export async function addPageNumbers(file: File) {
+export async function addPageNumbers(file: File, initialPage: number = 1) {
   const reader = new FileReader();
   reader.readAsArrayBuffer(file);
   reader.onloadend = async () => {
@@ -61,7 +61,7 @@ export async function addPageNumbers(file: File) {
     const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
 
     pages.forEach((page, index) => {
-      if (index !== 0) {
+      if (index !== initialPage - 1) {
         page.drawText((index + 1).toString(), {
           x: page.getWidth() / 2,
           y: 10,
