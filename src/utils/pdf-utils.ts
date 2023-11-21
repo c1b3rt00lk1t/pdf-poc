@@ -18,6 +18,23 @@ function downloadFile(file: Blob, fileName: string) {
   downloadLink.click();
 }
 
+export const availableFonts = [
+  "Courier",
+  "Helvetica",
+  // "Symbol",
+  // "ZapfDingbats",
+  // "CourierBold",
+  // "CourierOblique",
+  // "CourierBoldOblique",
+  // "HelveticaBold",
+  // "HelveticaOblique",
+  // "HelveticaBoldOblique",
+  "TimesRoman",
+  // "TimesRomanBold",
+  // "TimesRomanItalic",
+  // "TimesRomanBoldItalic",
+];
+
 /**
  * combineFiles combines the pdf files that the user has selected
  */
