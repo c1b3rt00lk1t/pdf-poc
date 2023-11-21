@@ -1,5 +1,6 @@
 .DropArea {
-  width: 40vw;
+  width: 80%;
+  min-width: 100px;
   height: 50vh;
   border: solid 1px black;
   border-radius: 10px;
