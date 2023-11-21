@@ -6,6 +6,8 @@
 .main {
   display: grid;
   grid-template-columns: 0.2fr 0.5fr 0.3fr;
+  padding-top: 10vh;
+  background-color: #e7e7e7;
 }
 
 .header {

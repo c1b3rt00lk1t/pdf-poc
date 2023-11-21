@@ -31,8 +31,6 @@ const FileSelection = ({
   return (
     <div className={styles.FileSelection}>
       <div>
-        <h1>File Selection</h1>
-
         <DropArea action={action} files={files} setFiles={setFiles} />
         <button
           className={styles.button}

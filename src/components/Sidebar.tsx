@@ -19,7 +19,6 @@ interface SidebarProps {
 const Sidebar = ({ handleClickAction }: SidebarProps) => {
   return (
     <div className={styles.Sidebar}>
-      <h1>Actions</h1>
       <button onClick={() => handleClickAction("combine")}>Combine</button>
       <button onClick={() => handleClickAction("pages")}>Pages</button>
       <button onClick={() => handleClickAction("split")}>Split</button>
