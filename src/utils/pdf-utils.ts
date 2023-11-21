@@ -18,9 +18,9 @@ function downloadFile(file: Blob, fileName: string) {
   downloadLink.click();
 }
 
-export const availableFonts = [
-  "Courier",
-  "Helvetica",
+export const availableFonts = {
+  Courier: true,
+  Helvetica: true,
   // "Symbol",
   // "ZapfDingbats",
   // "CourierBold",
@@ -29,11 +29,14 @@ export const availableFonts = [
   // "HelveticaBold",
   // "HelveticaOblique",
   // "HelveticaBoldOblique",
-  "TimesRoman",
+  TimesRoman: true,
   // "TimesRomanBold",
   // "TimesRomanItalic",
   // "TimesRomanBoldItalic",
-];
+};
+
+/*The following type extracts the keys of the availableFonts object*/
+type FontType = keyof typeof availableFonts;
 
 /**
  * combineFiles combines the pdf files that the user has selected
@@ -75,7 +78,7 @@ export async function addPageNumbers(
   yCentimeters: number = 0.35,
   xPosition: "left" | "center" | "right" = "center",
   fontSize: number = 12,
-  fontType: string = "Helvetica",
+  fontType: FontType = "Helvetica",
   fontColor: string = "000000"
 ) {
   const reader = new FileReader();
