@@ -51,7 +51,11 @@ export async function combineFiles(files: File[]) {
  * by default it uses a font type Helvetica and a font size of 12
  */
 
-export async function addPageNumbers(file: File, initialPage: number = 1) {
+export async function addPageNumbers(
+  file: File,
+  initialPage: number = 1,
+  fontSize: number = 12
+) {
   const reader = new FileReader();
   reader.readAsArrayBuffer(file);
   reader.onloadend = async () => {
@@ -65,7 +69,7 @@ export async function addPageNumbers(file: File, initialPage: number = 1) {
         page.drawText((index + 1).toString(), {
           x: page.getWidth() / 2,
           y: 10,
-          size: 9,
+          size: fontSize,
           font: helveticaFont,
           color: rgb(0, 0, 0),
         });
