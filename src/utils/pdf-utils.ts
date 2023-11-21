@@ -73,7 +73,7 @@ export async function combineFiles(files: File[]) {
 
 export async function addPageNumbers(
   file: File,
-  initialPage: number = 1,
+  initialPage: number = 2,
   startNumber: number = 2,
   yCentimeters: number = 0.35,
   xPosition: "left" | "center" | "right" = "center",
