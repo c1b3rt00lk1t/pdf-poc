@@ -20,7 +20,13 @@ const Sidebar = ({ handleClickAction }: SidebarProps) => {
   return (
     <div className={styles.Sidebar}>
       <button onClick={() => handleClickAction("combine")}>Combine</button>
-      <button onClick={() => handleClickAction("pages")}>Pages</button>
+      <button onClick={() => handleClickAction("pages")}>Numbers</button>
+      <button disabled onClick={() => {}}>
+        Remove
+      </button>
+      <button disabled onClick={() => {}}>
+        Watermark
+      </button>
       <button onClick={() => handleClickAction("split")}>Split</button>
     </div>
   );
