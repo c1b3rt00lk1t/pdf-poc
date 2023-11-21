@@ -39,31 +39,28 @@ const TransformPages = ({ file }: TransformPagesProps) => {
     addPageDefaultOptions
   );
 
-  function handleChangeInitialPage(event: React.ChangeEvent<HTMLInputElement>) {
-    dispatch({ type: "initialPage", value: Number(event.target.value) });
-  }
+  const handleChange =
+    (type: string, transform?: string) =>
+    (
+      event:
+        | React.ChangeEvent<HTMLInputElement>
+        | React.ChangeEvent<HTMLSelectElement>
+    ) => {
+      dispatch({
+        type,
+        value:
+          transform === "number"
+            ? Number(event.target.value)
+            : event.target.value,
+      });
+    };
 
-  function handleChangeStartNumber(event: React.ChangeEvent<HTMLInputElement>) {
-    dispatch({ type: "startNumber", value: Number(event.target.value) });
-  }
-
-  function handleChangeYCentimeters(
-    event: React.ChangeEvent<HTMLInputElement>
-  ) {
-    dispatch({ type: "yCentimeters", value: Number(event.target.value) });
-  }
-
-  function handleChangeXPosition(event: React.ChangeEvent<HTMLSelectElement>) {
-    dispatch({ type: "xPosition", value: event.target.value });
-  }
-
-  function handleChangeFontSize(event: React.ChangeEvent<HTMLInputElement>) {
-    dispatch({ type: "fontSize", value: Number(event.target.value) });
-  }
-
-  function handleChangeFontType(event: React.ChangeEvent<HTMLSelectElement>) {
-    dispatch({ type: "fontType", value: event.target.value });
-  }
+  const handleChangeInitialPage = handleChange("initialPage", "number");
+  const handleChangeStartNumber = handleChange("startNumber", "number");
+  const handleChangeYCentimeters = handleChange("yCentimeters", "number");
+  const handleChangeFontSize = handleChange("fontSize", "number");
+  const handleChangeXPosition = handleChange("xPosition");
+  const handleChangeFontType = handleChange("fontType");
 
   function handleClickAddPageNumbers(
     event: React.MouseEvent<HTMLButtonElement>
