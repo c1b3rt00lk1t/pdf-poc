@@ -3,6 +3,7 @@ import {
   addPageNumbers,
   addPageDefaultOptions,
   AddPageOptions,
+  availableFonts,
 } from "../utils/pdf-utils";
 
 interface TransformPagesProps {
@@ -15,6 +16,8 @@ function addPagesReducer(state: AddPageOptions, action: any) {
       return action.value > 0 ? { ...state, initialPage: action.value } : state;
     case "startNumber":
       return action.value > 0 ? { ...state, startNumber: action.value } : state;
+    case "fontType":
+      return { ...state, fontType: action.value };
     default:
       throw new Error();
   }
@@ -34,10 +37,15 @@ const TransformPages = ({ file }: TransformPagesProps) => {
     dispatch({ type: "startNumber", value: Number(event.target.value) });
   }
 
+  function handleSelectFont(event: React.ChangeEvent<HTMLSelectElement>) {
+    dispatch({ type: "fontType", value: event.target.value });
+  }
+
   function handleClickAddPageNumbers(
     event: React.MouseEvent<HTMLButtonElement>
   ) {
     event.preventDefault();
+    console.log(options);
     addPageNumbers(file, options);
   }
 
@@ -65,6 +73,21 @@ const TransformPages = ({ file }: TransformPagesProps) => {
             value={options.startNumber.toString()}
             onChange={handleChangeStartNumber}
           />
+        </div>
+        <div>
+          <label htmlFor="font">Font</label>
+          <select
+            id="font"
+            name="font"
+            onChange={handleSelectFont}
+            defaultValue={addPageDefaultOptions.fontType}
+          >
+            {Object.entries(availableFonts).map(([fontKey, fontDesc]) => (
+              <option key={fontKey} value={fontKey}>
+                {fontDesc}
+              </option>
+            ))}
+          </select>
         </div>
         <button onClick={handleClickAddPageNumbers}>Add page numbers</button>
       </form>
