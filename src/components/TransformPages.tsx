@@ -28,6 +28,13 @@ const TransformPages = ({ file }: TransformPagesProps) => {
     dispatch({ type: "initialPage", value: Number(event.target.value) });
   }
 
+  function handleClickAddPageNumbers(
+    event: React.MouseEvent<HTMLButtonElement>
+  ) {
+    event.preventDefault();
+    addPageNumbers(file, options);
+  }
+
   return (
     <>
       <p>{file.name}</p>
@@ -41,10 +48,8 @@ const TransformPages = ({ file }: TransformPagesProps) => {
           onChange={handleChangeInitialPage}
           placeholder={options.initialPage.toString()}
         />
+        <button onClick={handleClickAddPageNumbers}>Add page numbers</button>
       </form>
-      <button onClick={() => addPageNumbers(file, options)}>
-        Add page numbers
-      </button>
     </>
   );
 };
