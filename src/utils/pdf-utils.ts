@@ -1,4 +1,4 @@
-import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
+import { PDFDocument, rgb } from "pdf-lib";
 
 /**
  * Basic functions used in the different actions
@@ -57,7 +57,9 @@ export async function addPageNumbers(
   startNumber: number = 2,
   yCentimeters: number = 0.35,
   xPosition: "left" | "center" | "right" = "center",
-  fontSize: number = 12
+  fontSize: number = 12,
+  fontType: string = "Helvetica",
+  fontColor: string = "000000"
 ) {
   const reader = new FileReader();
   reader.readAsArrayBuffer(file);
@@ -65,7 +67,7 @@ export async function addPageNumbers(
     const pdfData = reader.result as ArrayBuffer;
     const pdfDoc = await PDFDocument.load(pdfData);
     const pages = pdfDoc.getPages();
-    const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
+    const helveticaFont = await pdfDoc.embedFont(fontType);
 
     pages.forEach((page, index) => {
       if (index !== initialPage - 1) {
