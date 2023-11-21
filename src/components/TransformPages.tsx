@@ -5,6 +5,7 @@ import {
   AddPageOptions,
   availableFonts,
 } from "../utils/pdf-utils";
+import styles from "./TransformPages.module.css";
 
 interface TransformPagesProps {
   file: File;
@@ -77,9 +78,11 @@ const TransformPages = ({ file }: TransformPagesProps) => {
 
   return (
     <>
-      <form>
+      <form className={styles.form}>
         <div>
-          <label htmlFor="initialPage">Initial page</label>
+          <label htmlFor="initialPage" className={styles.label}>
+            Initial page
+          </label>
           <input
             type="number"
             id="initialPage"
@@ -87,20 +90,26 @@ const TransformPages = ({ file }: TransformPagesProps) => {
             value={options.initialPage}
             onChange={handleChangeInitialPage}
             placeholder={options.initialPage.toString()}
+            className={styles.input}
           />
         </div>
         <div>
-          <label htmlFor="startNumber">Start number</label>
+          <label htmlFor="startNumber" className={styles.label}>
+            Start number
+          </label>
           <input
             type="number"
             id="startNumber"
             name="startNumber"
             value={options.startNumber.toString()}
             onChange={handleChangeStartNumber}
+            className={styles.input}
           />
         </div>
         <div>
-          <label htmlFor="yCentimeters">Bottom margin (cm)</label>
+          <label htmlFor="yCentimeters" className={styles.label}>
+            Bottom margin (cm)
+          </label>
           <input
             type="number"
             id="yCentimeters"
@@ -108,10 +117,13 @@ const TransformPages = ({ file }: TransformPagesProps) => {
             value={options.yCentimeters.toFixed(2)}
             step="0.01"
             onChange={handleChangeYCentimeters}
+            className={styles.input}
           />
         </div>
         <div>
-          <label htmlFor="xPosition">Horizontal alignment</label>
+          <label htmlFor="xPosition" className={styles.label}>
+            Horizontal alignment
+          </label>
           <select
             id="xPosition"
             name="xPosition"
@@ -124,17 +136,22 @@ const TransformPages = ({ file }: TransformPagesProps) => {
           </select>
         </div>
         <div>
-          <label htmlFor="fontSize">Font size</label>
+          <label htmlFor="fontSize" className={styles.label}>
+            Font size
+          </label>
           <input
             type="number"
             id="fontSize"
             name="fontSize"
             value={options.fontSize.toString()}
             onChange={handleChangeFontSize}
+            className={styles.input}
           />
         </div>
         <div>
-          <label htmlFor="font">Font</label>
+          <label htmlFor="font" className={styles.label}>
+            Font
+          </label>
           <select
             id="font"
             name="font"
@@ -148,8 +165,14 @@ const TransformPages = ({ file }: TransformPagesProps) => {
             ))}
           </select>
         </div>
-        <button onClick={handleClickAddPageNumbers}>Add page numbers</button>
-        <button onClick={handleClickReset}>Reset</button>
+        <div>
+          <button onClick={handleClickAddPageNumbers} className={styles.button}>
+            Add numbers
+          </button>
+          <button onClick={handleClickReset} className={styles.button}>
+            Reset
+          </button>
+        </div>
       </form>
     </>
   );
