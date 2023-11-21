@@ -54,6 +54,7 @@ export async function combineFiles(files: File[]) {
 export async function addPageNumbers(
   file: File,
   initialPage: number = 1,
+  startNumber: number = 2,
   fontSize: number = 12
 ) {
   const reader = new FileReader();
@@ -66,7 +67,7 @@ export async function addPageNumbers(
 
     pages.forEach((page, index) => {
       if (index !== initialPage - 1) {
-        page.drawText((index + 1).toString(), {
+        page.drawText((index + startNumber - initialPage).toString(), {
           x: page.getWidth() / 2,
           y: 10,
           size: fontSize,
