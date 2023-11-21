@@ -89,7 +89,7 @@ export async function addPageNumbers(
     const helveticaFont = await pdfDoc.embedFont(fontType);
 
     pages.forEach((page, index) => {
-      if (index !== initialPage - 1) {
+      if (index >= initialPage - 1) {
         const yPoints = (yCentimeters / 2.54) * 72;
         const xPoints =
           xPosition === "center"
