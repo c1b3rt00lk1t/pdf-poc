@@ -5,3 +5,7 @@
   padding: 0.5vh 1vw;
   min-width: 100px;
 }
+
+.selected {
+  background-color: rgba(84, 172, 128, 0.2);
+}

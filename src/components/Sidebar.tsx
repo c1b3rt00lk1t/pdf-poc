@@ -14,9 +14,10 @@ import { Action } from "../types";
 
 interface SidebarProps {
   handleClickAction: (action: Action) => void;
+  action: Action;
 }
 
-const Sidebar = ({ handleClickAction }: SidebarProps) => {
+const Sidebar = ({ handleClickAction, action }: SidebarProps) => {
   return (
     <div className={styles.Sidebar}>
       <button disabled onClick={() => {}}>
@@ -25,12 +26,28 @@ const Sidebar = ({ handleClickAction }: SidebarProps) => {
       <button disabled onClick={() => {}}>
         Rotate
       </button>
-      <button onClick={() => handleClickAction("combine")}>Combine</button>
-      <button onClick={() => handleClickAction("pages")}>Numbers</button>
+      <button
+        className={action === "combine" ? styles.selected : undefined}
+        onClick={() => handleClickAction("combine")}
+      >
+        Combine
+      </button>
+      <button
+        className={action === "pages" ? styles.selected : undefined}
+        onClick={() => handleClickAction("pages")}
+      >
+        Numbers
+      </button>
       <button disabled onClick={() => {}}>
         Watermark
       </button>
-      <button onClick={() => handleClickAction("split")}>Split</button>
+
+      <button
+        className={action === "split" ? styles.selected : undefined}
+        onClick={() => handleClickAction("split")}
+      >
+        Split
+      </button>
     </div>
   );
 };

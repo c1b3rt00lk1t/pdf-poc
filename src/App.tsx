@@ -41,7 +41,7 @@ function App() {
         <Header />
       </header>
       <main className={styles.main}>
-        <Sidebar handleClickAction={handleClickAction} />
+        <Sidebar handleClickAction={handleClickAction} action={action} />
         <FileSelection
           files={files}
           setFiles={setFiles}
