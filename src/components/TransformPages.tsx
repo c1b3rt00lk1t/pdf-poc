@@ -18,6 +18,10 @@ function addPagesReducer(state: AddPageOptions, action: any) {
       return action.value > 0 ? { ...state, startNumber: action.value } : state;
     case "fontType":
       return { ...state, fontType: action.value };
+    case "yCentimeters":
+      return action.value > 0
+        ? { ...state, yCentimeters: action.value }
+        : state;
     default:
       throw new Error();
   }
@@ -35,6 +39,12 @@ const TransformPages = ({ file }: TransformPagesProps) => {
 
   function handleChangeStartNumber(event: React.ChangeEvent<HTMLInputElement>) {
     dispatch({ type: "startNumber", value: Number(event.target.value) });
+  }
+
+  function handleChangeYCentimeters(
+    event: React.ChangeEvent<HTMLInputElement>
+  ) {
+    dispatch({ type: "yCentimeters", value: Number(event.target.value) });
   }
 
   function handleSelectFont(event: React.ChangeEvent<HTMLSelectElement>) {
@@ -72,6 +82,17 @@ const TransformPages = ({ file }: TransformPagesProps) => {
             name="startNumber"
             value={options.startNumber.toString()}
             onChange={handleChangeStartNumber}
+          />
+        </div>
+        <div>
+          <label htmlFor="yCentimeters">Bottom margin (cm)</label>
+          <input
+            type="number"
+            id="yCentimeters"
+            name="yCentimeters"
+            value={options.yCentimeters.toFixed(2)}
+            step="0.01"
+            onChange={handleChangeYCentimeters}
           />
         </div>
         <div>
