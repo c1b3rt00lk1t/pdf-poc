@@ -26,6 +26,8 @@ function addPagesReducer(state: AddPageOptions, action: any) {
       return { ...state, xPosition: action.value };
     case "fontSize":
       return action.value > 0 ? { ...state, fontSize: action.value } : state;
+    case "reset":
+      return addPageDefaultOptions;
     default:
       throw new Error();
   }
@@ -71,6 +73,11 @@ const TransformPages = ({ file }: TransformPagesProps) => {
     addPageNumbers(file, options);
   }
 
+  function handleClickReset(event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
+    dispatch({ type: "reset" });
+  }
+
   return (
     <>
       <p>{file.name}</p>
@@ -112,7 +119,7 @@ const TransformPages = ({ file }: TransformPagesProps) => {
           <select
             id="xPosition"
             name="xPosition"
-            defaultValue={options.xPosition}
+            value={options.xPosition}
             onChange={handleChangeXPosition}
           >
             <option value="center">Center</option>
@@ -136,7 +143,7 @@ const TransformPages = ({ file }: TransformPagesProps) => {
             id="font"
             name="font"
             onChange={handleChangeFontType}
-            defaultValue={addPageDefaultOptions.fontType}
+            value={options.fontType}
           >
             {Object.entries(availableFonts).map(([fontKey, fontDesc]) => (
               <option key={fontKey} value={fontKey}>
@@ -146,6 +153,7 @@ const TransformPages = ({ file }: TransformPagesProps) => {
           </select>
         </div>
         <button onClick={handleClickAddPageNumbers}>Add page numbers</button>
+        <button onClick={handleClickReset}>Reset</button>
       </form>
     </>
   );
