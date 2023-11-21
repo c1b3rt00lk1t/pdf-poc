@@ -19,15 +19,9 @@ interface TransformationsProps {
 const Transformations = ({ files, action }: TransformationsProps) => {
   return (
     <div className={styles.Transformations}>
-      {action === "pages" && files.length > 0 && (
-        <TransformPages file={files[0]} />
-      )}
-      {action === "combine" && files.length > 0 && (
-        <TransformCombine files={files} />
-      )}
-      {action === "split" && files.length > 0 && (
-        <TransformSplit file={files[0]} />
-      )}
+      {action === "pages" && <TransformPages file={files[0]} />}
+      {action === "combine" && <TransformCombine files={files} />}
+      {action === "split" && <TransformSplit file={files[0]} />}
     </div>
   );
 };
