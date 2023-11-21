@@ -30,7 +30,7 @@ const TransformPages = ({ file }: TransformPagesProps) => {
 
   return (
     <>
-      <p>{file && file.name}</p>
+      <p>{file.name}</p>
       <form>
         <label htmlFor="initialPage">Initial Page</label>
         <input
@@ -42,11 +42,9 @@ const TransformPages = ({ file }: TransformPagesProps) => {
           placeholder={options.initialPage.toString()}
         />
       </form>
-      {file && (
-        <button onClick={() => addPageNumbers(file, options)}>
-          Add page numbers
-        </button>
-      )}
+      <button onClick={() => addPageNumbers(file, options)}>
+        Add page numbers
+      </button>
     </>
   );
 };
