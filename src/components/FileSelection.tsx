@@ -6,7 +6,7 @@
 import { useRef } from "react";
 import { Action } from "../types";
 import styles from "./FileSelection.module.css";
-import DropArea from "./DropArea";
+import FileList from "./FileList";
 
 export interface FileSelectionProps {
   files: File[];
@@ -28,10 +28,27 @@ const FileSelection = ({
     }
   };
 
+  const handleClick = () => {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = ".pdf";
+    input.multiple = action === "combine" ? true : false;
+    input.onchange = (event) => {
+      const target = event.target as HTMLInputElement;
+      const files = target.files;
+      if (files && files.length > 0) {
+        setFiles(Array.from(files));
+      }
+    };
+    input.click();
+  };
+
   return (
     <div className={styles.FileSelection}>
       <div>
-        <DropArea action={action} files={files} setFiles={setFiles} />
+        <button className={styles.button} onClick={handleClick}>
+          Add
+        </button>
         <button
           className={styles.button}
           onClick={() => {
@@ -42,6 +59,7 @@ const FileSelection = ({
           Reset
         </button>
       </div>
+      <FileList files={files} />
     </div>
   );
 };

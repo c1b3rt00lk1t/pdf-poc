@@ -1,0 +1,7 @@
+.Cover {
+  background-color: rgb(176, 233, 214, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: calc(8px + 2vmin);
+}

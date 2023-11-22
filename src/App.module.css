@@ -8,11 +8,15 @@
   grid-template-columns: 0.2fr 0.5fr 0.3fr;
   padding-top: 10vh;
   background-color: #e7e7e7;
+
+  /* background-image: url("https://fastly.picsum.photos/id/11/2500/1667.jpg?hmac=xxjFJtAPgshYkysU_aqx2sZir-kIOjNR9vx0te7GycQ"); */
+  background-image: url("https://fastly.picsum.photos/id/16/2500/1667.jpg?hmac=uAkZwYc5phCRNFTrV_prJ_0rP0EdwJaZ4ctje2bY7aE");
+  background-size: cover;
 }
 
 .header {
   background-color: #282c34;
-  min-height: 12vh;
+  min-height: 10vh;
   display: flex;
   justify-content: flex-start;
   font-size: calc(8px + 2vmin);

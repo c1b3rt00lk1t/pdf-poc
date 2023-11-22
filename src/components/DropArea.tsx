@@ -43,13 +43,13 @@ const DropArea = ({ action, files, setFiles }: DropAreaProps) => {
   return (
     <div
       className={`${styles.DropArea} ${
-        files[0] ? styles.DropAreaDropped : styles.DropAreaPending
+        false ? styles.DropAreaDropped : styles.DropAreaPending
       }`}
       onDragOver={handleDragOver}
       onDrop={handleDrop}
       onClick={handleClick}
     >
-      {files[0] ? (
+      {false ? (
         <ul>
           {files.map((f) => (
             <li key={f.name}>{f.name}</li>

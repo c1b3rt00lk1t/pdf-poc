@@ -16,11 +16,13 @@ import FileSelection from "./components/FileSelection";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import Transformations from "./components/Transformations";
+import Cover from "./Cover";
 import styles from "./App.module.css";
 
 function App() {
   const [files, setFiles] = useState<File[]>([]);
   const [action, setAction] = useState<"combine" | "split" | "pages">("pages");
+  const [dragOverStatus, setDragOverStatus] = useState<boolean>(false);
 
   const handleClickReset = () => {
     setFiles([]);
@@ -31,25 +33,53 @@ function App() {
   };
 
   const handleDragOver = (event: React.DragEvent) => {
+    event.stopPropagation();
     event.preventDefault();
-    event.dataTransfer.dropEffect = "none";
+    event.dataTransfer.dropEffect = "copy";
+    setDragOverStatus(true);
+  };
+
+  const handleDrop = (event: React.DragEvent) => {
+    event.preventDefault();
+    if (event.dataTransfer && event.dataTransfer.items) {
+      if (event.dataTransfer.files[0].type === "application/pdf") {
+        setFiles(Array.from(event.dataTransfer.files));
+      } else {
+        alert("Please drop a pdf file");
+      }
+    }
+    setDragOverStatus(false);
+  };
+
+  const handleDragLeave = (event: React.DragEvent) => {
+    event.preventDefault();
+    setDragOverStatus(false);
   };
 
   return (
-    <div className={styles.App} onDragOver={handleDragOver}>
+    <div
+      className={styles.App}
+      onDragOver={handleDragOver}
+      onDrop={handleDrop}
+      onDragLeave={handleDragLeave}
+    >
       <header className={styles.header}>
         <Header />
       </header>
-      <main className={styles.main}>
-        <Sidebar handleClickAction={handleClickAction} action={action} />
-        <FileSelection
-          files={files}
-          setFiles={setFiles}
-          handleClickReset={handleClickReset}
-          action={action}
-        />
-        <Transformations files={files} action={action} />
-      </main>
+      {dragOverStatus ? (
+        <Cover />
+      ) : (
+        <main className={styles.main}>
+          <Sidebar handleClickAction={handleClickAction} action={action} />
+          <FileSelection
+            files={files}
+            setFiles={setFiles}
+            handleClickReset={handleClickReset}
+            action={action}
+          />
+          <Transformations files={files} action={action} />
+        </main>
+      )}
       <footer className={styles.footer}>developed by c1b3rt00lk1t</footer>
     </div>
   );
