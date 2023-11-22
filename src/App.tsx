@@ -50,7 +50,7 @@ function App() {
         />
         <Transformations files={files} action={action} />
       </main>
-      <footer className={styles.footer}>Footer</footer>
+      <footer className={styles.footer}>developed by c1b3rt00lk1t</footer>
     </div>
   );
 }
