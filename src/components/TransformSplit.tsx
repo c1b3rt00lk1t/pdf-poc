@@ -25,13 +25,18 @@ const TransformSplit = ({ file }: TransformSplitProps) => {
 
   return (
     <form>
-      <input
-        onChange={(ev) => setBasename(ev.target.value)}
-        type="text"
-        placeholder={!disabled ? file.name.replace(/.pdf/i, "") : "Basename"}
-        value={!disabled ? basename : ""}
-        disabled={disabled}
-      />
+      <div>
+        <label htmlFor="basename">Base name</label>
+        <input
+          id="basename"
+          name="basename"
+          onChange={(ev) => setBasename(ev.target.value)}
+          type="text"
+          placeholder={!disabled ? file.name.replace(/.pdf/i, "") : "Basename"}
+          value={!disabled ? basename : ""}
+          disabled={disabled}
+        />
+      </div>
       <input
         onChange={(ev) => {
           setPageRanges(ev.target.value);
