@@ -76,7 +76,7 @@ const TransformPages = ({ file }: TransformPagesProps) => {
   }
 
   return (
-    <form className={styles.form}>
+    <form className={styles.form} autoComplete="off">
       <div>
         <label htmlFor="initialPage" className={styles.label}>
           Initial page

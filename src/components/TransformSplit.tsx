@@ -31,7 +31,7 @@ const TransformSplit = ({ file }: TransformSplitProps) => {
   }
 
   return (
-    <form className={styles.form}>
+    <form className={styles.form} autoComplete="off">
       <div>
         <label htmlFor="basename" className={styles.label}>
           Base name
