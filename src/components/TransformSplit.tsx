@@ -17,8 +17,14 @@ const TransformSplit = ({ file }: TransformSplitProps) => {
   const [pageRanges, setPageRanges] = useState<string>("");
   const [basename, setBasename] = useState<string>("");
   const disabled = !file;
+
+  function handleClickSplitFiles(event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
+    splitFiles(pageRanges, file, basename);
+  }
+
   return (
-    <>
+    <form>
       <input
         onChange={(ev) => setBasename(ev.target.value)}
         type="text"
@@ -35,13 +41,10 @@ const TransformSplit = ({ file }: TransformSplitProps) => {
         value={!disabled ? pageRanges : ""}
         disabled={disabled}
       />
-      <button
-        disabled={disabled}
-        onClick={() => file && splitFiles(pageRanges, file, basename)}
-      >
+      <button disabled={disabled} onClick={handleClickSplitFiles}>
         Split files
       </button>
-    </>
+    </form>
   );
 };
 
