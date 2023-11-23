@@ -24,6 +24,12 @@ const TransformSplit = ({ file }: TransformSplitProps) => {
     splitFiles(pageRanges, file, basename);
   }
 
+  function handleClickReset(event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
+    setPageRanges("");
+    setBasename("");
+  }
+
   return (
     <form className={styles.form}>
       <div>
@@ -64,7 +70,7 @@ const TransformSplit = ({ file }: TransformSplitProps) => {
         >
           Split files
         </button>
-        <button onClick={() => {}} className={styles.button}>
+        <button onClick={handleClickReset} className={styles.button}>
           Reset
         </button>
       </div>
