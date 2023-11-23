@@ -10,14 +10,14 @@ const TransformSplit = ({ file }: TransformSplitProps) => {
 
   return (
     <>
-      <p>{file && file.name}</p>
       <input
         onChange={(ev) => {
           setPageRanges(ev.target.value);
         }}
         type="text"
         placeholder="1,2,3-5"
-        value={pageRanges}
+        value={!!file ? pageRanges : ""}
+        disabled={!file}
       />
       <button
         disabled={!file}
