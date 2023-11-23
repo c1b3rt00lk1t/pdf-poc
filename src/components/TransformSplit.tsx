@@ -8,6 +8,7 @@
 
 import { useState } from "react";
 import { splitFiles } from "../utils/pdf-utils";
+import styles from "./Transformations.module.css";
 
 interface TransformSplitProps {
   file: File;
@@ -24,9 +25,11 @@ const TransformSplit = ({ file }: TransformSplitProps) => {
   }
 
   return (
-    <form>
+    <form className={styles.form}>
       <div>
-        <label htmlFor="basename">Base name</label>
+        <label htmlFor="basename" className={styles.label}>
+          Base name
+        </label>
         <input
           id="basename"
           name="basename"
@@ -35,20 +38,36 @@ const TransformSplit = ({ file }: TransformSplitProps) => {
           placeholder={!disabled ? file.name.replace(/.pdf/i, "") : "Basename"}
           value={!disabled ? basename : ""}
           disabled={disabled}
+          className={styles.inputText}
         />
       </div>
-      <input
-        onChange={(ev) => {
-          setPageRanges(ev.target.value);
-        }}
-        type="text"
-        placeholder="1,2,3-5"
-        value={!disabled ? pageRanges : ""}
-        disabled={disabled}
-      />
-      <button disabled={disabled} onClick={handleClickSplitFiles}>
-        Split files
-      </button>
+      <div>
+        <label htmlFor="pageRanges" className={styles.label}>
+          Page ranges
+        </label>
+        <input
+          onChange={(ev) => {
+            setPageRanges(ev.target.value);
+          }}
+          type="text"
+          placeholder="1,2,3-5"
+          value={!disabled ? pageRanges : ""}
+          disabled={disabled}
+          className={styles.inputText}
+        />
+      </div>
+      <div>
+        <button
+          disabled={disabled}
+          className={styles.button}
+          onClick={handleClickSplitFiles}
+        >
+          Split files
+        </button>
+        <button onClick={() => {}} className={styles.button}>
+          Reset
+        </button>
+      </div>
     </form>
   );
 };

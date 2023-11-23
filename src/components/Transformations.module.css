@@ -2,6 +2,19 @@
   padding: 0.5vh 1vw;
 }
 
+.form {
+  display: flex;
+  flex-direction: column;
+  height: 40vh;
+  justify-content: start;
+  min-width: 350px;
+}
+
+label,
+input {
+  margin-bottom: 2vh;
+}
+
 .label {
   margin-right: 1rem;
 }
@@ -17,12 +30,11 @@ input[type="number"]::-webkit-inner-spin-button {
   opacity: 0.5;
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  height: 40vh;
-  justify-content: space-between;
-  min-width: 250px;
+.inputText {
+  width: 10vw;
+  min-width: 200px;
+  padding: 0 0 0 0.5rem;
+  text-align: start;
 }
 
 .button {
