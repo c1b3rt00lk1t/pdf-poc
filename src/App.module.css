@@ -39,27 +39,31 @@ button {
 @media screen and (min-width: 576px) and (max-width: 768px) {
   .main {
     grid-template-columns: 20vw 40vw 40vw;
-    font-size: 1rem;
+    font-size: 0.95rem;
+    /* background-color: green; */
   }
 }
 
 @media screen and (min-width: 768px) and (max-width: 992px) {
   .main {
-    grid-template-columns: 20vw 40vw 40vw;
+    grid-template-columns: 20vw 45vw 35vw;
     font-size: 1rem;
+
+    /* background-color: yellow; */
   }
 }
 
 @media screen and (min-width: 992px) and (max-width: 1200px) {
   .main {
-    grid-template-columns: 20vw 40vw 40vw;
+    grid-template-columns: 20vw 50vw 30vw;
     font-size: 1rem;
+    /* background-color: red; */
   }
 }
 
 @media screen and (min-width: 1200px) {
   .main {
-    grid-template-columns: 20vw 40vw 40vw;
+    grid-template-columns: 20vw 50vw 30vw;
     font-size: 1rem;
   }
 }
