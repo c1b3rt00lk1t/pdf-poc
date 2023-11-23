@@ -76,108 +76,106 @@ const TransformPages = ({ file }: TransformPagesProps) => {
   }
 
   return (
-    <>
-      <form className={styles.form}>
-        <div>
-          <label htmlFor="initialPage" className={styles.label}>
-            Initial page
-          </label>
-          <input
-            type="number"
-            id="initialPage"
-            name="initialPage"
-            value={options.initialPage}
-            onChange={handleChangeInitialPage}
-            placeholder={options.initialPage.toString()}
-            className={styles.input}
-          />
-        </div>
-        <div>
-          <label htmlFor="startNumber" className={styles.label}>
-            Start number
-          </label>
-          <input
-            type="number"
-            id="startNumber"
-            name="startNumber"
-            value={options.startNumber.toString()}
-            onChange={handleChangeStartNumber}
-            className={styles.input}
-          />
-        </div>
-        <div>
-          <label htmlFor="yCentimeters" className={styles.label}>
-            Bottom margin (cm)
-          </label>
-          <input
-            type="number"
-            id="yCentimeters"
-            name="yCentimeters"
-            value={options.yCentimeters.toFixed(2)}
-            step="0.01"
-            onChange={handleChangeYCentimeters}
-            className={styles.input}
-          />
-        </div>
-        <div>
-          <label htmlFor="xPosition" className={styles.label}>
-            Horizontal alignment
-          </label>
-          <select
-            id="xPosition"
-            name="xPosition"
-            value={options.xPosition}
-            onChange={handleChangeXPosition}
-          >
-            <option value="center">Center</option>
-            <option value="left">Left</option>
-            <option value="right">Right</option>
-          </select>
-        </div>
-        <div>
-          <label htmlFor="fontSize" className={styles.label}>
-            Font size
-          </label>
-          <input
-            type="number"
-            id="fontSize"
-            name="fontSize"
-            value={options.fontSize.toString()}
-            onChange={handleChangeFontSize}
-            className={styles.input}
-          />
-        </div>
-        <div>
-          <label htmlFor="font" className={styles.label}>
-            Font
-          </label>
-          <select
-            id="font"
-            name="font"
-            onChange={handleChangeFontType}
-            value={options.fontType}
-          >
-            {Object.entries(availableFonts).map(([fontKey, fontDesc]) => (
-              <option key={fontKey} value={fontKey}>
-                {fontDesc}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <button
-            disabled={!file}
-            onClick={handleClickAddPageNumbers}
-            className={styles.button}
-          >
-            Add numbers
-          </button>
-          <button onClick={handleClickReset} className={styles.button}>
-            Reset
-          </button>
-        </div>
-      </form>
-    </>
+    <form className={styles.form}>
+      <div>
+        <label htmlFor="initialPage" className={styles.label}>
+          Initial page
+        </label>
+        <input
+          type="number"
+          id="initialPage"
+          name="initialPage"
+          value={options.initialPage}
+          onChange={handleChangeInitialPage}
+          placeholder={options.initialPage.toString()}
+          className={styles.input}
+        />
+      </div>
+      <div>
+        <label htmlFor="startNumber" className={styles.label}>
+          Start number
+        </label>
+        <input
+          type="number"
+          id="startNumber"
+          name="startNumber"
+          value={options.startNumber.toString()}
+          onChange={handleChangeStartNumber}
+          className={styles.input}
+        />
+      </div>
+      <div>
+        <label htmlFor="yCentimeters" className={styles.label}>
+          Bottom margin (cm)
+        </label>
+        <input
+          type="number"
+          id="yCentimeters"
+          name="yCentimeters"
+          value={options.yCentimeters.toFixed(2)}
+          step="0.01"
+          onChange={handleChangeYCentimeters}
+          className={styles.input}
+        />
+      </div>
+      <div>
+        <label htmlFor="xPosition" className={styles.label}>
+          Horizontal alignment
+        </label>
+        <select
+          id="xPosition"
+          name="xPosition"
+          value={options.xPosition}
+          onChange={handleChangeXPosition}
+        >
+          <option value="center">Center</option>
+          <option value="left">Left</option>
+          <option value="right">Right</option>
+        </select>
+      </div>
+      <div>
+        <label htmlFor="fontSize" className={styles.label}>
+          Font size
+        </label>
+        <input
+          type="number"
+          id="fontSize"
+          name="fontSize"
+          value={options.fontSize.toString()}
+          onChange={handleChangeFontSize}
+          className={styles.input}
+        />
+      </div>
+      <div>
+        <label htmlFor="font" className={styles.label}>
+          Font
+        </label>
+        <select
+          id="font"
+          name="font"
+          onChange={handleChangeFontType}
+          value={options.fontType}
+        >
+          {Object.entries(availableFonts).map(([fontKey, fontDesc]) => (
+            <option key={fontKey} value={fontKey}>
+              {fontDesc}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div>
+        <button
+          disabled={!file}
+          onClick={handleClickAddPageNumbers}
+          className={styles.button}
+        >
+          Add numbers
+        </button>
+        <button onClick={handleClickReset} className={styles.button}>
+          Reset
+        </button>
+      </div>
+    </form>
   );
 };
 
