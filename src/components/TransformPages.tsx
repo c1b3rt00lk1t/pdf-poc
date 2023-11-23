@@ -5,7 +5,7 @@ import {
   AddPageOptions,
   availableFonts,
 } from "../utils/pdf-utils";
-import styles from "./TransformPages.module.css";
+import styles from "./Transformations.module.css";
 
 interface TransformPagesProps {
   file: File;
