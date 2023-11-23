@@ -117,7 +117,7 @@ export async function addPageNumbers(file: File, options: AddPageOptions) {
     });
 
     const blob = await createBlob(pdfDoc);
-    const fileName = `${file.name.slice(0, -4)} - pages.pdf`;
+    const fileName = `${file.name.replace(/.pdf/i, "")} - pages.pdf`;
     downloadFile(blob, fileName);
   };
 }
@@ -128,10 +128,16 @@ export async function addPageNumbers(file: File, options: AddPageOptions) {
  * a '-' indicates a range of pages
  * example: 1,2,3-5 would split the pdf file in three files:
  * one with page 1, one with page 2 and one with pages 3, 4 and 5
- *  only the valid ranges will be processed
+ * only the valid ranges will be processed.
+ * It allows a name parameter to be passed although it will take the
+ * name of the original file as the default base name
  */
 
-export async function splitFiles(pageRanges: string, file: File) {
+export async function splitFiles(
+  pageRanges: string,
+  file: File,
+  name: string = file.name
+) {
   const reader = new FileReader();
   reader.readAsArrayBuffer(file);
   reader.onloadend = async () => {
@@ -174,7 +180,12 @@ export async function splitFiles(pageRanges: string, file: File) {
     // For each output document, save it as a PDF file and trigger a download
     for (let i = 0; i < outputDocs.length; i++) {
       const blob = await createBlob(outputDocs[i]);
-      downloadFile(blob, `output${i + 1}.pdf`);
+      downloadFile(
+        blob,
+        `${name.replace(/.pdf/i, "")} [${ranges[i][0]}${
+          ranges[i].length > 1 ? `-${ranges[i][1]}` : ``
+        }].pdf`
+      );
     }
   };
 }
