@@ -13,6 +13,7 @@ export interface FileSelectionProps {
   setFiles: (files: File[]) => void;
   handleClickReset: () => void;
   action: Action;
+  orderFiles: number[];
 }
 
 const FileSelection = ({
@@ -20,6 +21,7 @@ const FileSelection = ({
   setFiles,
   handleClickReset,
   action,
+  orderFiles,
 }: FileSelectionProps) => {
   const refInput = useRef<HTMLInputElement>(null);
   const resetInput = (ref: React.RefObject<HTMLInputElement>) => {
@@ -59,7 +61,7 @@ const FileSelection = ({
           Reset
         </button>
       </div>
-      <FileList files={files} />
+      <FileList files={files} orderFiles={orderFiles} />
     </div>
   );
 };

@@ -21,6 +21,7 @@ import styles from "./App.module.css";
 
 function App() {
   const [files, setFiles] = useState<File[]>([]);
+  const [orderFiles, setOrderFiles] = useState<number[]>([2, 0, 1]); // This state is only used for the action "combine"
   const [action, setAction] = useState<"combine" | "split" | "pages">("pages");
   const [dragOverStatus, setDragOverStatus] = useState<boolean>(false);
 
@@ -76,8 +77,13 @@ function App() {
             setFiles={setFiles}
             handleClickReset={handleClickReset}
             action={action}
+            orderFiles={orderFiles}
           />
-          <Transformations files={files} action={action} />
+          <Transformations
+            files={files}
+            action={action}
+            orderFiles={orderFiles}
+          />
         </main>
       )}
       <footer className={styles.footer}>developed by c1b3rt00lk1t</footer>

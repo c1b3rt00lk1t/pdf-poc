@@ -14,13 +14,20 @@ import styles from "./Transformations.module.css";
 interface TransformationsProps {
   action: Action;
   files: File[];
+  orderFiles: number[];
 }
 
-const Transformations = ({ files, action }: TransformationsProps) => {
+const Transformations = ({
+  files,
+  action,
+  orderFiles,
+}: TransformationsProps) => {
   return (
     <div className={styles.Transformations}>
       {action === "pages" && <TransformPages file={files[0]} />}
-      {action === "combine" && <TransformCombine files={files} />}
+      {action === "combine" && (
+        <TransformCombine files={files} orderFiles={orderFiles} />
+      )}
       {action === "split" && <TransformSplit file={files[0]} />}
     </div>
   );
