@@ -11,6 +11,7 @@ import FileList from "./FileList";
 export interface FileSelectionProps {
   files: File[];
   setFiles: (files: File[]) => void;
+  setOrderFiles: (orderFiles: number[]) => void;
   handleClickReset: () => void;
   action: Action;
   orderFiles: number[];
@@ -19,6 +20,7 @@ export interface FileSelectionProps {
 const FileSelection = ({
   files,
   setFiles,
+  setOrderFiles,
   handleClickReset,
   action,
   orderFiles,
@@ -40,6 +42,7 @@ const FileSelection = ({
       const files = target.files;
       if (files && files.length > 0) {
         setFiles(Array.from(files));
+        setOrderFiles(Array.from(Array(files.length).keys()));
       }
     };
     input.click();

@@ -21,7 +21,7 @@ import styles from "./App.module.css";
 
 function App() {
   const [files, setFiles] = useState<File[]>([]);
-  const [orderFiles, setOrderFiles] = useState<number[]>([2, 0, 1]); // This state is only used for the action "combine"
+  const [orderFiles, setOrderFiles] = useState<number[]>([]); // This state is only used for the action "combine"
   const [action, setAction] = useState<"combine" | "split" | "pages">("pages");
   const [dragOverStatus, setDragOverStatus] = useState<boolean>(false);
 
@@ -75,6 +75,7 @@ function App() {
           <FileSelection
             files={files}
             setFiles={setFiles}
+            setOrderFiles={setOrderFiles}
             handleClickReset={handleClickReset}
             action={action}
             orderFiles={orderFiles}
