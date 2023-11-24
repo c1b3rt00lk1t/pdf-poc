@@ -29,14 +29,18 @@ type FontType = keyof typeof availableFonts;
 
 /**
  * combineFiles combines the pdf files that the user has selected
+ * it accepts an optional parameter to specify the order of the files. An array is passed with the index of the original file in files in the selected position.
  */
 
-export async function combineFiles(files: File[]) {
+export async function combineFiles(files: File[], order?: number[]) {
   const outputDoc = await PDFDocument.create();
 
-  const orderedFiles = [...files].sort((a, b) => (a.name > b.name ? 1 : -1));
+  const orderedFiles = files.map((_, index, array) =>
+    order ? array[order[index]] : array[index]
+  );
 
   for (const file of orderedFiles) {
+    console.log(file.name);
     const fileArrayBuffer = await file.arrayBuffer();
     const inputDoc = await PDFDocument.load(fileArrayBuffer);
     const pages = await outputDoc.copyPages(
