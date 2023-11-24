@@ -23,23 +23,29 @@ button {
   grid-template-columns: 20fr 50fr 30fr;
   padding-top: 10vh;
   background-color: #e7e7e7;
+}
 
-  /* background-image: url("https://fastly.picsum.photos/id/11/2500/1667.jpg?hmac=xxjFJtAPgshYkysU_aqx2sZir-kIOjNR9vx0te7GycQ"); */
-  /* background-image: url("https://fastly.picsum.photos/id/16/2500/1667.jpg?hmac=uAkZwYc5phCRNFTrV_prJ_0rP0EdwJaZ4ctje2bY7aE");
-  background-size: cover; */
+.mainBackground1 {
+  background-image: url("https://fastly.picsum.photos/id/11/2500/1667.jpg?hmac=xxjFJtAPgshYkysU_aqx2sZir-kIOjNR9vx0te7GycQ");
+  background-size: cover;
+}
+
+.mainBackground2 {
+  background-image: url("https://fastly.picsum.photos/id/16/2500/1667.jpg?hmac=uAkZwYc5phCRNFTrV_prJ_0rP0EdwJaZ4ctje2bY7aE");
+  background-size: cover;
 }
 
 @media screen and (max-width: 576px) {
   .main {
     grid-template-columns: 25vw 30vw 45vw;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
 }
 
 @media screen and (min-width: 576px) and (max-width: 768px) {
   .main {
     grid-template-columns: 20vw 40vw 40vw;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     /* background-color: green; */
   }
 }
@@ -47,7 +53,7 @@ button {
 @media screen and (min-width: 768px) and (max-width: 992px) {
   .main {
     grid-template-columns: 20vw 45vw 35vw;
-    font-size: 1rem;
+    font-size: 0.95rem;
 
     /* background-color: yellow; */
   }
@@ -55,7 +61,7 @@ button {
 
 @media screen and (min-width: 992px) and (max-width: 1200px) {
   .main {
-    grid-template-columns: 20vw 50vw 30vw;
+    grid-template-columns: 25vw 50vw 25vw;
     font-size: 1rem;
     /* background-color: red; */
   }
@@ -63,7 +69,14 @@ button {
 
 @media screen and (min-width: 1200px) {
   .main {
-    grid-template-columns: 20vw 50vw 30vw;
+    grid-template-columns: 25vw 50vw 25vw;
+    font-size: 1rem;
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  .main {
+    grid-template-columns: 25vw 55vw 20vw;
     font-size: 1rem;
   }
 }
