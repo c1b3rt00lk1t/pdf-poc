@@ -28,11 +28,19 @@ interface SidebarProps {
 const Sidebar = ({ handleClickAction, action }: SidebarProps) => {
   return (
     <div className={styles.Sidebar}>
-      <button disabled onClick={() => {}} className={styles.button}>
+      <button
+        disabled
+        onClick={() => {}}
+        className={`${styles.button} ${styles.hideInSmallScreen}`}
+      >
         <MdOutlineContentCut />
         <span className={styles.span}>Remove</span>
       </button>
-      <button disabled onClick={() => {}} className={styles.button}>
+      <button
+        disabled
+        onClick={() => {}}
+        className={`${styles.button} ${styles.hideInSmallScreen}`}
+      >
         <MdOutlineRotateRight />
         <span className={styles.span}>Rotate</span>
       </button>
@@ -54,7 +62,11 @@ const Sidebar = ({ handleClickAction, action }: SidebarProps) => {
         <MdOutlineFormatListNumbered />
         <span className={styles.span}>Numbers</span>
       </button>
-      <button disabled onClick={() => {}} className={styles.button}>
+      <button
+        disabled
+        onClick={() => {}}
+        className={`${styles.button} ${styles.hideInSmallScreen}`}
+      >
         <MdOutlineBrandingWatermark />
         <span className={styles.span}>Watermark</span>
       </button>
