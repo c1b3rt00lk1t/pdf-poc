@@ -7,7 +7,7 @@ import { useRef } from "react";
 import { Action } from "../types";
 import styles from "./FileSelection.module.css";
 import FileList from "./FileList";
-import { MdAddCircleOutline } from "react-icons/md";
+import { MdAddCircleOutline, MdOutlineReplay } from "react-icons/md";
 
 export interface FileSelectionProps {
   files: File[];
@@ -63,7 +63,8 @@ const FileSelection = ({
             resetInput(refInput);
           }}
         >
-          Reset
+          <MdOutlineReplay />
+          <span>Reset </span>
         </button>
       </div>
       <FileList
