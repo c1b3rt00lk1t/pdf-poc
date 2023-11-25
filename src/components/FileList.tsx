@@ -10,9 +10,15 @@ interface FileListProps {
   files: File[];
   orderFiles: number[];
   setOrderFiles: (orderFiles: number[]) => void;
+  showList: boolean;
 }
 
-const FileList = ({ files, orderFiles, setOrderFiles }: FileListProps) => {
+const FileList = ({
+  files,
+  orderFiles,
+  setOrderFiles,
+  showList,
+}: FileListProps) => {
   const handleDragStart = (event: React.DragEvent) => {
     const idx = parseInt(
       (event.currentTarget as HTMLElement).dataset.idx as string
@@ -44,7 +50,7 @@ const FileList = ({ files, orderFiles, setOrderFiles }: FileListProps) => {
   };
   return (
     <ul onDragOver={handleDragOver} className={styles.ul}>
-      {orderFiles.length > 0
+      {orderFiles.length > 0 && showList
         ? files.map((_, idx, arr) => (
             <li
               draggable={true}

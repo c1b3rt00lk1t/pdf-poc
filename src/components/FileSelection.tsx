@@ -92,6 +92,7 @@ const FileSelection = ({
         files={files}
         orderFiles={orderFiles}
         setOrderFiles={setOrderFiles}
+        showList={action === "combine"}
       />
     </div>
   );
