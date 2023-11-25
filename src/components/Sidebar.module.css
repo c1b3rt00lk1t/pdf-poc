@@ -9,3 +9,23 @@
 .selected {
   background-color: rgba(84, 172, 128, 0.2);
 }
+
+.button {
+  width: fit-content;
+  min-width: max-content;
+  margin-right: 1vw;
+  display: flex;
+}
+
+.span {
+  margin-left: 0.5em;
+}
+
+@media screen and (max-width: 768px) {
+  .span {
+    display: none;
+  }
+  .button {
+    font-size: 1.5rem;
+  }
+}

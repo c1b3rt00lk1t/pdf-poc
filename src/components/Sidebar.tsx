@@ -11,6 +11,14 @@
  */
 import styles from "./Sidebar.module.css";
 import { Action } from "../types";
+import {
+  MdOutlineContentCut,
+  MdOutlineRotateRight,
+  MdOutlineCallMerge,
+  MdOutlineFormatListNumbered,
+  MdOutlineBrandingWatermark,
+  MdOutlineCallSplit,
+} from "react-icons/md";
 
 interface SidebarProps {
   handleClickAction: (action: Action) => void;
@@ -20,33 +28,45 @@ interface SidebarProps {
 const Sidebar = ({ handleClickAction, action }: SidebarProps) => {
   return (
     <div className={styles.Sidebar}>
-      <button disabled onClick={() => {}}>
-        Remove
+      <button disabled onClick={() => {}} className={styles.button}>
+        <MdOutlineContentCut />
+        <span className={styles.span}>Remove</span>
       </button>
-      <button disabled onClick={() => {}}>
-        Rotate
+      <button disabled onClick={() => {}} className={styles.button}>
+        <MdOutlineRotateRight />
+        <span className={styles.span}>Rotate</span>
       </button>
       <button
-        className={action === "combine" ? styles.selected : undefined}
+        className={`${action === "combine" ? styles.selected : undefined} ${
+          styles.button
+        }`}
         onClick={() => handleClickAction("combine")}
       >
-        Combine
+        <MdOutlineCallMerge />
+        <span className={styles.span}>Combine</span>
       </button>
       <button
-        className={action === "pages" ? styles.selected : undefined}
+        className={`${action === "pages" ? styles.selected : undefined} ${
+          styles.button
+        }`}
         onClick={() => handleClickAction("pages")}
       >
-        Numbers
+        <MdOutlineFormatListNumbered />
+        <span className={styles.span}>Numbers</span>
       </button>
-      <button disabled onClick={() => {}}>
-        Watermark
+      <button disabled onClick={() => {}} className={styles.button}>
+        <MdOutlineBrandingWatermark />
+        <span className={styles.span}>Watermark</span>
       </button>
 
       <button
-        className={action === "split" ? styles.selected : undefined}
+        className={`${action === "split" ? styles.selected : undefined} ${
+          styles.button
+        }`}
         onClick={() => handleClickAction("split")}
       >
-        Split
+        <MdOutlineCallSplit />
+        <span className={styles.span}>Split</span>
       </button>
     </div>
   );
