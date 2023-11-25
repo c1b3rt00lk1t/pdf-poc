@@ -81,10 +81,12 @@ const FileSelection = ({
           <MdOutlineReplay />
           <span className={styles.span}>Reset </span>
         </button>
-        <button className={styles.button} onClick={handleClickOrder}>
-          <MdOutlineSortByAlpha />
-          <span className={styles.span}>Order</span>
-        </button>
+        {action === "combine" && (
+          <button className={styles.button} onClick={handleClickOrder}>
+            <MdOutlineSortByAlpha />
+            <span className={styles.span}>Order</span>
+          </button>
+        )}
       </div>
       <FileList
         files={files}
