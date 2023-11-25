@@ -7,6 +7,7 @@ import { useRef } from "react";
 import { Action } from "../types";
 import styles from "./FileSelection.module.css";
 import FileList from "./FileList";
+import { MdAddCircleOutline } from "react-icons/md";
 
 export interface FileSelectionProps {
   files: File[];
@@ -50,9 +51,10 @@ const FileSelection = ({
 
   return (
     <div className={styles.FileSelection}>
-      <div>
+      <div className={styles.buttonGroup}>
         <button className={styles.button} onClick={handleClickAdd}>
-          Add
+          <MdAddCircleOutline />
+          <span>Add</span>
         </button>
         <button
           className={styles.button}

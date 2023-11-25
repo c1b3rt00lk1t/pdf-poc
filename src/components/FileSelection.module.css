@@ -7,4 +7,12 @@
 .button {
   width: min-content;
   margin-right: 1vw;
+  display: flex;
+}
+
+.buttonGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
 }
