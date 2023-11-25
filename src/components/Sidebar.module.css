@@ -20,6 +20,16 @@
   margin-left: 0.5em;
 }
 
+@media screen and (max-width: 400px) {
+  .Sidebar {
+    order: 3;
+    flex-direction: row;
+    height: fit-content;
+    padding: 0;
+    margin: 0 auto;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .span {
     display: none;
