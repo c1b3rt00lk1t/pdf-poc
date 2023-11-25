@@ -4,6 +4,8 @@
  * The user will be able to change the order of the files by dragging and dropping the files
  */
 
+import styles from "./FileList.module.css";
+
 interface FileListProps {
   files: File[];
   orderFiles: number[];
@@ -41,7 +43,7 @@ const FileList = ({ files, orderFiles, setOrderFiles }: FileListProps) => {
     setOrderFiles(reordered);
   };
   return (
-    <ul onDragOver={handleDragOver}>
+    <ul onDragOver={handleDragOver} className={styles.ul}>
       {orderFiles.length > 0
         ? files.map((_, idx, arr) => (
             <li
@@ -50,6 +52,7 @@ const FileList = ({ files, orderFiles, setOrderFiles }: FileListProps) => {
               data-idx={idx}
               onDragStart={handleDragStart}
               onDrop={handleDrop}
+              className={styles.li}
             >
               {arr[orderFiles[idx]].name}
             </li>
