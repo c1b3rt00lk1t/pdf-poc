@@ -35,21 +35,21 @@ button {
   background-size: cover;
 }
 
-@media screen and (max-width: 576px) {
+/* @media screen and (max-width: 576px) {
   .main {
     padding: 1vh 1vw;
     grid-template-columns: 1fr;
     grid-template-rows: 4fr 4fr 1fr;
     font-size: 0.85rem;
   }
-}
+} */
 
-/* @media screen and (min-width: 400px) and (max-width: 576px) {
+@media screen and (min-width: 400px) and (max-width: 576px) {
   .main {
     grid-template-columns: 15vw 40vw 45vw;
     font-size: 0.85rem;
   }
-} */
+}
 
 @media screen and (min-width: 576px) and (max-width: 768px) {
   .main {
