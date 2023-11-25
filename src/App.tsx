@@ -36,13 +36,19 @@ function App() {
   const handleDragOver = (event: React.DragEvent) => {
     event.stopPropagation();
     event.preventDefault();
-    event.dataTransfer.dropEffect = "copy";
-    setDragOverStatus(true);
+    if (event.dataTransfer.files.length > 0) {
+      event.dataTransfer.dropEffect = "copy";
+      setDragOverStatus(true);
+    }
   };
 
   const handleDrop = (event: React.DragEvent) => {
     event.preventDefault();
-    if (event.dataTransfer && event.dataTransfer.items) {
+    if (
+      event.dataTransfer &&
+      event.dataTransfer.items &&
+      event.dataTransfer.files.length > 0
+    ) {
       if (event.dataTransfer.files[0].type === "application/pdf") {
         setFiles(Array.from(event.dataTransfer.files));
       } else {
