@@ -53,6 +53,9 @@ function App() {
     ) {
       if (event.dataTransfer.files[0].type === "application/pdf") {
         setFiles(Array.from(event.dataTransfer.files));
+        setOrderFiles(
+          Array.from(Array(event.dataTransfer.files.length).keys())
+        );
       } else {
         alert("Please drop a pdf file");
       }
