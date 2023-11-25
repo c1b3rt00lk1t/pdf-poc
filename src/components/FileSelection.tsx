@@ -32,7 +32,7 @@ const FileSelection = ({
     }
   };
 
-  const handleClick = () => {
+  const handleClickAdd = () => {
     const input = document.createElement("input");
     input.type = "file";
     input.accept = ".pdf";
@@ -51,7 +51,7 @@ const FileSelection = ({
   return (
     <div className={styles.FileSelection}>
       <div>
-        <button className={styles.button} onClick={handleClick}>
+        <button className={styles.button} onClick={handleClickAdd}>
           Add
         </button>
         <button
