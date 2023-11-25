@@ -64,7 +64,11 @@ const FileSelection = ({
           Reset
         </button>
       </div>
-      <FileList files={files} orderFiles={orderFiles} />
+      <FileList
+        files={files}
+        orderFiles={orderFiles}
+        setOrderFiles={setOrderFiles}
+      />
     </div>
   );
 };
