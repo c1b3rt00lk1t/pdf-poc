@@ -37,8 +37,9 @@ button {
 
 @media screen and (max-width: 576px) {
   .main {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 9fr 1fr;
+    padding: 1vh 1vw;
+    grid-template-columns: 1fr;
+    grid-template-rows: 4fr 4fr 1fr;
     font-size: 0.85rem;
   }
 }
