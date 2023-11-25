@@ -22,7 +22,9 @@ import styles from "./App.module.css";
 function App() {
   const [files, setFiles] = useState<File[]>([]);
   const [orderFiles, setOrderFiles] = useState<number[]>([]); // This state is only used for the action "combine"
-  const [action, setAction] = useState<"combine" | "split" | "pages">("pages");
+  const [action, setAction] = useState<"combine" | "split" | "pages">(
+    "combine"
+  );
   const [dragOverStatus, setDragOverStatus] = useState<boolean>(false);
 
   const handleClickReset = () => {
