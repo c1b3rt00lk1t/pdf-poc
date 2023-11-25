@@ -9,6 +9,7 @@ import { MdDelete } from "react-icons/md";
 
 interface FileListProps {
   files: File[];
+  setFiles: (files: File[]) => void;
   orderFiles: number[];
   setOrderFiles: (orderFiles: number[]) => void;
   showList: boolean;
@@ -16,6 +17,7 @@ interface FileListProps {
 
 const FileList = ({
   files,
+  setFiles,
   orderFiles,
   setOrderFiles,
   showList,
@@ -25,7 +27,6 @@ const FileList = ({
       (event.currentTarget as HTMLElement).dataset.idx as string
     );
     event.dataTransfer.setData("idx", idx.toString());
-    console.log(idx.toString());
   };
 
   const handleDragOver = (event: React.DragEvent) => {
@@ -50,6 +51,15 @@ const FileList = ({
     setOrderFiles(reordered);
   };
 
+  function handleClickRemoveItem(event: React.MouseEvent) {
+    const idx = parseInt(
+      (event.currentTarget as HTMLElement).parentElement!.dataset.idx as string
+    );
+    const filtered = orderFiles.slice(0, idx).concat(orderFiles.slice(idx + 1));
+    setFiles(files.filter((_, idx) => filtered.includes(idx)));
+    setOrderFiles(Array.from(Array(filtered.length).keys()));
+  }
+
   return (
     <ul onDragOver={handleDragOver} className={styles.ul}>
       {orderFiles.length > 0 && showList
@@ -63,7 +73,10 @@ const FileList = ({
               className={styles.li}
             >
               <span className={styles.span}>{arr[orderFiles[idx]].name}</span>
-              <MdDelete className={styles.delete} />
+              <MdDelete
+                className={styles.delete}
+                onClick={handleClickRemoveItem}
+              />
             </li>
           ))
         : files.length > 0 && <li className={styles.li}>{files[0].name}</li>}
