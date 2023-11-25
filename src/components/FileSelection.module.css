@@ -16,3 +16,50 @@
   justify-content: flex-start;
   align-items: center;
 }
+
+.button {
+  width: fit-content;
+  margin-right: 1vw;
+  display: flex;
+}
+
+.span {
+  margin-left: 0.5em;
+}
+
+@media screen and (max-width: 768px) {
+  .span {
+    display: none;
+  }
+  .button {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  .button {
+    font-size: 1rem;
+    min-width: 80px;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .button {
+    font-size: 1.1rem;
+    min-width: 90px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .button {
+    font-size: 1.1rem;
+    min-width: 90px;
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  .button {
+    font-size: 1.2rem;
+    min-width: 100px;
+  }
+}

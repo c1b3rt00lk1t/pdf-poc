@@ -69,7 +69,7 @@ const FileSelection = ({
       <div className={styles.buttonGroup}>
         <button className={styles.button} onClick={handleClickAdd}>
           <MdAddCircleOutline />
-          <span>Add</span>
+          <span className={styles.span}>Add</span>
         </button>
         <button
           className={styles.button}
@@ -79,11 +79,11 @@ const FileSelection = ({
           }}
         >
           <MdOutlineReplay />
-          <span>Reset </span>
+          <span className={styles.span}>Reset </span>
         </button>
         <button className={styles.button} onClick={handleClickOrder}>
           <MdOutlineSortByAlpha />
-          <span>Order</span>
+          <span className={styles.span}>Order</span>
         </button>
       </div>
       <FileList
