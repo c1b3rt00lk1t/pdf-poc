@@ -3,11 +3,15 @@
  * Initially, the input must be able to optionally accept multiple files. A checkbox will allow to select if the user wants to select one or multiple files. In the final implementation the option to select multiple files will depend on the action the user wants to do
  */
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Action } from "../types";
 import styles from "./FileSelection.module.css";
 import FileList from "./FileList";
-import { MdAddCircleOutline, MdOutlineReplay } from "react-icons/md";
+import {
+  MdAddCircleOutline,
+  MdOutlineReplay,
+  MdOutlineSortByAlpha,
+} from "react-icons/md";
 
 export interface FileSelectionProps {
   files: File[];
@@ -32,6 +36,7 @@ const FileSelection = ({
       ref.current.value = "";
     }
   };
+  const [orderAZ, setOrderAZ] = useState<number>(1);
 
   const handleClickAdd = () => {
     const input = document.createElement("input");
@@ -49,6 +54,16 @@ const FileSelection = ({
     input.click();
   };
 
+  function handleClickOrder() {
+    setOrderAZ((orderAZ) => -orderAZ);
+    setOrderFiles(
+      [...orderFiles]
+        .map((idx) => ({ idx, name: files[idx].name }))
+        .sort((a, b) => -orderAZ * a.name.localeCompare(b.name))
+        .map((file) => file.idx)
+    );
+  }
+
   return (
     <div className={styles.FileSelection}>
       <div className={styles.buttonGroup}>
@@ -65,6 +80,10 @@ const FileSelection = ({
         >
           <MdOutlineReplay />
           <span>Reset </span>
+        </button>
+        <button className={styles.button} onClick={handleClickOrder}>
+          <MdOutlineSortByAlpha />
+          <span>Order</span>
         </button>
       </div>
       <FileList
