@@ -63,7 +63,7 @@ const FileList = ({
               {arr[orderFiles[idx]].name}
             </li>
           ))
-        : files.length > 0 && <li>{files[0].name}</li>}
+        : files.length > 0 && <li className={styles.li}>{files[0].name}</li>}
     </ul>
   );
 };
