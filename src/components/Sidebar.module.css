@@ -20,7 +20,7 @@
   margin-left: 0.5em;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 576px) {
   .Sidebar {
     order: 3;
     flex-direction: row;

@@ -35,7 +35,7 @@ button {
   background-size: cover;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 576px) {
   .main {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 12fr 1fr;
@@ -43,12 +43,12 @@ button {
   }
 }
 
-@media screen and (min-width: 400px) and (max-width: 576px) {
+/* @media screen and (min-width: 400px) and (max-width: 576px) {
   .main {
     grid-template-columns: 15vw 40vw 45vw;
     font-size: 0.85rem;
   }
-}
+} */
 
 @media screen and (min-width: 576px) and (max-width: 768px) {
   .main {
