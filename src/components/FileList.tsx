@@ -5,6 +5,7 @@
  */
 
 import styles from "./FileList.module.css";
+import { MdDelete } from "react-icons/md";
 
 interface FileListProps {
   files: File[];
@@ -48,6 +49,7 @@ const FileList = ({
 
     setOrderFiles(reordered);
   };
+
   return (
     <ul onDragOver={handleDragOver} className={styles.ul}>
       {orderFiles.length > 0 && showList
@@ -60,7 +62,8 @@ const FileList = ({
               onDrop={handleDrop}
               className={styles.li}
             >
-              {arr[orderFiles[idx]].name}
+              <span className={styles.span}>{arr[orderFiles[idx]].name}</span>
+              <MdDelete className={styles.delete} />
             </li>
           ))
         : files.length > 0 && <li className={styles.li}>{files[0].name}</li>}

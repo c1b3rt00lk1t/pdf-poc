@@ -5,11 +5,21 @@
 }
 
 .li {
+  display: flex;
+  justify-content: space-between;
   padding: 0.5vh 1vw;
   border: 1px solid #ccc;
+}
+
+.span {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+}
+
+.delete {
+  cursor: pointer;
+  min-width: 5vw;
 }
 
 @media screen and (max-width: 576px) {
