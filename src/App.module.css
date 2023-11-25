@@ -37,14 +37,14 @@ button {
 
 @media screen and (max-width: 576px) {
   .main {
-    grid-template-columns: 25vw 30vw 45vw;
+    grid-template-columns: 15vw 40vw 45vw;
     font-size: 0.85rem;
   }
 }
 
 @media screen and (min-width: 576px) and (max-width: 768px) {
   .main {
-    grid-template-columns: 20vw 40vw 40vw;
+    grid-template-columns: 15vw 50vw 35vw;
     font-size: 0.9rem;
     /* background-color: green; */
   }
