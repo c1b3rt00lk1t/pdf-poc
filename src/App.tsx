@@ -98,6 +98,7 @@ function App() {
             handleClickReset={handleClickReset}
             action={action}
             orderFiles={orderFiles}
+            isMobile={isMobile}
           />
           <Transformations
             files={files}

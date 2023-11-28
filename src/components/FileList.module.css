@@ -2,6 +2,32 @@
   list-style: none;
   padding: 0;
   margin: 1vh 0;
+  height: 60vh;
+  overflow-y: scroll;
+  /* hide the scrollbar */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* hide the scrollbar */
+.ul::-webkit-scrollbar {
+  display: none;
+}
+
+.ulMobile {
+  list-style: none;
+  padding: 0;
+  margin: 1vh 0;
+  height: 20vh;
+  overflow-y: scroll;
+  /* hide the scrollbar */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* hide the scrollbar */
+.ulMobile::-webkit-scrollbar {
+  display: none;
 }
 
 .li {

@@ -20,6 +20,7 @@ export interface FileSelectionProps {
   handleClickReset: () => void;
   action: Action;
   orderFiles: number[];
+  isMobile: boolean;
 }
 
 const FileSelection = ({
@@ -29,6 +30,7 @@ const FileSelection = ({
   handleClickReset,
   action,
   orderFiles,
+  isMobile,
 }: FileSelectionProps) => {
   const refInput = useRef<HTMLInputElement>(null);
   const resetInput = (ref: React.RefObject<HTMLInputElement>) => {
@@ -94,6 +96,7 @@ const FileSelection = ({
         orderFiles={orderFiles}
         setOrderFiles={setOrderFiles}
         showList={action === "combine"}
+        isMobile={isMobile}
       />
     </div>
   );

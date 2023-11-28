@@ -13,6 +13,7 @@ interface FileListProps {
   orderFiles: number[];
   setOrderFiles: (orderFiles: number[]) => void;
   showList: boolean;
+  isMobile: boolean;
 }
 
 const FileList = ({
@@ -21,6 +22,7 @@ const FileList = ({
   orderFiles,
   setOrderFiles,
   showList,
+  isMobile,
 }: FileListProps) => {
   const handleDragStart = (event: React.DragEvent) => {
     const idx = parseInt(
@@ -61,7 +63,10 @@ const FileList = ({
   }
 
   return (
-    <ul onDragOver={handleDragOver} className={styles.ul}>
+    <ul
+      onDragOver={handleDragOver}
+      className={isMobile ? styles.ulMobile : styles.ul}
+    >
       {orderFiles.length > 0 && showList
         ? files.map((_, idx, arr) => (
             <li
