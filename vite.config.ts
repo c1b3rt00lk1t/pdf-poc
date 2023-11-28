@@ -11,25 +11,6 @@ export default defineConfig({
       devOptions: {
         enabled: true,
       },
-      includeAssets: ["icon.png"],
-      manifest: {
-        name: "PDF Utils",
-        short_name: "PDF Utils",
-        description: "App to merge, split, and page PDF files",
-        theme_color: "#ffffff",
-        icons: [
-          {
-            src: "icon.png",
-            sizes: "192x192",
-            type: "image/png",
-          },
-          {
-            src: "icon.png",
-            sizes: "512x512",
-            type: "image/png",
-          },
-        ],
-      },
     }),
   ],
 });
