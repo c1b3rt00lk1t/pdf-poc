@@ -23,10 +23,10 @@
 }
 
 .buttonMobile {
-  width: 10vw;
+  width: min-content;
   margin-right: 1vw;
   display: flex;
-  font-size: 2rem;
+  font-size: 1.6rem;
 }
 
 .span {
