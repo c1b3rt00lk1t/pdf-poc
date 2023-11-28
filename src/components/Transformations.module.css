@@ -40,6 +40,15 @@ input[type="number"]::-webkit-inner-spin-button {
   margin: 5vh 1vw;
 }
 
+.labelSmall {
+  margin-top: 2vh;
+  display: flex;
+  font-size: smaller;
+  font-style: italic;
+  color: darkblue;
+  margin-left: 0.2rem;
+}
+
 @media screen and (max-width: 576px) {
   .form {
     min-width: 50px;
