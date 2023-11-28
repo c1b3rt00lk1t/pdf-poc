@@ -180,7 +180,7 @@ const TransformPages = ({
         </button>
       </div>
       <label className={styles.labelSmall}>
-        <input type="checkbox" /> Keep the output as next input
+        <input type="checkbox" /> Keep output as next input
       </label>
     </form>
   );
