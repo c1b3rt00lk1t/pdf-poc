@@ -29,8 +29,7 @@ interface SidebarProps {
 const Sidebar = ({ handleClickAction, action, isMobile }: SidebarProps) => {
   return (
     <div className={isMobile ? styles.SidebarMobile : styles.Sidebar}>
-      <button
-        disabled
+      <div
         onClick={() => {}}
         className={`${isMobile ? styles.buttonMobile : styles.button} ${
           styles.hideInSmallScreen
@@ -38,9 +37,8 @@ const Sidebar = ({ handleClickAction, action, isMobile }: SidebarProps) => {
       >
         <MdOutlineContentCut />
         <span className={styles.span}>Remove</span>
-      </button>
-      <button
-        disabled
+      </div>
+      <div
         onClick={() => {}}
         className={`${isMobile ? styles.buttonMobile : styles.button} ${
           styles.hideInSmallScreen
@@ -48,8 +46,8 @@ const Sidebar = ({ handleClickAction, action, isMobile }: SidebarProps) => {
       >
         <MdOutlineRotateRight />
         <span className={styles.span}>Rotate</span>
-      </button>
-      <button
+      </div>
+      <div
         className={`${action === "combine" ? styles.selected : undefined} ${
           isMobile ? styles.buttonMobile : styles.button
         }`}
@@ -57,8 +55,8 @@ const Sidebar = ({ handleClickAction, action, isMobile }: SidebarProps) => {
       >
         <MdOutlineCallMerge />
         <span className={styles.span}>Combine</span>
-      </button>
-      <button
+      </div>
+      <div
         className={`${action === "pages" ? styles.selected : undefined} ${
           isMobile ? styles.buttonMobile : styles.button
         }`}
@@ -66,9 +64,8 @@ const Sidebar = ({ handleClickAction, action, isMobile }: SidebarProps) => {
       >
         <MdOutlineFormatListNumbered />
         <span className={styles.span}>Numbers</span>
-      </button>
-      <button
-        disabled
+      </div>
+      <div
         onClick={() => {}}
         className={`${isMobile ? styles.buttonMobile : styles.button} ${
           styles.hideInSmallScreen
@@ -76,9 +73,9 @@ const Sidebar = ({ handleClickAction, action, isMobile }: SidebarProps) => {
       >
         <MdOutlineBrandingWatermark />
         <span className={styles.span}>Watermark</span>
-      </button>
+      </div>
 
-      <button
+      <div
         className={`${action === "split" ? styles.selected : undefined} ${
           isMobile ? styles.buttonMobile : styles.button
         }`}
@@ -86,7 +83,7 @@ const Sidebar = ({ handleClickAction, action, isMobile }: SidebarProps) => {
       >
         <MdOutlineCallSplit />
         <span className={styles.span}>Split</span>
-      </button>
+      </div>
     </div>
   );
 };
