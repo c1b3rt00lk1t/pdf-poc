@@ -10,7 +10,7 @@
  * The App must work offline and online
  */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./index.css";
 import FileSelection from "./components/FileSelection";
 import Header from "./components/Header";
@@ -26,6 +26,33 @@ function App() {
     "combine"
   );
   const [dragOverStatus, setDragOverStatus] = useState<boolean>(false);
+
+  const [deviceType, setDeviceType] = useState<string>("");
+
+  useEffect(() => {
+    let hasTouchScreen = false;
+    if ("maxTouchPoints" in navigator) {
+      hasTouchScreen = navigator.maxTouchPoints > 0;
+    } else {
+      const mQ = matchMedia("(pointer:coarse)");
+      if (mQ && mQ.media === "(pointer:coarse)") {
+        hasTouchScreen = !!mQ.matches;
+      } else if ("orientation" in window) {
+        hasTouchScreen = true; // deprecated, but good fallback
+      } else {
+        // Only as a last resort, fall back to user agent sniffing
+        var UA = (navigator as Navigator).userAgent;
+        hasTouchScreen =
+          /\b(BlackBerry|webOS|iPhone|IEMobile)\b/i.test(UA) ||
+          /\b(Android|Windows Phone|iPad|iPod)\b/i.test(UA);
+      }
+    }
+    if (hasTouchScreen) {
+      setDeviceType("Mobile");
+    } else {
+      setDeviceType("Desktop");
+    }
+  }, []);
 
   const handleClickReset = () => {
     setFiles([]);
@@ -77,6 +104,7 @@ function App() {
     >
       <header className={styles.header}>
         <Header />
+        {deviceType === "Mobile" ? <h1>Mobile</h1> : <h1>Desktop</h1>}
       </header>
       {dragOverStatus ? (
         <Cover />
