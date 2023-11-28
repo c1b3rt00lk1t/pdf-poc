@@ -25,6 +25,17 @@ button {
   background-color: #e7e7e7;
 }
 
+.mainMobile {
+  width: 100%;
+  padding-block-start: 2.5vh;
+  background-color: #e7e7e7;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 3fr 3fr 1fr;
+  flex-direction: column;
+  place-items: center;
+}
+
 .mainBackground1 {
   background-image: url("https://fastly.picsum.photos/id/11/2500/1667.jpg?hmac=xxjFJtAPgshYkysU_aqx2sZir-kIOjNR9vx0te7GycQ");
   background-size: cover;
@@ -44,7 +55,7 @@ button {
   }
 } */
 
-@media screen and (min-width: 400px) and (max-width: 576px) {
+@media screen and (max-width: 576px) {
   .main {
     grid-template-columns: 15vw 40vw 45vw;
     font-size: 0.85rem;

@@ -29,6 +29,7 @@ function App() {
   const [dragOverStatus, setDragOverStatus] = useState<boolean>(false);
 
   const deviceType = useDeviceType();
+  const isMobile = deviceType === "Mobile";
 
   const handleClickReset = () => {
     setFiles([]);
@@ -80,13 +81,16 @@ function App() {
     >
       <header className={styles.header}>
         <Header />
-        {deviceType === "Mobile" ? <h1>Mobile</h1> : <h1>Desktop</h1>}
       </header>
       {dragOverStatus ? (
         <Cover />
       ) : (
-        <main className={styles.main}>
-          <Sidebar handleClickAction={handleClickAction} action={action} />
+        <main className={isMobile ? styles.mainMobile : styles.main}>
+          <Sidebar
+            handleClickAction={handleClickAction}
+            action={action}
+            isMobile={isMobile}
+          />
           <FileSelection
             files={files}
             setFiles={setFiles}

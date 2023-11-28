@@ -23,15 +23,18 @@ import {
 interface SidebarProps {
   handleClickAction: (action: Action) => void;
   action: Action;
+  isMobile: boolean;
 }
 
-const Sidebar = ({ handleClickAction, action }: SidebarProps) => {
+const Sidebar = ({ handleClickAction, action, isMobile }: SidebarProps) => {
   return (
-    <div className={styles.Sidebar}>
+    <div className={isMobile ? styles.SidebarMobile : styles.Sidebar}>
       <button
         disabled
         onClick={() => {}}
-        className={`${styles.button} ${styles.hideInSmallScreen}`}
+        className={`${isMobile ? styles.buttonMobile : styles.button} ${
+          styles.hideInSmallScreen
+        }`}
       >
         <MdOutlineContentCut />
         <span className={styles.span}>Remove</span>
@@ -39,14 +42,16 @@ const Sidebar = ({ handleClickAction, action }: SidebarProps) => {
       <button
         disabled
         onClick={() => {}}
-        className={`${styles.button} ${styles.hideInSmallScreen}`}
+        className={`${isMobile ? styles.buttonMobile : styles.button} ${
+          styles.hideInSmallScreen
+        }`}
       >
         <MdOutlineRotateRight />
         <span className={styles.span}>Rotate</span>
       </button>
       <button
         className={`${action === "combine" ? styles.selected : undefined} ${
-          styles.button
+          isMobile ? styles.buttonMobile : styles.button
         }`}
         onClick={() => handleClickAction("combine")}
       >
@@ -55,7 +60,7 @@ const Sidebar = ({ handleClickAction, action }: SidebarProps) => {
       </button>
       <button
         className={`${action === "pages" ? styles.selected : undefined} ${
-          styles.button
+          isMobile ? styles.buttonMobile : styles.button
         }`}
         onClick={() => handleClickAction("pages")}
       >
@@ -65,7 +70,9 @@ const Sidebar = ({ handleClickAction, action }: SidebarProps) => {
       <button
         disabled
         onClick={() => {}}
-        className={`${styles.button} ${styles.hideInSmallScreen}`}
+        className={`${isMobile ? styles.buttonMobile : styles.button} ${
+          styles.hideInSmallScreen
+        }`}
       >
         <MdOutlineBrandingWatermark />
         <span className={styles.span}>Watermark</span>
@@ -73,7 +80,7 @@ const Sidebar = ({ handleClickAction, action }: SidebarProps) => {
 
       <button
         className={`${action === "split" ? styles.selected : undefined} ${
-          styles.button
+          isMobile ? styles.buttonMobile : styles.button
         }`}
         onClick={() => handleClickAction("split")}
       >
