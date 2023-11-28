@@ -75,7 +75,7 @@ const FileList = ({
               data-idx={idx}
               onDragStart={handleDragStart}
               onDrop={handleDrop}
-              className={styles.li}
+              className={isMobile ? styles.liMobile : styles.li}
             >
               <span className={styles.span}>{arr[orderFiles[idx]].name}</span>
               <MdDelete

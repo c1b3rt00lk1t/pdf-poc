@@ -37,6 +37,14 @@
   border: 1px solid #ccc;
 }
 
+.liMobile {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5vh 1vw;
+  border: 1px solid #ccc;
+  width: 70vw;
+}
+
 .span {
   text-overflow: ellipsis;
   overflow: hidden;
