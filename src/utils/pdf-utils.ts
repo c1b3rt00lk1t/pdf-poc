@@ -10,7 +10,7 @@ async function createBlob(pdfDoc: PDFDocument) {
   return blob;
 }
 
-function downloadFile(file: Blob, fileName: string) {
+export function downloadFile(file: Blob | File, fileName: string) {
   const url = URL.createObjectURL(file);
   const downloadLink = document.createElement("a");
   downloadLink.href = url;
