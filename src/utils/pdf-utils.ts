@@ -53,7 +53,9 @@ export async function combineFiles(files: File[], order?: number[]) {
   }
 
   const blob = await createBlob(outputDoc);
-  downloadFile(blob, "combined.pdf");
+  // downloadFile(blob, "combined.pdf");
+  const outputAsInputFile = new File([blob], "output.pdf", { type: blob.type });
+  return outputAsInputFile;
 }
 
 /**
