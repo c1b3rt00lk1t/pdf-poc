@@ -1,8 +1,8 @@
 /**
  * This component receives a set of pdf files to be combined into a single pdf file with an array which specifies the order of the files
  */
-
-import { combineFiles } from "../utils/pdf-utils";
+import { useState } from "react";
+import { combineFiles, downloadFile } from "../utils/pdf-utils";
 import styles from "./Transformations.module.css";
 
 interface TransformCombineProps {
@@ -15,19 +15,37 @@ const TransformCombine = ({
   orderFiles,
   handleKeepOutputAsInput,
 }: TransformCombineProps) => {
+  const [keepOutputAsInput, setKeepOutputAsInput] = useState<boolean>(false);
   return (
     <>
       <p>{files.length} files selected</p>
       <div>
         <button
           disabled={!files.length}
-          onClick={() => files.length && combineFiles(files, orderFiles)}
+          onClick={() => {
+            if (files.length) {
+              combineFiles(files, orderFiles).then((file) => {
+                console.log("here we are");
+                if (keepOutputAsInput) {
+                  handleKeepOutputAsInput(file);
+                } else {
+                  downloadFile(file, "output.pdf");
+                }
+              });
+            }
+          }}
         >
           Combine files
         </button>
       </div>
       <label className={styles.labelSmall}>
-        <input type="checkbox" /> Keep the output as next input
+        <input
+          type="checkbox"
+          onChange={() =>
+            setKeepOutputAsInput((keepOutputAsInput) => !keepOutputAsInput)
+          }
+        />{" "}
+        Keep output as next input
       </label>
     </>
   );
