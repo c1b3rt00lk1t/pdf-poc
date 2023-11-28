@@ -12,8 +12,16 @@ button {
 }
 
 .App {
+  height: 100vh;
+  overflow: auto;
   display: grid;
-  grid-template-rows: 10vh 85vh 5vh;
+  grid-template-rows: 10fr 85fr 5fr;
+}
+
+.AppMobile {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 10fr 90fr;
 }
 
 .main {

@@ -74,7 +74,7 @@ function App() {
 
   return (
     <div
-      className={styles.App}
+      className={isMobile ? styles.AppMobile : styles.App}
       onDragOver={handleDragOver}
       onDrop={handleDrop}
       onDragLeave={handleDragLeave}
@@ -106,7 +106,9 @@ function App() {
           />
         </main>
       )}
-      <footer className={styles.footer}>developed by c1b3rt00lk1t</footer>
+      {!isMobile && (
+        <footer className={styles.footer}>developed by c1b3rt00lk1t</footer>
+      )}
     </div>
   );
 }
