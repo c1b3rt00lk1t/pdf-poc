@@ -32,7 +32,7 @@ const Sidebar = ({ handleClickAction, action, isMobile }: SidebarProps) => {
       <div
         onClick={() => {}}
         className={`${isMobile ? styles.buttonMobile : styles.button} ${
-          styles.hideInSmallScreen
+          styles.disabled
         }`}
       >
         <MdOutlineContentCut />
@@ -41,7 +41,7 @@ const Sidebar = ({ handleClickAction, action, isMobile }: SidebarProps) => {
       <div
         onClick={() => {}}
         className={`${isMobile ? styles.buttonMobile : styles.button} ${
-          styles.hideInSmallScreen
+          styles.disabled
         }`}
       >
         <MdOutlineRotateRight />
@@ -68,7 +68,7 @@ const Sidebar = ({ handleClickAction, action, isMobile }: SidebarProps) => {
       <div
         onClick={() => {}}
         className={`${isMobile ? styles.buttonMobile : styles.button} ${
-          styles.hideInSmallScreen
+          styles.disabled
         }`}
       >
         <MdOutlineBrandingWatermark />

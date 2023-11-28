@@ -1,4 +1,5 @@
 .Sidebar {
+  margin-block-start: 5vh;
   display: flex;
   flex-direction: column;
   width: 25%;
@@ -21,6 +22,12 @@
   width: fit-content;
   margin-right: 1vw;
   display: flex;
+  cursor: pointer;
+}
+
+.disabled {
+  color: grey;
+  cursor: not-allowed;
 }
 
 .buttonMobile {
@@ -35,32 +42,12 @@
   margin-left: 0.5em;
 }
 
-/* @media screen and (max-width: 576px) {
-  .Sidebar {
-    order: 3;
-    flex-direction: row;
-    height: fit-content;
-    padding: 0;
-
-    position: absolute;
-    top: 90%;
-    left: 50%;
-    right: 0;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-  }
-
-  .hideInSmallScreen {
-    display: none;
-  }
-} */
-
 @media screen and (max-width: 768px) {
   .span {
     display: none;
   }
   .button {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
   }
 }
 
