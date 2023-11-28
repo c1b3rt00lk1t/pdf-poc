@@ -4,6 +4,7 @@
   width: 25%;
   padding: 0.5vh 1vw;
   min-width: 100px;
+  height: min-content;
 }
 
 .SidebarMobile {
@@ -24,6 +25,7 @@
 
 .buttonMobile {
   width: min-content;
+  height: min-content;
   margin-right: 1vw;
   display: flex;
   font-size: 2rem;

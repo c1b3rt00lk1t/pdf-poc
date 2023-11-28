@@ -40,9 +40,9 @@ button {
   background-color: #e7e7e7;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 3fr 3fr 1fr;
+  grid-template-rows: 3fr 5fr 1fr;
   flex-direction: column;
-  place-items: center;
+  justify-items: center;
 }
 
 .mainBackground1 {
