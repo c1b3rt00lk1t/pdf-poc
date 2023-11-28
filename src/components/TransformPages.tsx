@@ -72,6 +72,8 @@ const TransformPages = ({
   ) {
     event.preventDefault();
     if (file) addPageNumbers(file, options);
+    /** Not working, just to make it compile now */
+    if (!file) handleKeepOutputAsInput(file);
   }
 
   function handleClickReset(event: React.MouseEvent<HTMLButtonElement>) {
