@@ -15,18 +15,29 @@ interface TransformationsProps {
   action: Action;
   files: File[];
   orderFiles: number[];
+  handleKeepOutputAsInput: (file: File) => void;
 }
 
 const Transformations = ({
   files,
   action,
   orderFiles,
+  handleKeepOutputAsInput,
 }: TransformationsProps) => {
   return (
     <div className={styles.Transformations}>
-      {action === "pages" && <TransformPages file={files[0]} />}
+      {action === "pages" && (
+        <TransformPages
+          file={files[0]}
+          handleKeepOutputAsInput={handleKeepOutputAsInput}
+        />
+      )}
       {action === "combine" && (
-        <TransformCombine files={files} orderFiles={orderFiles} />
+        <TransformCombine
+          files={files}
+          orderFiles={orderFiles}
+          handleKeepOutputAsInput={handleKeepOutputAsInput}
+        />
       )}
       {action === "split" && <TransformSplit file={files[0]} />}
     </div>

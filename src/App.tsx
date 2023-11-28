@@ -35,6 +35,10 @@ function App() {
     setFiles([]);
   };
 
+  const handleKeepOutputAsInput = (file: File) => {
+    setFiles([file]);
+  };
+
   const handleClickAction = (action: "combine" | "split" | "pages") => {
     setAction(action);
   };
@@ -104,6 +108,7 @@ function App() {
             files={files}
             action={action}
             orderFiles={orderFiles}
+            handleKeepOutputAsInput={handleKeepOutputAsInput}
           />
         </main>
       )}

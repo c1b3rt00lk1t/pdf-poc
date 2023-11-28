@@ -9,6 +9,7 @@ import styles from "./Transformations.module.css";
 
 interface TransformPagesProps {
   file: File;
+  handleKeepOutputAsInput: (file: File) => void;
 }
 
 function addPagesReducer(state: AddPageOptions, action: any) {
@@ -34,7 +35,10 @@ function addPagesReducer(state: AddPageOptions, action: any) {
   }
 }
 
-const TransformPages = ({ file }: TransformPagesProps) => {
+const TransformPages = ({
+  file,
+  handleKeepOutputAsInput,
+}: TransformPagesProps) => {
   const [options, dispatch] = useReducer(
     addPagesReducer,
     addPageDefaultOptions

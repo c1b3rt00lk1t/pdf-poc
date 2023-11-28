@@ -8,8 +8,13 @@ import styles from "./Transformations.module.css";
 interface TransformCombineProps {
   files: File[];
   orderFiles: number[];
+  handleKeepOutputAsInput: (file: File) => void;
 }
-const TransformCombine = ({ files, orderFiles }: TransformCombineProps) => {
+const TransformCombine = ({
+  files,
+  orderFiles,
+  handleKeepOutputAsInput,
+}: TransformCombineProps) => {
   return (
     <>
       <p>{files.length} files selected</p>
