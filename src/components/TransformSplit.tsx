@@ -16,7 +16,9 @@ interface TransformSplitProps {
 
 const TransformSplit = ({ file }: TransformSplitProps) => {
   const [pageRanges, setPageRanges] = useState<string>("");
-  const [basename, setBasename] = useState<string>("");
+  const [basename, setBasename] = useState<string>(
+    file ? file.name.replace(/.pdf/i, "") : ""
+  );
   const disabled = !file;
 
   function handleClickSplitFiles(event: React.MouseEvent<HTMLButtonElement>) {
