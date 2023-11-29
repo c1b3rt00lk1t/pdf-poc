@@ -16,13 +16,41 @@ const TransformCombine = ({
   handleKeepOutputAsInput,
 }: TransformCombineProps) => {
   const [keepOutputAsInput, setKeepOutputAsInput] = useState<boolean>(false);
+  const [basename, setBasename] = useState<string>(
+    files.length ? files[0].name.replace(/.pdf/i, "") : ""
+  );
+  const disabled = !files.length;
+
+  function handleClickReset(event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
+    setBasename("");
+  }
+
   return (
-    <>
-      <p>{files.length} files selected</p>
+    <form className={styles.form} autoComplete="off">
+      <p className={styles.p}>{files.length} files selected</p>
+      <div>
+        <label htmlFor="basename" className={styles.label}>
+          Base name
+        </label>
+        <input
+          id="basename"
+          name="basename"
+          onChange={(ev) => setBasename(ev.target.value)}
+          type="text"
+          placeholder={
+            !disabled ? files[0].name.replace(/.pdf/i, "") : "Basename"
+          }
+          value={!disabled ? basename : ""}
+          disabled={disabled}
+          className={styles.inputText}
+        />
+      </div>
       <div>
         <button
           disabled={!files.length}
-          onClick={() => {
+          onClick={(event) => {
+            event.preventDefault();
             if (files.length) {
               combineFiles(files, orderFiles).then((file) => {
                 if (keepOutputAsInput) {
@@ -36,6 +64,9 @@ const TransformCombine = ({
         >
           Combine files
         </button>
+        <button onClick={handleClickReset} className={styles.button}>
+          Reset
+        </button>
       </div>
       <label className={styles.labelSmall}>
         <input
@@ -46,7 +77,7 @@ const TransformCombine = ({
         />{" "}
         Keep output as next input
       </label>
-    </>
+    </form>
   );
 };
 
