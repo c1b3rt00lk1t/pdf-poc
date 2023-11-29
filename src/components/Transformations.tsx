@@ -17,6 +17,8 @@ interface TransformationsProps {
   orderFiles: number[];
   handleKeepOutputAsInput: (files: File[]) => void;
   isMobile: boolean;
+  basename: string;
+  setBasename: (basename: string) => void;
 }
 
 const Transformations = ({
@@ -25,6 +27,8 @@ const Transformations = ({
   orderFiles,
   handleKeepOutputAsInput,
   isMobile,
+  basename,
+  setBasename,
 }: TransformationsProps) => {
   return (
     <div
@@ -43,12 +47,16 @@ const Transformations = ({
           files={files}
           orderFiles={orderFiles}
           handleKeepOutputAsInput={handleKeepOutputAsInput}
+          basename={basename}
+          setBasename={setBasename}
         />
       )}
       {action === "split" && (
         <TransformSplit
           file={files[0]}
           handleKeepOutputAsInput={handleKeepOutputAsInput}
+          basename={basename}
+          setBasename={setBasename}
         />
       )}
     </div>

@@ -13,17 +13,19 @@ import styles from "./Transformations.module.css";
 interface TransformSplitProps {
   file: File;
   handleKeepOutputAsInput: (files: File[]) => void;
+  basename: string;
+  setBasename: (basename: string) => void;
 }
 
 const TransformSplit = ({
   file,
   handleKeepOutputAsInput,
+  basename,
+  setBasename,
 }: TransformSplitProps) => {
   const [keepOutputAsInput, setKeepOutputAsInput] = useState<boolean>(false);
   const [pageRanges, setPageRanges] = useState<string>("");
-  const [basename, setBasename] = useState<string>(
-    file ? file.name.replace(/.pdf/i, "") : ""
-  );
+
   const disabled = !file;
 
   function handleClickSplitFiles(event: React.MouseEvent<HTMLButtonElement>) {

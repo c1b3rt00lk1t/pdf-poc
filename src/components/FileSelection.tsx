@@ -21,6 +21,7 @@ export interface FileSelectionProps {
   action: Action;
   orderFiles: number[];
   isMobile: boolean;
+  setBasename: (basename: string) => void;
 }
 
 const FileSelection = ({
@@ -31,6 +32,7 @@ const FileSelection = ({
   action,
   orderFiles,
   isMobile,
+  setBasename,
 }: FileSelectionProps) => {
   const refInput = useRef<HTMLInputElement>(null);
   const resetInput = (ref: React.RefObject<HTMLInputElement>) => {
@@ -51,6 +53,7 @@ const FileSelection = ({
       if (files && files.length > 0) {
         setFiles(Array.from(files));
         setOrderFiles(Array.from(Array(files.length).keys()));
+        setBasename(files[0].name.replace(/.pdf/i, ""));
       }
     };
     input.click();

@@ -9,16 +9,17 @@ interface TransformCombineProps {
   files: File[];
   orderFiles: number[];
   handleKeepOutputAsInput: (files: File[]) => void;
+  basename: string;
+  setBasename: (basename: string) => void;
 }
 const TransformCombine = ({
   files,
   orderFiles,
   handleKeepOutputAsInput,
+  basename,
+  setBasename,
 }: TransformCombineProps) => {
   const [keepOutputAsInput, setKeepOutputAsInput] = useState<boolean>(false);
-  const [basename, setBasename] = useState<string>(
-    files.length ? files[0].name.replace(/.pdf/i, "") : ""
-  );
   const disabled = !files.length;
 
   function handleClickCombineFiles(event: React.MouseEvent<HTMLButtonElement>) {

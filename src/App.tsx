@@ -26,6 +26,9 @@ function App() {
   const [action, setAction] = useState<"combine" | "split" | "pages">(
     "combine"
   );
+  const [basename, setBasename] = useState<string>(
+    files.length ? files[0].name.replace(/.pdf/i, "") : ""
+  );
   const [dragOverStatus, setDragOverStatus] = useState<boolean>(false);
 
   const deviceType = useDeviceType();
@@ -104,6 +107,7 @@ function App() {
             action={action}
             orderFiles={orderFiles}
             isMobile={isMobile}
+            setBasename={setBasename}
           />
           <Transformations
             files={files}
@@ -111,6 +115,8 @@ function App() {
             orderFiles={orderFiles}
             isMobile={isMobile}
             handleKeepOutputAsInput={handleKeepOutputAsInput}
+            basename={basename}
+            setBasename={setBasename}
           />
         </main>
       )}
