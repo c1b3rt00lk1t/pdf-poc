@@ -10,7 +10,7 @@ import styles from "./Transformations.module.css";
 
 interface TransformPagesProps {
   file: File;
-  handleKeepOutputAsInput: (file: File) => void;
+  handleKeepOutputAsInput: (files: File[]) => void;
 }
 
 function addPagesReducer(state: AddPageOptions, action: any) {
@@ -76,7 +76,7 @@ const TransformPages = ({
     if (file) {
       addPageNumbers(file, options).then((file) => {
         if (keepOutputAsInput) {
-          handleKeepOutputAsInput(file);
+          handleKeepOutputAsInput([file]);
         } else {
           downloadFile(file, file.name);
         }

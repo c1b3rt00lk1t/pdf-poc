@@ -15,7 +15,7 @@ interface TransformationsProps {
   action: Action;
   files: File[];
   orderFiles: number[];
-  handleKeepOutputAsInput: (file: File) => void;
+  handleKeepOutputAsInput: (files: File[]) => void;
 }
 
 const Transformations = ({
@@ -39,7 +39,12 @@ const Transformations = ({
           handleKeepOutputAsInput={handleKeepOutputAsInput}
         />
       )}
-      {action === "split" && <TransformSplit file={files[0]} />}
+      {action === "split" && (
+        <TransformSplit
+          file={files[0]}
+          handleKeepOutputAsInput={handleKeepOutputAsInput}
+        />
+      )}
     </div>
   );
 };

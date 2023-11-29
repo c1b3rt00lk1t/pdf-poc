@@ -35,8 +35,9 @@ function App() {
     setFiles([]);
   };
 
-  const handleKeepOutputAsInput = (file: File) => {
-    setFiles([file]);
+  const handleKeepOutputAsInput = (files: File[]) => {
+    setFiles(files);
+    setOrderFiles(Array.from(Array(files.length).keys()));
   };
 
   const handleClickAction = (action: "combine" | "split" | "pages") => {

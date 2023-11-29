@@ -8,7 +8,7 @@ import styles from "./Transformations.module.css";
 interface TransformCombineProps {
   files: File[];
   orderFiles: number[];
-  handleKeepOutputAsInput: (file: File) => void;
+  handleKeepOutputAsInput: (files: File[]) => void;
 }
 const TransformCombine = ({
   files,
@@ -26,7 +26,7 @@ const TransformCombine = ({
             if (files.length) {
               combineFiles(files, orderFiles).then((file) => {
                 if (keepOutputAsInput) {
-                  handleKeepOutputAsInput(file);
+                  handleKeepOutputAsInput([file]);
                 } else {
                   downloadFile(file, "output.pdf");
                 }
