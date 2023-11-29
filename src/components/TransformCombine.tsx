@@ -24,7 +24,7 @@ const TransformCombine = ({
   function handleClickCombineFiles(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
     if (files.length) {
-      combineFiles(files, orderFiles).then((file) => {
+      combineFiles(files, orderFiles, basename).then((file) => {
         if (keepOutputAsInput) {
           handleKeepOutputAsInput([file]);
         } else {

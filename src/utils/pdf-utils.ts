@@ -32,7 +32,11 @@ type FontType = keyof typeof availableFonts;
  * it accepts an optional parameter to specify the order of the files. An array is passed with the index of the original file in files in the selected position.
  */
 
-export async function combineFiles(files: File[], order?: number[]) {
+export async function combineFiles(
+  files: File[],
+  order: number[],
+  name: string = files[0].name
+) {
   const outputDoc = await PDFDocument.create();
 
   const orderedFiles = files.map((_, index, array) =>
@@ -54,7 +58,8 @@ export async function combineFiles(files: File[], order?: number[]) {
 
   const blob = await createBlob(outputDoc);
   // downloadFile(blob, "combined.pdf");
-  const outputAsInputFile = new File([blob], "output.pdf", { type: blob.type });
+  const fileName = `${name.replace(/.pdf/i, "")} - combined.pdf`;
+  const outputAsInputFile = new File([blob], fileName, { type: blob.type });
   return outputAsInputFile;
 }
 
