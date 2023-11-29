@@ -1,9 +1,10 @@
-import { useReducer } from "react";
+import { useState, useReducer } from "react";
 import {
   addPageNumbers,
   addPageDefaultOptions,
   AddPageOptions,
   availableFonts,
+  downloadFile,
 } from "../utils/pdf-utils";
 import styles from "./Transformations.module.css";
 
@@ -43,6 +44,7 @@ const TransformPages = ({
     addPagesReducer,
     addPageDefaultOptions
   );
+  const [keepOutputAsInput, setKeepOutputAsInput] = useState<boolean>(false);
 
   const handleChange =
     (type: string, transform?: string) =>
@@ -71,9 +73,15 @@ const TransformPages = ({
     event: React.MouseEvent<HTMLButtonElement>
   ) {
     event.preventDefault();
-    if (file) addPageNumbers(file, options);
-    /** Not working, just to make it compile now */
-    if (!file) handleKeepOutputAsInput(file);
+    if (file) {
+      addPageNumbers(file, options).then((file) => {
+        if (keepOutputAsInput) {
+          handleKeepOutputAsInput(file);
+        } else {
+          downloadFile(file, file.name);
+        }
+      });
+    }
   }
 
   function handleClickReset(event: React.MouseEvent<HTMLButtonElement>) {
@@ -182,7 +190,13 @@ const TransformPages = ({
         </button>
       </div>
       <label className={styles.labelSmall}>
-        <input type="checkbox" /> Keep output as next input
+        <input
+          type="checkbox"
+          onChange={() =>
+            setKeepOutputAsInput((keepOutputAsInput) => !keepOutputAsInput)
+          }
+        />{" "}
+        Keep output as next input
       </label>
     </form>
   );
