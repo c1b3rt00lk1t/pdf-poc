@@ -109,6 +109,7 @@ function App() {
             files={files}
             action={action}
             orderFiles={orderFiles}
+            isMobile={isMobile}
             handleKeepOutputAsInput={handleKeepOutputAsInput}
           />
         </main>

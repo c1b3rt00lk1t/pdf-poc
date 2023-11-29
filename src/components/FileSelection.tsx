@@ -67,7 +67,9 @@ const FileSelection = ({
   }
 
   return (
-    <div className={styles.FileSelection}>
+    <div
+      className={isMobile ? styles.FileSelectionMobile : styles.FileSelection}
+    >
       <div className={styles.buttonGroup}>
         <button className={styles.button} onClick={handleClickAdd}>
           <MdAddCircleOutline />

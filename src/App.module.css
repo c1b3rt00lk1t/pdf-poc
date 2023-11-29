@@ -30,7 +30,7 @@ button {
   overflow: auto;
   display: grid;
   grid-template-columns: 20fr 50fr 30fr;
-  padding-top: 10vh;
+  padding-top: 5vh;
   background-color: #e7e7e7;
 }
 

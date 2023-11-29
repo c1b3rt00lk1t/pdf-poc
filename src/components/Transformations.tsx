@@ -16,6 +16,7 @@ interface TransformationsProps {
   files: File[];
   orderFiles: number[];
   handleKeepOutputAsInput: (files: File[]) => void;
+  isMobile: boolean;
 }
 
 const Transformations = ({
@@ -23,9 +24,14 @@ const Transformations = ({
   action,
   orderFiles,
   handleKeepOutputAsInput,
+  isMobile,
 }: TransformationsProps) => {
   return (
-    <div className={styles.Transformations}>
+    <div
+      className={
+        isMobile ? styles.TransformationsMobile : styles.Transformations
+      }
+    >
       {action === "pages" && (
         <TransformPages
           file={files[0]}

@@ -2,7 +2,16 @@
   padding: 0.5vh 1vw;
 }
 
+.TransformationsMobile {
+  padding: 1vh 1vw;
+  border: 1px solid rgb(75, 95, 104, 0.3);
+  border-radius: 5px;
+  width: 90vw;
+  height: 45vh;
+}
+
 .form {
+  padding: 2vh 2vw;
   display: flex;
   flex-direction: column;
   height: 40vh;
@@ -37,7 +46,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .button {
-  margin: 5vh 1vw;
+  margin: 5vh 1vw 0 1vw;
 }
 
 .labelSmall {
