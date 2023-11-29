@@ -7,14 +7,19 @@
  */
 
 import { useState } from "react";
-import { splitFiles } from "../utils/pdf-utils";
+import { splitFiles, downloadFile } from "../utils/pdf-utils";
 import styles from "./Transformations.module.css";
 
 interface TransformSplitProps {
   file: File;
+  handleKeepOutputAsInput: (files: File[]) => void;
 }
 
-const TransformSplit = ({ file }: TransformSplitProps) => {
+const TransformSplit = ({
+  file,
+  handleKeepOutputAsInput,
+}: TransformSplitProps) => {
+  const [keepOutputAsInput, setKeepOutputAsInput] = useState<boolean>(false);
   const [pageRanges, setPageRanges] = useState<string>("");
   const [basename, setBasename] = useState<string>(
     file ? file.name.replace(/.pdf/i, "") : ""
@@ -23,7 +28,19 @@ const TransformSplit = ({ file }: TransformSplitProps) => {
 
   function handleClickSplitFiles(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
-    splitFiles(pageRanges, file, basename);
+
+    if (file) {
+      splitFiles(pageRanges, file, basename).then((files) => {
+        console.log(files);
+        if (keepOutputAsInput) {
+          handleKeepOutputAsInput(files);
+        } else {
+          files.forEach((file) => {
+            downloadFile(file, file.name);
+          });
+        }
+      });
+    }
   }
 
   function handleClickReset(event: React.MouseEvent<HTMLButtonElement>) {
@@ -76,6 +93,15 @@ const TransformSplit = ({ file }: TransformSplitProps) => {
           Reset
         </button>
       </div>
+      <label className={styles.labelSmall}>
+        <input
+          type="checkbox"
+          onChange={() =>
+            setKeepOutputAsInput((keepOutputAsInput) => !keepOutputAsInput)
+          }
+        />{" "}
+        Keep output as next input
+      </label>
     </form>
   );
 };
