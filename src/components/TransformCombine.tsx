@@ -25,7 +25,6 @@ const TransformCombine = ({
           onClick={() => {
             if (files.length) {
               combineFiles(files, orderFiles).then((file) => {
-                console.log("here we are");
                 if (keepOutputAsInput) {
                   handleKeepOutputAsInput(file);
                 } else {
