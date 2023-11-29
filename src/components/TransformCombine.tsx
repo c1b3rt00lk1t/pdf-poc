@@ -21,6 +21,19 @@ const TransformCombine = ({
   );
   const disabled = !files.length;
 
+  function handleClickCombineFiles(event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
+    if (files.length) {
+      combineFiles(files, orderFiles).then((file) => {
+        if (keepOutputAsInput) {
+          handleKeepOutputAsInput([file]);
+        } else {
+          downloadFile(file, basename);
+        }
+      });
+    }
+  }
+
   function handleClickReset(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
     setBasename("");
@@ -47,21 +60,7 @@ const TransformCombine = ({
         />
       </div>
       <div>
-        <button
-          disabled={!files.length}
-          onClick={(event) => {
-            event.preventDefault();
-            if (files.length) {
-              combineFiles(files, orderFiles).then((file) => {
-                if (keepOutputAsInput) {
-                  handleKeepOutputAsInput([file]);
-                } else {
-                  downloadFile(file, "output.pdf");
-                }
-              });
-            }
-          }}
-        >
+        <button disabled={!files.length} onClick={handleClickCombineFiles}>
           Combine files
         </button>
         <button onClick={handleClickReset} className={styles.button}>
