@@ -142,54 +142,51 @@ export async function splitFiles(
   file: File,
   name: string = file.name
 ) {
-  const reader = new FileReader();
-  reader.readAsArrayBuffer(file);
-  reader.onloadend = async () => {
-    const pdfData = reader.result as ArrayBuffer;
-    const inputDoc = await PDFDocument.load(pdfData);
-    const numPages = inputDoc.getPages().length;
+  const fileArrayBuffer = await file.arrayBuffer();
+  const pdfDoc = await PDFDocument.load(fileArrayBuffer);
 
-    // Split the page ranges into an array of start and end page numbers
-    // Filter out any ranges that are not within the number of pages in the document
-    const ranges = pageRanges
-      .split(",")
-      .map((range) => range.split("-").map(Number))
-      .filter(
-        (range) =>
-          range[0] > 0 &&
-          range[0] <= numPages &&
-          (range[1] === undefined || (range[1] > 0 && range[1] <= numPages))
-      );
+  const numPages = pdfDoc.getPages().length;
 
-    // For each range, create a new PDF document and copy the pages from the input document
-    const outputDocs = await Promise.all(
-      ranges.map(async (range) => {
-        const outputDoc = await PDFDocument.create();
-        const pages = await outputDoc.copyPages(
-          inputDoc,
-          range[1] === undefined
-            ? [range[0] - 1]
-            : Array.from(
-                { length: range[1] - range[0] + 1 },
-                (_, i) => i + range[0] - 1
-              )
-        );
-        for (const page of pages) {
-          outputDoc.addPage(page);
-        }
-        return outputDoc;
-      })
+  // Split the page ranges into an array of start and end page numbers
+  // Filter out any ranges that are not within the number of pages in the document
+  const ranges = pageRanges
+    .split(",")
+    .map((range) => range.split("-").map(Number))
+    .filter(
+      (range) =>
+        range[0] > 0 &&
+        range[0] <= numPages &&
+        (range[1] === undefined || (range[1] > 0 && range[1] <= numPages))
     );
 
-    // For each output document, save it as a PDF file and trigger a download
-    for (let i = 0; i < outputDocs.length; i++) {
-      const blob = await createBlob(outputDocs[i]);
-      downloadFile(
-        blob,
-        `${name.replace(/.pdf/i, "")} [${ranges[i][0]}${
-          ranges[i].length > 1 ? `-${ranges[i][1]}` : ``
-        }].pdf`
+  // For each range, create a new PDF document and copy the pages from the input document
+  const outputDocs = await Promise.all(
+    ranges.map(async (range) => {
+      const outputDoc = await PDFDocument.create();
+      const pages = await outputDoc.copyPages(
+        pdfDoc,
+        range[1] === undefined
+          ? [range[0] - 1]
+          : Array.from(
+              { length: range[1] - range[0] + 1 },
+              (_, i) => i + range[0] - 1
+            )
       );
-    }
-  };
+      for (const page of pages) {
+        outputDoc.addPage(page);
+      }
+      return outputDoc;
+    })
+  );
+
+  // For each output document, save it as a PDF file and trigger a download
+  for (let i = 0; i < outputDocs.length; i++) {
+    const blob = await createBlob(outputDocs[i]);
+    downloadFile(
+      blob,
+      `${name.replace(/.pdf/i, "")} [${ranges[i][0]}${
+        ranges[i].length > 1 ? `-${ranges[i][1]}` : ``
+      }].pdf`
+    );
+  }
 }
