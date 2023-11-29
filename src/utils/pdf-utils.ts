@@ -94,38 +94,36 @@ export async function addPageNumbers(file: File, options: AddPageOptions) {
     fontType,
   } = { ...addPageDefaultOptions, ...options };
 
-  const reader = new FileReader();
-  reader.readAsArrayBuffer(file);
-  reader.onloadend = async () => {
-    const pdfData = reader.result as ArrayBuffer;
-    const pdfDoc = await PDFDocument.load(pdfData);
-    const pages = pdfDoc.getPages();
-    const helveticaFont = await pdfDoc.embedFont(fontType);
+  const fileArrayBuffer = await file.arrayBuffer();
+  const pdfDoc = await PDFDocument.load(fileArrayBuffer);
 
-    pages.forEach((page, index) => {
-      if (index >= initialPage - 1) {
-        const yPoints = (yCentimeters / 2.54) * 72;
-        const xPoints =
-          xPosition === "center"
-            ? page.getWidth() / 2
-            : xPosition === "left"
-            ? 50
-            : page.getWidth() - 50;
+  const pages = pdfDoc.getPages();
+  const helveticaFont = await pdfDoc.embedFont(fontType);
 
-        page.drawText((index + startNumber - initialPage).toString(), {
-          x: xPoints,
-          y: yPoints,
-          size: fontSize,
-          font: helveticaFont,
-          color: rgb(0, 0, 0),
-        });
-      }
-    });
+  pages.forEach((page, index) => {
+    if (index >= initialPage - 1) {
+      const yPoints = (yCentimeters / 2.54) * 72;
+      const xPoints =
+        xPosition === "center"
+          ? page.getWidth() / 2
+          : xPosition === "left"
+          ? 50
+          : page.getWidth() - 50;
 
-    const blob = await createBlob(pdfDoc);
-    const fileName = `${file.name.replace(/.pdf/i, "")} - pages.pdf`;
-    downloadFile(blob, fileName);
-  };
+      page.drawText((index + startNumber - initialPage).toString(), {
+        x: xPoints,
+        y: yPoints,
+        size: fontSize,
+        font: helveticaFont,
+        color: rgb(0, 0, 0),
+      });
+    }
+  });
+
+  const blob = await createBlob(pdfDoc);
+  const fileName = `${file.name.replace(/.pdf/i, "")} - pages.pdf`;
+  const outputAsInputFile = new File([blob], fileName, { type: blob.type });
+  return outputAsInputFile;
 }
 
 /**
