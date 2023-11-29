@@ -77,7 +77,15 @@ const FileList = ({
               onDrop={handleDrop}
               className={isMobile ? styles.liMobile : styles.li}
             >
-              <span className={styles.span}>{arr[orderFiles[idx]].name}</span>
+              <span className={styles.span}>
+                <a
+                  className={styles.a}
+                  href={URL.createObjectURL(arr[orderFiles[idx]])}
+                  target="_blank"
+                >
+                  {arr[orderFiles[idx]].name}
+                </a>
+              </span>
               <MdDelete
                 className={styles.delete}
                 onClick={handleClickRemoveItem}

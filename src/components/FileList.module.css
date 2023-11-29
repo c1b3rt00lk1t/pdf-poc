@@ -37,6 +37,12 @@
   border: 1px solid #ccc;
 }
 
+.a {
+  text-decoration: none;
+  color: darkblue;
+  width: 100%;
+}
+
 .liMobile {
   display: flex;
   justify-content: space-between;
