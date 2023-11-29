@@ -94,7 +94,13 @@ const FileList = ({
           ))
         : files.length > 0 && (
             <li className={isMobile ? styles.liMobile : styles.li}>
-              {files[0].name}
+              <a
+                className={styles.a}
+                href={URL.createObjectURL(files[0])}
+                target="_blank"
+              >
+                {files[0].name}
+              </a>
             </li>
           )}
     </ul>
