@@ -179,14 +179,18 @@ export async function splitFiles(
     })
   );
 
-  // For each output document, save it as a PDF file and trigger a download
-  for (let i = 0; i < outputDocs.length; i++) {
-    const blob = await createBlob(outputDocs[i]);
-    downloadFile(
-      blob,
-      `${name.replace(/.pdf/i, "")} [${ranges[i][0]}${
-        ranges[i].length > 1 ? `-${ranges[i][1]}` : ``
-      }].pdf`
-    );
-  }
+  return Promise.all(
+    outputDocs.map(async (doc, i) => {
+      const blob = await createBlob(doc);
+      return new File(
+        [blob],
+        `${name.replace(/.pdf/i, "")} [${ranges[i][0]}${
+          ranges[i].length > 1 ? `-${ranges[i][1]}` : ``
+        }].pdf`,
+        {
+          type: blob.type,
+        }
+      );
+    })
+  );
 }
