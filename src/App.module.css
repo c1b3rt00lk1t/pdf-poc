@@ -113,6 +113,8 @@ button {
 }
 
 .header {
+  box-sizing: border-box;
+  padding-top: calc(env(safe-area-inset-top) * 0.75);
   background-color: #282c34;
   height: 10vh;
   display: flex;
