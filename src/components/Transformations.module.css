@@ -14,7 +14,6 @@
   padding: 2vh 2vw;
   display: flex;
   flex-direction: column;
-  height: 40vh;
   overflow: auto;
   justify-content: start;
 
@@ -25,6 +24,24 @@
 
 /* hide the scrollbar */
 .form::-webkit-scrollbar {
+  display: none;
+}
+
+.formMobile {
+  padding: 2vh 2vw;
+  display: flex;
+  flex-direction: column;
+  height: 40vh;
+  overflow: auto;
+  justify-content: start;
+
+  /* hide the scrollbar */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* hide the scrollbar */
+.formMobile::-webkit-scrollbar {
   display: none;
 }
 

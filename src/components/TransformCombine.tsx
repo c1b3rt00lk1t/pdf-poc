@@ -11,6 +11,7 @@ interface TransformCombineProps {
   handleKeepOutputAsInput: (files: File[]) => void;
   basename: string;
   setBasename: (basename: string) => void;
+  isMobile: boolean;
 }
 const TransformCombine = ({
   files,
@@ -18,6 +19,7 @@ const TransformCombine = ({
   handleKeepOutputAsInput,
   basename,
   setBasename,
+  isMobile,
 }: TransformCombineProps) => {
   const [keepOutputAsInput, setKeepOutputAsInput] = useState<boolean>(false);
   const disabled = !files.length;
@@ -41,7 +43,10 @@ const TransformCombine = ({
   }
 
   return (
-    <form className={styles.form} autoComplete="off">
+    <form
+      className={isMobile ? styles.formMobile : styles.form}
+      autoComplete="off"
+    >
       <p className={styles.p}>{files.length} files selected</p>
       <div>
         <label htmlFor="basename" className={styles.label}>

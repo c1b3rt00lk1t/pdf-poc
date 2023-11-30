@@ -11,6 +11,7 @@ import styles from "./Transformations.module.css";
 interface TransformPagesProps {
   file: File;
   handleKeepOutputAsInput: (files: File[]) => void;
+  isMobile: boolean;
 }
 
 function addPagesReducer(state: AddPageOptions, action: any) {
@@ -39,6 +40,7 @@ function addPagesReducer(state: AddPageOptions, action: any) {
 const TransformPages = ({
   file,
   handleKeepOutputAsInput,
+  isMobile,
 }: TransformPagesProps) => {
   const [options, dispatch] = useReducer(
     addPagesReducer,
@@ -90,7 +92,10 @@ const TransformPages = ({
   }
 
   return (
-    <form className={styles.form} autoComplete="off">
+    <form
+      className={isMobile ? styles.formMobile : styles.form}
+      autoComplete="off"
+    >
       <div>
         <label htmlFor="initialPage" className={styles.label}>
           Initial page

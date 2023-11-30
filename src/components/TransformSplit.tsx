@@ -15,6 +15,7 @@ interface TransformSplitProps {
   handleKeepOutputAsInput: (files: File[]) => void;
   basename: string;
   setBasename: (basename: string) => void;
+  isMobile: boolean;
 }
 
 const TransformSplit = ({
@@ -22,6 +23,7 @@ const TransformSplit = ({
   handleKeepOutputAsInput,
   basename,
   setBasename,
+  isMobile,
 }: TransformSplitProps) => {
   const [keepOutputAsInput, setKeepOutputAsInput] = useState<boolean>(false);
   const [pageRanges, setPageRanges] = useState<string>("");
@@ -52,7 +54,10 @@ const TransformSplit = ({
   }
 
   return (
-    <form className={styles.form} autoComplete="off">
+    <form
+      className={isMobile ? styles.formMobile : styles.form}
+      autoComplete="off"
+    >
       <div>
         <label htmlFor="basename" className={styles.label}>
           Base name

@@ -40,6 +40,7 @@ const Transformations = ({
         <TransformPages
           file={files[0]}
           handleKeepOutputAsInput={handleKeepOutputAsInput}
+          isMobile={isMobile}
         />
       )}
       {action === "combine" && (
@@ -49,6 +50,7 @@ const Transformations = ({
           handleKeepOutputAsInput={handleKeepOutputAsInput}
           basename={basename}
           setBasename={setBasename}
+          isMobile={isMobile}
         />
       )}
       {action === "split" && (
@@ -57,6 +59,7 @@ const Transformations = ({
           handleKeepOutputAsInput={handleKeepOutputAsInput}
           basename={basename}
           setBasename={setBasename}
+          isMobile={isMobile}
         />
       )}
     </div>
