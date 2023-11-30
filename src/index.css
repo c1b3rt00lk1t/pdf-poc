@@ -11,7 +11,7 @@
 html {
   box-sizing: border-box;
   padding-top: calc(env(safe-area-inset-top) * 0.75);
-  /* padding-bottom: env(safe-area-inset-bottom) / 2; */
+  height: 100vh;
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
 }
