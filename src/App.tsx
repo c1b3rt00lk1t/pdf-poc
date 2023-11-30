@@ -10,7 +10,7 @@
  * The App must work offline and online
  */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./index.css";
 import FileSelection from "./components/FileSelection";
 import Header from "./components/Header";
@@ -81,6 +81,12 @@ function App() {
     event.preventDefault();
     setDragOverStatus(false);
   };
+
+  useEffect(() => {
+    if (isMobile) {
+      (screen.orientation as any).lock("portrait");
+    }
+  }, [isMobile]);
 
   return (
     <div
