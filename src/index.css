@@ -10,7 +10,7 @@
 
 html {
   box-sizing: border-box;
-  padding-top: env(safe-area-inset-top);
+  padding-top: calc(env(safe-area-inset-top) * 0.75);
   /* padding-bottom: env(safe-area-inset-bottom) / 2; */
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
