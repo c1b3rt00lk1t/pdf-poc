@@ -7,14 +7,14 @@
   border: 1px solid rgb(75, 95, 104, 0.3);
   border-radius: 5px;
   width: 90vw;
-  height: 41vh;
+  height: 45vh;
 }
 
 .form {
   padding: 2vh 2vw;
   display: flex;
   flex-direction: column;
-  height: 37.5vh;
+  height: 40vh;
   overflow: auto;
   justify-content: start;
 
@@ -29,7 +29,8 @@
 }
 
 label,
-input {
+input,
+select {
   margin-bottom: 2vh;
 }
 
@@ -56,7 +57,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .button {
-  margin: 5vh 1vw 0 1vw;
+  margin: 2vh 1vw 0 1vw;
 }
 
 .p {
@@ -64,7 +65,8 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .labelSmall {
-  margin-top: 2vh;
+  margin-top: 1vh;
+  margin-bottom: 0;
   display: flex;
   font-size: smaller;
   font-style: italic;
