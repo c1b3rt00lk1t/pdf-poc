@@ -41,7 +41,7 @@ button {
   background-color: #e7e7e7;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 3fr 6fr 1fr;
+  grid-template-rows: 4fr 7fr 2fr;
   flex-direction: column;
   justify-items: center;
 }
@@ -114,6 +114,7 @@ button {
 
 .header {
   padding-top: calc(env(safe-area-inset-top) * 0.6);
+  padding-left: 3vw;
   background-color: #282c34;
   height: 10vh;
   display: flex;
