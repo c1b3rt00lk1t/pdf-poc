@@ -114,10 +114,11 @@ button {
 
 .header {
   background-color: #282c34;
-  min-height: 10vh;
+  height: 10vh;
   display: flex;
   justify-content: flex-start;
-  font-size: calc(8px + 2vmin);
+  font-size: 2.5vh;
+  line-height: 5vh;
   color: white;
 }
 
