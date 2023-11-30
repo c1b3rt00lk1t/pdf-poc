@@ -82,12 +82,6 @@ function App() {
     setDragOverStatus(false);
   };
 
-  useEffect(() => {
-    if (isMobile) {
-      (screen.orientation as any).lock("portrait");
-    }
-  }, [isMobile]);
-
   return (
     <div
       className={isMobile ? styles.AppMobile : styles.App}
