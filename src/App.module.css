@@ -120,7 +120,7 @@ button {
   display: flex;
   justify-content: flex-start;
   font-size: 2.5vh;
-  line-height: 5vh;
+  line-height: calc(env(safe-area-inset-top) + 5vh);
   color: white;
 }
 
