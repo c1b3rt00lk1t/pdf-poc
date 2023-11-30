@@ -113,14 +113,13 @@ button {
 }
 
 .header {
-  box-sizing: border-box;
   padding-top: calc(env(safe-area-inset-top) * 0.75);
   background-color: #282c34;
   height: 10vh;
   display: flex;
   justify-content: flex-start;
   font-size: 2.5vh;
-  line-height: calc(env(safe-area-inset-top) + 5vh);
+  line-height: 5vh;
   color: white;
 }
 
