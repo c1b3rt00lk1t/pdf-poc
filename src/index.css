@@ -9,7 +9,7 @@
  */
 
 html {
-  /* min-height: calc(100% + env(safe-area-inset-top)); */
+  box-sizing: border-box;
   padding-top: env(safe-area-inset-top);
   padding-bottom: env(safe-area-inset-bottom);
   line-height: 1.15; /* 1 */
