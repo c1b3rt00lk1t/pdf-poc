@@ -19,6 +19,7 @@ import Transformations from "./components/Transformations";
 import Cover from "./Cover";
 import styles from "./App.module.css";
 import { useDeviceType } from "./hooks/useDeviceType";
+import { useMatchMedia } from "./hooks/useMatchMedia";
 
 function App() {
   const [files, setFiles] = useState<File[]>([]);
@@ -32,7 +33,8 @@ function App() {
   const [dragOverStatus, setDragOverStatus] = useState<boolean>(false);
 
   const deviceType = useDeviceType();
-  const isMobile = deviceType === "Mobile";
+  const isNarrowScreen = useMatchMedia("(max-width: 768px)");
+  const isMobile = deviceType === "Mobile" || isNarrowScreen;
 
   const handleClickReset = () => {
     setFiles([]);
