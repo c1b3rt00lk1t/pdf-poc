@@ -36,7 +36,9 @@ const Sidebar = ({ handleClickAction, action, isMobile }: SidebarProps) => {
         }`}
       >
         <MdOutlineContentCut />
-        <span className={styles.span}>Remove</span>
+        <span className={isMobile ? styles.spanMobile : styles.span}>
+          Remove
+        </span>
       </div>
       <div
         onClick={() => {}}
@@ -45,7 +47,9 @@ const Sidebar = ({ handleClickAction, action, isMobile }: SidebarProps) => {
         }`}
       >
         <MdOutlineRotateRight />
-        <span className={styles.span}>Rotate</span>
+        <span className={isMobile ? styles.spanMobile : styles.span}>
+          Rotate
+        </span>
       </div>
       <div
         className={`${action === "combine" ? styles.selected : undefined} ${
@@ -54,7 +58,9 @@ const Sidebar = ({ handleClickAction, action, isMobile }: SidebarProps) => {
         onClick={() => handleClickAction("combine")}
       >
         <MdOutlineCallMerge />
-        <span className={styles.span}>Combine</span>
+        <span className={isMobile ? styles.spanMobile : styles.span}>
+          Combine
+        </span>
       </div>
       <div
         className={`${action === "pages" ? styles.selected : undefined} ${
@@ -63,7 +69,9 @@ const Sidebar = ({ handleClickAction, action, isMobile }: SidebarProps) => {
         onClick={() => handleClickAction("pages")}
       >
         <MdOutlineFormatListNumbered />
-        <span className={styles.span}>Numbers</span>
+        <span className={isMobile ? styles.spanMobile : styles.span}>
+          Numbers
+        </span>
       </div>
       <div
         onClick={() => {}}
@@ -72,7 +80,9 @@ const Sidebar = ({ handleClickAction, action, isMobile }: SidebarProps) => {
         }`}
       >
         <MdOutlineBrandingWatermark />
-        <span className={styles.span}>Watermark</span>
+        <span className={isMobile ? styles.spanMobile : styles.span}>
+          Watermark
+        </span>
       </div>
 
       <div
@@ -82,7 +92,9 @@ const Sidebar = ({ handleClickAction, action, isMobile }: SidebarProps) => {
         onClick={() => handleClickAction("split")}
       >
         <MdOutlineCallSplit />
-        <span className={styles.span}>Split</span>
+        <span className={isMobile ? styles.spanMobile : styles.span}>
+          Split
+        </span>
       </div>
     </div>
   );
