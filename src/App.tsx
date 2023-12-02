@@ -20,13 +20,12 @@ import Cover from "./Cover";
 import styles from "./App.module.css";
 import { useDeviceType } from "./hooks/useDeviceType";
 import { useMatchMedia } from "./hooks/useMatchMedia";
+import { Action } from "./types";
 
 function App() {
   const [files, setFiles] = useState<File[]>([]);
   const [orderFiles, setOrderFiles] = useState<number[]>([]); // This state is only used for the action "combine"
-  const [action, setAction] = useState<"combine" | "split" | "pages">(
-    "combine"
-  );
+  const [action, setAction] = useState<Action>("combine");
   const [basename, setBasename] = useState<string>(
     files.length ? files[0].name.replace(/.pdf/i, "") : ""
   );
@@ -45,7 +44,7 @@ function App() {
     setOrderFiles(Array.from(Array(files.length).keys()));
   };
 
-  const handleClickAction = (action: "combine" | "split" | "pages") => {
+  const handleClickAction = (action: Action) => {
     setAction(action);
   };
 
