@@ -33,8 +33,6 @@ function rotatePagesReducer(state: RotateOptions, action: any) {
         pages: action.value,
         allPages: action.value === "" ? true : false,
       };
-    case "allPages":
-      return { ...state, allPages: action.value };
     case "reset":
       return rotateDefaultOptions;
     default:
