@@ -120,11 +120,7 @@ const TransformRotate = ({
         />
       </div>
       <div>
-        <button
-          disabled={disabled}
-          className={styles.button}
-          onClick={handleClickRotatePages}
-        >
+        <button disabled={disabled} onClick={handleClickRotatePages}>
           Rotate pages
         </button>
         <button onClick={handleClickReset} className={styles.button}>
