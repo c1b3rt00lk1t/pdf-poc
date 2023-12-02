@@ -208,7 +208,7 @@ export async function splitFiles(
  */
 
 export type RotateOptions = {
-  degreeAngle: number;
+  degreeAngle: -180 | -90 | 90 | 180;
   pages: number[];
   allPages: boolean;
 };
