@@ -54,17 +54,11 @@ const TransformRotate = ({
 
   const disabled = !file;
 
-  const testOptions = {
-    degreeAngle: 90,
-    pages: [],
-    allPages: true,
-  };
-
   function handleClickRotatePages(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
 
     if (file) {
-      rotatePages(file, testOptions).then((file) => {
+      rotatePages(file, options).then((file) => {
         console.log(file);
         if (keepOutputAsInput) {
           handleKeepOutputAsInput([file]);
@@ -98,6 +92,24 @@ const TransformRotate = ({
           value={!disabled ? pageRanges : ""}
           disabled={disabled}
           className={styles.inputText}
+        />
+      </div>
+      <div>
+        <label htmlFor="degreeAngle" className={styles.label}>
+          Degree angle
+        </label>
+        <input
+          type="number"
+          id="degreeAngle"
+          name="degreeAngle"
+          value={options.degreeAngle}
+          onChange={(ev) =>
+            dispatch({
+              type: "degreeAngle",
+              value: Number(ev.target.value),
+            })
+          }
+          disabled={disabled}
         />
       </div>
       <div>
