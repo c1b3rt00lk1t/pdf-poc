@@ -216,7 +216,7 @@ export type RotateOptions = {
 export const rotateDefaultOptions: RotateOptions = {
   degreeAngle: -90,
   pages: [],
-  allPages: false,
+  allPages: true,
 };
 
 export async function rotatePages(file: File, options: RotateOptions) {
