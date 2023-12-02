@@ -8,6 +8,7 @@
 import TransformSplit from "./TransformSplit";
 import TransformPages from "./TransformPages";
 import TransformCombine from "./TransformCombine";
+import TransformRotate from "./TransformRotate";
 import { Action } from "../types";
 import styles from "./Transformations.module.css";
 
@@ -59,6 +60,13 @@ const Transformations = ({
           handleKeepOutputAsInput={handleKeepOutputAsInput}
           basename={basename}
           setBasename={setBasename}
+          isMobile={isMobile}
+        />
+      )}
+      {action === "rotate" && (
+        <TransformRotate
+          file={files[0]}
+          handleKeepOutputAsInput={handleKeepOutputAsInput}
           isMobile={isMobile}
         />
       )}
