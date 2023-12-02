@@ -1,4 +1,4 @@
-import { PDFDocument, rgb } from "pdf-lib";
+import { PDFDocument, rgb, degrees } from "pdf-lib";
 
 /**
  * Basic functions used in the different actions
@@ -198,4 +198,46 @@ export async function splitFiles(
       );
     })
   );
+}
+
+/**
+ * rotatePages rotates the pages of the pdf file
+ * it accepts the number of degrees to rotate
+ * it accepts a list of pages to rotate
+ * it accepts a parameter to rotate all pages
+ */
+
+export type RotateOptions = {
+  degreeAngle: number;
+  pages: number[];
+  allPages: boolean;
+};
+
+export const rotateDefaultOptions: RotateOptions = {
+  degreeAngle: -90,
+  pages: [],
+  allPages: false,
+};
+
+export async function rotatePages(file: File, options: RotateOptions) {
+  const { degreeAngle, pages, allPages } = {
+    ...rotateDefaultOptions,
+    ...options,
+  };
+
+  const fileArrayBuffer = await file.arrayBuffer();
+  const pdfDoc = await PDFDocument.load(fileArrayBuffer);
+
+  const pagesToRotate = allPages
+    ? pdfDoc.getPages()
+    : pdfDoc.getPages().filter((_, index) => pages.includes(index + 1));
+
+  pagesToRotate.forEach((page) => {
+    page.setRotation(degrees(degreeAngle));
+  });
+
+  const blob = await createBlob(pdfDoc);
+  const fileName = `${file.name.replace(/.pdf/i, "")} - rotated.pdf`;
+  const outputAsInputFile = new File([blob], fileName, { type: blob.type });
+  return outputAsInputFile;
 }
