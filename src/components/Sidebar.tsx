@@ -41,9 +41,9 @@ const Sidebar = ({ handleClickAction, action, isMobile }: SidebarProps) => {
         </span>
       </div>
       <div
-        onClick={() => {}}
-        className={`${isMobile ? styles.buttonMobile : styles.button} ${
-          styles.disabled
+        onClick={() => handleClickAction("rotate")}
+        className={`${action === "rotate" ? styles.selected : undefined} ${
+          isMobile ? styles.buttonMobile : styles.button
         }`}
       >
         <MdOutlineRotateRight />
