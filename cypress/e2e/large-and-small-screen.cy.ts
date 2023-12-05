@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe("Test pdf-poc spec", () => {
+describe("Test large and small screens", () => {
   beforeEach(() => {
     cy.visit("localhost:5173/");
   });
