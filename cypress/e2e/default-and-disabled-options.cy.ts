@@ -20,4 +20,18 @@ describe("Test default and disabled options spec", () => {
       .parent()
       .should("have.css", "background-color", "rgba(84, 172, 128, 0.2)");
   });
+
+  it("has the remove and watermark actions disabled", () => {
+    cy.get("div")
+      .contains("Remove")
+      .parent()
+      .invoke("attr", "class")
+      .should("contain", "disabled");
+
+    cy.get("div")
+      .contains("Watermark")
+      .parent()
+      .invoke("attr", "class")
+      .should("contain", "disabled");
+  });
 });
