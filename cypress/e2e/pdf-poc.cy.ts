@@ -2,11 +2,11 @@
 
 describe("Test pdf-poc spec", () => {
   beforeEach(() => {
-    cy.viewport(1600, 900);
     cy.visit("localhost:5173/");
   });
 
   it("shows the button names in large screen", () => {
+    cy.viewport(1600, 900);
     cy.get("h2").contains("PDF Utils").should("be.visible");
     cy.get("span").contains("Remove").should("be.visible");
     cy.get("span").contains("Rotate").should("be.visible");
