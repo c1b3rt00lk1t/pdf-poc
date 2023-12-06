@@ -73,7 +73,11 @@ const TransformCombine = ({
         >
           Combine files
         </button>
-        <button onClick={handleClickReset} className={styles.button}>
+        <button
+          id="reset-basename-btn"
+          onClick={handleClickReset}
+          className={styles.button}
+        >
           Reset
         </button>
       </div>
