@@ -66,7 +66,11 @@ const TransformCombine = ({
         />
       </div>
       <div>
-        <button disabled={!files.length} onClick={handleClickCombineFiles}>
+        <button
+          id="combine-btn"
+          disabled={!files.length}
+          onClick={handleClickCombineFiles}
+        >
           Combine files
         </button>
         <button onClick={handleClickReset} className={styles.button}>
@@ -75,6 +79,7 @@ const TransformCombine = ({
       </div>
       <label className={styles.labelSmall}>
         <input
+          id="combine-keep-output-as-input"
           type="checkbox"
           onChange={() =>
             setKeepOutputAsInput((keepOutputAsInput) => !keepOutputAsInput)
