@@ -74,11 +74,12 @@ const FileSelection = ({
       className={isMobile ? styles.FileSelectionMobile : styles.FileSelection}
     >
       <div className={styles.buttonGroup}>
-        <button className={styles.button} onClick={handleClickAdd}>
+        <button id="add-btn" className={styles.button} onClick={handleClickAdd}>
           <MdAddCircleOutline />
           <span className={styles.span}>Add</span>
         </button>
         <button
+          id="reset-file-btn"
           className={styles.button}
           onClick={() => {
             handleClickReset();
@@ -89,7 +90,11 @@ const FileSelection = ({
           <span className={styles.span}>Reset </span>
         </button>
         {action === "combine" && (
-          <button className={styles.button} onClick={handleClickOrder}>
+          <button
+            id="sort-btn"
+            className={styles.button}
+            onClick={handleClickOrder}
+          >
             <MdOutlineSortByAlpha />
             <span className={styles.span}>Order</span>
           </button>
