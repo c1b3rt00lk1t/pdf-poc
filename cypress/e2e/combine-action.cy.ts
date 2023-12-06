@@ -61,7 +61,13 @@ describe("Test combine action page", () => {
     cy.contains("A third test file").should("not.exist");
     cy.contains("Fourth test file").should("not.exist");
 
-    // Checks the reset btn
+    // Checks the reset basename btn
+    cy.get("#reset-basename-btn").click();
+    cy.get("input").get("#basename").type("Another file name");
+    cy.get("#combine-btn").click();
+    cy.contains("Another file name - combined.pdf").should("be.visible");
+
+    // Checks the reset file btn
     cy.get("#reset-file-btn").click();
     cy.contains("Another test file addletters - combined.pdf").should(
       "not.exist"
