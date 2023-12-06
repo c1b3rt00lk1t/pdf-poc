@@ -64,6 +64,7 @@ const FileList = ({
 
   return (
     <ul
+      id="file-list"
       onDragOver={handleDragOver}
       className={isMobile ? styles.ulMobile : styles.ul}
     >
