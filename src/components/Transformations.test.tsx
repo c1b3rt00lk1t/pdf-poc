@@ -17,4 +17,17 @@ describe("Test Transformations component", () => {
     };
     render(<Transformations {...props} />);
   });
+
+  test("it renders with not empty props", () => {
+    const props: TransformationsProps = {
+      action: "combine",
+      files: [new File(["hello"], "hello.txt")],
+      orderFiles: [],
+      handleKeepOutputAsInput: jest.fn(),
+      isMobile: true,
+      basename: "basename",
+      setBasename: jest.fn(),
+    };
+    render(<Transformations {...props} />);
+  });
 });
