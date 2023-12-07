@@ -7,7 +7,7 @@
 import styles from "./FileList.module.css";
 import { MdDelete } from "react-icons/md";
 
-interface FileListProps {
+export interface FileListProps {
   files: File[];
   setFiles: (files: File[]) => void;
   orderFiles: number[];
