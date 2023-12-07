@@ -51,10 +51,8 @@ function App() {
   const handleDragOver = (event: React.DragEvent) => {
     event.stopPropagation();
     event.preventDefault();
-    if (event.dataTransfer.files.length > 0) {
-      event.dataTransfer.dropEffect = "copy";
-      setDragOverStatus(true);
-    }
+    event.dataTransfer.dropEffect = "copy";
+    setDragOverStatus(true);
   };
 
   const handleDrop = (event: React.DragEvent) => {
