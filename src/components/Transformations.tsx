@@ -12,7 +12,7 @@ import TransformRotate from "./TransformRotate";
 import { Action } from "../types";
 import styles from "./Transformations.module.css";
 
-interface TransformationsProps {
+export interface TransformationsProps {
   action: Action;
   files: File[];
   orderFiles: number[];
