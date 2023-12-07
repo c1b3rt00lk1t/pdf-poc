@@ -20,7 +20,7 @@ import {
   MdOutlineCallSplit,
 } from "react-icons/md";
 
-interface SidebarProps {
+export interface SidebarProps {
   handleClickAction: (action: Action) => void;
   action: Action;
   isMobile: boolean;
