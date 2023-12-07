@@ -15,7 +15,7 @@ import {
 } from "../utils/pdf-utils";
 import styles from "./Transformations.module.css";
 
-interface TransformRotate {
+export interface TransformRotate {
   file: File;
   handleKeepOutputAsInput: (files: File[]) => void;
   isMobile: boolean;
