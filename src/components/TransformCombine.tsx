@@ -5,7 +5,7 @@ import { useState } from "react";
 import { combineFiles, downloadFile } from "../utils/pdf-utils";
 import styles from "./Transformations.module.css";
 
-interface TransformCombineProps {
+export interface TransformCombineProps {
   files: File[];
   orderFiles: number[];
   handleKeepOutputAsInput: (files: File[]) => void;
