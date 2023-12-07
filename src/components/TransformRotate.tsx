@@ -15,7 +15,7 @@ import {
 } from "../utils/pdf-utils";
 import styles from "./Transformations.module.css";
 
-export interface TransformRotate {
+export interface TransformRotateProps {
   file: File;
   handleKeepOutputAsInput: (files: File[]) => void;
   isMobile: boolean;
@@ -44,7 +44,7 @@ const TransformRotate = ({
   file,
   handleKeepOutputAsInput,
   isMobile,
-}: TransformRotate) => {
+}: TransformRotateProps) => {
   const [options, dispatch] = useReducer(
     rotatePagesReducer,
     rotateDefaultOptions
