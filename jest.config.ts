@@ -6,6 +6,6 @@ export default {
     // process `*.tsx` files with `ts-jest`
   },
   moduleNameMapper: {
-    "\\.(css)$": "<rootDir>/__mocks__/styleMock.js",
+    "^.+\\.(css)$": "<rootDir>/__mocks__/styleMock.js",
   },
 };
