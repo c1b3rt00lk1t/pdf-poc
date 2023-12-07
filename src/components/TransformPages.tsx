@@ -8,7 +8,7 @@ import {
 } from "../utils/pdf-utils";
 import styles from "./Transformations.module.css";
 
-interface TransformPagesProps {
+export interface TransformPagesProps {
   file: File;
   handleKeepOutputAsInput: (files: File[]) => void;
   isMobile: boolean;
