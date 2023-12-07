@@ -10,7 +10,7 @@ import { useState } from "react";
 import { splitFiles, downloadFile } from "../utils/pdf-utils";
 import styles from "./Transformations.module.css";
 
-interface TransformSplitProps {
+export interface TransformSplitProps {
   file: File;
   handleKeepOutputAsInput: (files: File[]) => void;
   basename: string;
