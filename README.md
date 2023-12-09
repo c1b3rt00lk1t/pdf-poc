@@ -40,3 +40,5 @@ The app allows to manipulate one or more pdfs in the following ways:
 
 <br/><br/>
 <br/><br/>
+
+![app functional flow](https://github.com/c1b3rt00lk1t/pdf-poc/blob/background/images/pdfutils_flow.gif?raw=true)
