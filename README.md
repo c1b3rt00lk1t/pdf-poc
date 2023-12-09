@@ -21,3 +21,22 @@ A working version of the mobile/desktop app can be found <a href='https://idylli
 ### Cloc stats
 
 ![cloc stats](https://github.com/c1b3rt00lk1t/pdf-poc/blob/background/images/cloc_stats.png?raw=true)
+
+### Key technical features
+
+The app leverages on the following technical pilars:
+
+- ...
+- ...
+-
+
+### Functional description
+
+The app allows to manipulate one or more pdfs in the following ways:
+
+- ...
+- ...
+-
+
+<br/><br/>
+<br/><br/>
