@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://github.com/c1b3rt00lk1t/pdf-poc/blob/main/images/pdf_utils_icon.png?raw=true" width="20%" height="20%" >
+<img src="https://github.com/c1b3rt00lk1t/pdf-poc/blob/main/images/pdfutils_icon.png?raw=true" width="20%" height="20%" >
 </p>
 
 # PDF Utils
