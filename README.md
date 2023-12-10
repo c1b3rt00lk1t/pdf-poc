@@ -45,7 +45,7 @@ The app leverages on the following technical pillars:
 In its current state, the app allows to manipulate one or more pdfs in the following ways:
 
 - Select one or may pdf files, with folder selection or with drag and drop.
-- Sort the selected files in stright or reverse A-Z order or via drag and drop.
+- Sort the selected files in straight or reverse A-Z order or via drag and drop.
 - Set a basename or the resulting file.
 - Add page numbers to any pdf file, setting the font size, position, font type and starting number and page.
 - Split any pdf file in a series of valid page ranges that can overlap and repeat obtaining as a result a series of files with an indication of page range.
