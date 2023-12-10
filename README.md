@@ -31,17 +31,18 @@ The app leverages on the following technical pillars:
 - The pdf manipulation is curated by the utils implemented in <code>pdf-utils.ts</code>, based on <code>pdf-lib</code> library.
 - Custom hooks <code>useDeviceType</code> and <code>useMatchMedia</code> have been implemented to handle responsivity.
 - CSS modules are used for styling with the corresponding <code>.module.css</code> files.
-- Prop typing is done using <code>interface</code>.
+- Prop typing is done using <code>interface</code>, which are exported for testing purposes.
+- A general <code>type.ts</code> is set up for common types.
 - The pdf files can be dragged and dropped using the <code>onDragStart</code>, <code>onDragOver</code>, <code>onDrop</code> and <code>onDragLeave</code>.
 - A <code>manifest</code> and a <code>serviceWorker</code> are injected using the <code>Vite PWA</code> plugin.
 - Each <code>.tsx</code> file is coupled with a basic <codes>.test.tsx</code> file with <code>jest</code> and <code>testing library</code>.
 - End-to-end testing is done with <code>cypress</code>.
-- Styles and matchMedia are <code>mocked</code> as the set function in the React components.
-- Hosting is in <code>Netlify</code> using the continuos deploy after each <code>git push</code>.
+- Styles and matchMedia are <code>mocked</code> as the set functions in the React components tests.
+- Hosting is in <code>Netlify</code> using the continuous deploy after each <code>git push</code>.
 
 ### Functional description
 
-In its current estate, the app allows to manipulate one or more pdfs in the following ways:
+In its current state, the app allows to manipulate one or more pdfs in the following ways:
 
 - Select one or may pdf files, with folder selection or with drag and drop.
 - Sort the selected files in stright or reverse A-Z order or via drag and drop.
