@@ -32,9 +32,12 @@ The app leverages on the following technical pillars:
 - Custom hooks <code>useDeviceType</code> and <code>useMatchMedia</code> have been implemented to handle responsivity.
 - CSS modules are used for styling with the corresponding <code>.module.css</code> files.
 - Prop typing is done using <code>interface</code>.
-- The files can be dragged and dropped using the <code>onDragStart</code>, <code>onDragOver</code>, <code>onDrop</code> and <code>onDragLeave</code>.
+- The pdf files can be dragged and dropped using the <code>onDragStart</code>, <code>onDragOver</code>, <code>onDrop</code> and <code>onDragLeave</code>.
+- A <code>manifest</code> and a <code>serviceWorker</code> are injected using the <code>Vite PWA</code> plugin.
 - Each <code>.tsx</code> file is coupled with a basic <codes>.test.tsx</code> file with <code>jest</code> and <code>testing library</code>.
 - End-to-end testing is done with <code>cypress</code>.
+- Styles and matchMedia are <code>mocked</code> as the set function in the React components.
+- Hosting is in <code>Netlify<code> using the continuos deploy after each <code>git push</code>.
 
 ### Functional description
 
