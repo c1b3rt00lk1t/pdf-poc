@@ -35,7 +35,7 @@ The app leverages on the following technical pillars:
 - A general <code>type.ts</code> is set up for common types.
 - The pdf files can be dragged and dropped using the <code>onDragStart</code>, <code>onDragOver</code>, <code>onDrop</code> and <code>onDragLeave</code>.
 - A <code>manifest</code> and a <code>serviceWorker</code> are injected using the <code>Vite PWA</code> plugin.
-- Each <code>.tsx</code> file is coupled with a basic <codes>.test.tsx</code> file with <code>jest</code> and <code>testing library</code>.
+- Each <code>.tsx</code> file is coupled with a basic <code>.test.tsx</code> file with <code>jest</code> and <code>testing library</code>.
 - End-to-end testing is done with <code>cypress</code>.
 - Styles and matchMedia are <code>mocked</code> as the set functions in the React components tests.
 - Hosting is in <code>Netlify</code> using the continuous deploy after each <code>git push</code>.
