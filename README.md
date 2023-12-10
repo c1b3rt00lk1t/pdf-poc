@@ -37,7 +37,7 @@ The app leverages on the following technical pillars:
 - Each <code>.tsx</code> file is coupled with a basic <codes>.test.tsx</code> file with <code>jest</code> and <code>testing library</code>.
 - End-to-end testing is done with <code>cypress</code>.
 - Styles and matchMedia are <code>mocked</code> as the set function in the React components.
-- Hosting is in <code>Netlify<code> using the continuos deploy after each <code>git push</code>.
+- Hosting is in <code>Netlify</code> using the continuos deploy after each <code>git push</code>.
 
 ### Functional description
 
