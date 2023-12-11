@@ -27,7 +27,7 @@ A working version of the mobile/desktop app can be found <a href='https://idylli
 The app leverages on the following technical pillars:
 
 - The app is written in <code>Typescript</code> and <code>TSX</code> using the <code>React</code> library, initially bootstraped with <code>Vite</code>.
-- The state is managed via conventional <code>useState</code> and <code>prop drilling</code>.
+- The state is managed via conventional <code>useState</code> and <code>prop drilling</code> as well as <code>useReducer</code>.
 - The pdf manipulation is curated by the utils implemented in <code>pdf-utils.ts</code>, based on <code>pdf-lib</code> library.
 - Custom hooks <code>useDeviceType</code> and <code>useMatchMedia</code> have been implemented to handle responsivity.
 - CSS modules are used for styling with the corresponding <code>.module.css</code> files.
