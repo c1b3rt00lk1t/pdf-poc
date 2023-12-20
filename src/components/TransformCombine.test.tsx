@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import TransformCombine from "./TransformCombine";
@@ -20,5 +20,14 @@ describe("Test TransformCombine", () => {
       isMobile: true,
     };
     render(<TransformCombine {...props} />);
+
+    // Assertions
+    expect(screen.getByText("2 files selected")).toBeInTheDocument();
+    expect(screen.getByLabelText("Base name")).toBeInTheDocument();
+    expect(screen.getByText("Combine files")).toBeInTheDocument();
+    expect(screen.getByText("Reset")).toBeInTheDocument();
+    expect(
+      screen.getByLabelText("Keep output as next input")
+    ).toBeInTheDocument();
   });
 });
