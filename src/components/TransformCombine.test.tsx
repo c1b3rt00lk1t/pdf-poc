@@ -7,7 +7,7 @@ import { TransformCombineProps } from "./TransformCombine";
 describe("Test TransformCombine", () => {
   test("it renders", () => {
     const props: TransformCombineProps = {
-      files: [new File(["hello"], "hello.pdf", new File(["bye"], "bye.pdf"))],
+      files: [new File(["hello"], "hello.pdf"), new File(["bye"], "bye.pdf")],
       orderFiles: [1, 0],
       handleKeepOutputAsInput: jest.fn(),
       basename: "basename",
