@@ -4,24 +4,20 @@ import "@testing-library/jest-dom";
 
 import TransformCombine from "./TransformCombine";
 import { TransformCombineProps } from "./TransformCombine";
+import * as pdfUtils from "../utils/pdf-utils";
+
+jest.mock("../utils/pdf-utils", () => ({
+  combineFiles: jest
+    .fn()
+    .mockImplementation(async (_files, _orderFiles, _basename) => {
+      return new File(["combined content"], "combined.pdf");
+    }),
+  downloadFile: jest.fn().mockImplementation((_file, _basename) => {
+    return;
+  }),
+}));
 
 describe("Test TransformCombine", () => {
-  beforeEach(() => {
-    // Reset mocks before each test
-    jest.resetAllMocks();
-
-    jest.mock("../utils/pdf-utils", () => ({
-      combineFiles: jest
-        .fn()
-        .mockImplementation(async (_files, _orderFiles, _basename) => {
-          return new File(["combined content"], "combined.pdf");
-        }),
-      downloadFile: jest.fn().mockImplementation((_file, _basename) => {
-        return;
-      }),
-    }));
-  });
-
   test("it renders", () => {
     const props: TransformCombineProps = {
       files: [new File(["hello"], "hello.pdf"), new File(["bye"], "bye.pdf")],
@@ -99,5 +95,35 @@ describe("Test TransformCombine", () => {
 
     // Assertion
     expect(props.handleKeepOutputAsInput).toHaveBeenCalledTimes(1);
+  });
+
+  test("handles click on Combine files button downloading the output", async () => {
+    // Mock the downloadFile function
+    const downloadFileMock = jest.spyOn(pdfUtils, "downloadFile");
+
+    const props: TransformCombineProps = {
+      files: [new File(["hello"], "hello.pdf"), new File(["bye"], "bye.pdf")],
+      orderFiles: [1, 0],
+      handleKeepOutputAsInput: jest.fn(),
+      basename: "basename",
+      setBasename: jest.fn(),
+      isMobile: true,
+    };
+    render(<TransformCombine {...props} />);
+
+    // Interact with the checkbox
+    const checkbox = screen.getByRole("checkbox", {
+      name: /Keep output as next input/i,
+    });
+
+    // Assertion
+    expect(checkbox).not.toBeChecked();
+
+    // Interact with the component
+    await userEvent.click(screen.getByText("Combine files"));
+
+    // Assertions
+    expect(props.handleKeepOutputAsInput).toHaveBeenCalledTimes(0);
+    expect(downloadFileMock).toHaveBeenCalledTimes(1);
   });
 });
