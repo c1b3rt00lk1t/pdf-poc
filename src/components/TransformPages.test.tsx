@@ -2,10 +2,25 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 
-import { addPageDefaultOptions } from "../utils/pdf-utils";
+import {
+  addPageNumbers as addPageNumbersMock,
+  addPageDefaultOptions,
+  downloadFile as downloadFileMock,
+} from "../utils/pdf-utils";
 
 import TransformPages from "./TransformPages";
 import { TransformPagesProps } from "./TransformPages";
+
+jest.mock("../utils/pdf-utils", () => ({
+  addPageNumbersMock: jest
+    .fn()
+    .mockImplementation(async (_files, _orderFiles, _basename) => {
+      return new File(["pages content"], "pages.pdf");
+    }),
+  downloadFileMock: jest.fn().mockImplementation((_file, _basename) => {
+    return;
+  }),
+}));
 
 const defaultrops: TransformPagesProps = {
   file: new File(["test"], "test.pdf"),
