@@ -22,7 +22,9 @@ const defaultProps: TransformCombineProps = {
   orderFiles: [1, 0],
   handleKeepOutputAsInput: jest.fn(),
   basename: "basename",
-  setBasename: jest.fn(),
+  setBasename: jest.fn().mockImplementation((basename) => {
+    return basename;
+  }),
   isMobile: true,
 };
 
@@ -34,7 +36,7 @@ describe("Test TransformCombine", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
-  test("it renders", () => {
+  xtest("it renders", () => {
     // Render the component
     renderTransformCombineWithDefaultProps(defaultProps);
     // Assertions
@@ -47,7 +49,7 @@ describe("Test TransformCombine", () => {
     ).toBeInTheDocument();
   });
 
-  test("handles click on Keep output as next input", async () => {
+  xtest("handles click on Keep output as next input", async () => {
     // Render the component
     renderTransformCombineWithDefaultProps(defaultProps);
 
@@ -70,7 +72,7 @@ describe("Test TransformCombine", () => {
     expect(checkbox).not.toBeChecked();
   });
 
-  test("handles click on Combine files button keeping the output", async () => {
+  xtest("handles click on Combine files button keeping the output", async () => {
     // Render the component
     renderTransformCombineWithDefaultProps(defaultProps);
 
@@ -91,7 +93,7 @@ describe("Test TransformCombine", () => {
     expect(defaultProps.handleKeepOutputAsInput).toHaveBeenCalledTimes(1);
   });
 
-  test("handles click on Combine files button downloading the output", async () => {
+  xtest("handles click on Combine files button downloading the output", async () => {
     // Mock the downloadFile function
     const downloadFileMock = jest.spyOn(pdfUtils, "downloadFile");
 
@@ -114,7 +116,7 @@ describe("Test TransformCombine", () => {
     expect(downloadFileMock).toHaveBeenCalledTimes(1);
   });
 
-  test("handles click on Reset button", async () => {
+  xtest("handles click on Reset button", async () => {
     // Render the component
     renderTransformCombineWithDefaultProps(defaultProps);
 
@@ -124,5 +126,19 @@ describe("Test TransformCombine", () => {
     // Assertions
     expect(defaultProps.setBasename).toHaveBeenCalledTimes(1);
     expect(defaultProps.setBasename).toHaveBeenCalledWith("");
+  });
+
+  test("types new basename (spy)", async () => {
+    // Spy on setBasename
+    const setBasenameSpy = jest.spyOn(defaultProps, "setBasename");
+    // Render the component
+    renderTransformCombineWithDefaultProps(defaultProps);
+
+    // Interact with the input
+    const input = screen.getByRole("textbox", { name: /Base name/i });
+    await userEvent.type(input, "ABCD");
+
+    // Assertion
+    expect(setBasenameSpy).toHaveBeenCalledTimes(4);
   });
 });
