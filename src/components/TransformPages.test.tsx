@@ -22,7 +22,7 @@ jest.mock("../utils/pdf-utils", () => ({
   }),
 }));
 
-const defaultrops: TransformPagesProps = {
+const defaultProps: TransformPagesProps = {
   file: new File(["test"], "test.pdf"),
   handleKeepOutputAsInput: jest.fn(),
   isMobile: true,
@@ -31,7 +31,7 @@ const defaultrops: TransformPagesProps = {
 describe("Test TransformPages component", () => {
   test("it renders", () => {
     // Render the component
-    render(<TransformPages {...defaultrops} />);
+    render(<TransformPages {...defaultProps} />);
 
     // Assertions
     expect(screen.getByText("Add numbers")).toBeInTheDocument();
@@ -46,7 +46,7 @@ describe("Test TransformPages component", () => {
   });
   test("handles click on Keep output as next input", async () => {
     // Render the component
-    render(<TransformPages {...defaultrops} />);
+    render(<TransformPages {...defaultProps} />);
 
     // Interact with the checkbox
     const checkbox = screen.getByRole("checkbox", {
@@ -69,7 +69,7 @@ describe("Test TransformPages component", () => {
 
   test("changes options and reset", async () => {
     // Render the component
-    render(<TransformPages {...defaultrops} />);
+    render(<TransformPages {...defaultProps} />);
 
     // Change initial page
     const initialPageInput = screen.getByRole("spinbutton", {
