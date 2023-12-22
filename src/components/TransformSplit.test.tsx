@@ -3,7 +3,24 @@ import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 import { useState } from "react";
 
+import { splitFiles, downloadFile } from "../utils/pdf-utils";
+
 import TransformSplit, { TransformSplitProps } from "./TransformSplit";
+
+jest.mock("../utils/pdf-utils", () => ({
+  ...jest.requireActual("../utils/pdf-utils"),
+  splitFiles: jest
+    .fn()
+    .mockImplementation(async (_files, _orderFiles, _basename) => {
+      return [
+        new File(["split content 1"], "split content 1.pdf"),
+        new File(["split content 2"], "split content 2.pdf"),
+      ];
+    }),
+  downloadFile: jest.fn().mockImplementation((_file, _basename) => {
+    return;
+  }),
+}));
 
 const defaultProps: TransformSplitProps = {
   file: new File(["test"], "test.pdf"),
@@ -14,6 +31,14 @@ const defaultProps: TransformSplitProps = {
 };
 
 describe("Test TransformSplit component", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
   test("it renders", () => {
     // Render the component
     render(<TransformSplit {...defaultProps} />);
@@ -84,5 +109,29 @@ describe("Test TransformSplit component", () => {
     // Assertions
     expect(basenameInput).toHaveValue("");
     expect(pageRangesInput).toHaveValue("");
+  });
+
+  test("handle click on Split files (download)", async () => {
+    // Render the component
+    render(<TransformSplit {...defaultProps} />);
+
+    // Interact with the input text
+    const pageRangesInput = screen.getByRole("textbox", {
+      name: /Page ranges/i,
+    });
+
+    // Change the input text
+    await userEvent.type(pageRangesInput, "1,2,3-5");
+
+    // Interact with the buttons
+    const splitButton = screen.getByRole("button", { name: /Split files/i });
+
+    // Click on the buttons
+    await userEvent.click(splitButton);
+
+    // Assertions
+    expect(defaultProps.handleKeepOutputAsInput).toHaveBeenCalledTimes(0);
+    expect(splitFiles).toHaveBeenCalledTimes(1);
+    expect(downloadFile).toHaveBeenCalledTimes(2);
   });
 });
