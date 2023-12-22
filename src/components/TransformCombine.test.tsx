@@ -16,6 +16,9 @@ describe("Test TransformCombine", () => {
         .mockImplementation(async (_files, _orderFiles, _basename) => {
           return new File(["combined content"], "combined.pdf");
         }),
+      downloadFile: jest.fn().mockImplementation((_file, _basename) => {
+        return;
+      }),
     }));
   });
 
