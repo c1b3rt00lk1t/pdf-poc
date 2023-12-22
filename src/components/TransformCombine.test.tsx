@@ -69,4 +69,32 @@ describe("Test TransformCombine", () => {
     // Assertion
     expect(checkbox).not.toBeChecked();
   });
+
+  test("handles click on Combine files button keeping the output", async () => {
+    const props: TransformCombineProps = {
+      files: [new File(["hello"], "hello.pdf"), new File(["bye"], "bye.pdf")],
+      orderFiles: [1, 0],
+      handleKeepOutputAsInput: jest.fn(),
+      basename: "basename",
+      setBasename: jest.fn(),
+      isMobile: true,
+    };
+    render(<TransformCombine {...props} />);
+
+    // Interact with the checkbox
+    const checkbox = screen.getByRole("checkbox", {
+      name: /Keep output as next input/i,
+    });
+    // Check the checkbox
+    await userEvent.click(checkbox);
+
+    // Assertion
+    expect(checkbox).toBeChecked();
+
+    // Interact with the component
+    await userEvent.click(screen.getByText("Combine files"));
+
+    // Assertion
+    expect(props.handleKeepOutputAsInput).toHaveBeenCalledTimes(1);
+  });
 });
