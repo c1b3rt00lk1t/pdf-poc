@@ -134,4 +134,27 @@ describe("Test TransformPages component", () => {
 
     expect(downloadFile).toHaveBeenCalledTimes(1);
   });
+
+  test("handles click on Add numbers button keeping the output", async () => {
+    // Render the component
+    render(<TransformPages {...defaultProps} />);
+
+    // Interact with the checkbox
+    const checkbox = screen.getByRole("checkbox", {
+      name: /Keep output as next input/i,
+    });
+    // Check the checkbox
+    await userEvent.click(checkbox);
+
+    // Assertion
+    expect(checkbox).toBeChecked();
+
+    // Interact with the component
+    await userEvent.click(screen.getByText("Add numbers"));
+
+    // Assertions
+    expect(defaultProps.handleKeepOutputAsInput).toHaveBeenCalledTimes(1);
+    expect(addPageNumbers).toHaveBeenCalledTimes(1);
+    expect(downloadFile).toHaveBeenCalledTimes(0);
+  });
 });
