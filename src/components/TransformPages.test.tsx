@@ -3,9 +3,9 @@ import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 
 import {
-  addPageNumbers as addPageNumbersMock,
+  addPageNumbers,
   addPageDefaultOptions,
-  downloadFile as downloadFileMock,
+  downloadFile,
 } from "../utils/pdf-utils";
 
 import TransformPages from "./TransformPages";
@@ -13,12 +13,12 @@ import { TransformPagesProps } from "./TransformPages";
 
 jest.mock("../utils/pdf-utils", () => ({
   ...jest.requireActual("../utils/pdf-utils"),
-  addPageNumbersMock: jest
+  addPageNumbers: jest
     .fn()
     .mockImplementation(async (_files, _orderFiles, _basename) => {
       return new File(["pages content"], "pages.pdf");
     }),
-  downloadFileMock: jest.fn().mockImplementation((_file, _basename) => {
+  downloadFile: jest.fn().mockImplementation((_file, _basename) => {
     return;
   }),
 }));
@@ -116,5 +116,18 @@ describe("Test TransformPages component", () => {
     expect(xPositionSelect).toHaveValue(addPageDefaultOptions.xPosition);
     expect(fontSizeInput).toHaveValue(addPageDefaultOptions.fontSize);
     expect(fontSelect).toHaveValue(addPageDefaultOptions.fontType);
+  });
+
+  test("handles click on Add numbers button", async () => {
+    // Render the component
+    render(<TransformPages {...defaultProps} />);
+
+    // Interact with the component
+    await userEvent.click(screen.getByText("Add numbers"));
+
+    // Assertions
+    expect(addPageNumbers).toHaveBeenCalledTimes(1);
+
+    expect(downloadFile).toHaveBeenCalledTimes(1);
   });
 });
