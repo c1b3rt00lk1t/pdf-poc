@@ -31,6 +31,9 @@ function renderTransformCombineWithDefaultProps(props: TransformCombineProps) {
 }
 
 describe("Test TransformCombine", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
   test("it renders", () => {
     // Render the component
     renderTransformCombineWithDefaultProps(props);
