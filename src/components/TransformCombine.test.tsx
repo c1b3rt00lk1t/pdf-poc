@@ -5,18 +5,18 @@ import "@testing-library/jest-dom";
 import TransformCombine from "./TransformCombine";
 import { TransformCombineProps } from "./TransformCombine";
 
-jest.mock("../utils/pdf-utils", () => ({
-  combineFiles: jest
-    .fn()
-    .mockImplementation(() =>
-      Promise.resolve(new File(["combined content"], "combined.pdf"))
-    ),
-}));
-
 describe("Test TransformCombine", () => {
   beforeEach(() => {
     // Reset mocks before each test
     jest.resetAllMocks();
+
+    jest.mock("../utils/pdf-utils", () => ({
+      combineFiles: jest
+        .fn()
+        .mockImplementation(async (_files, _orderFiles, _basename) => {
+          return new File(["combined content"], "combined.pdf");
+        }),
+    }));
   });
 
   test("it renders", () => {
@@ -60,13 +60,13 @@ describe("Test TransformCombine", () => {
     // Check the checkbox
     await userEvent.click(checkbox);
 
-    // Assertions
+    // Assertion
     expect(checkbox).toBeChecked();
 
     // Uncheck the checkbox
     await userEvent.click(checkbox);
 
-    // Assertions
+    // Assertion
     expect(checkbox).not.toBeChecked();
   });
 });
