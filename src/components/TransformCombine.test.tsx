@@ -113,4 +113,16 @@ describe("Test TransformCombine", () => {
     expect(defaultProps.handleKeepOutputAsInput).toHaveBeenCalledTimes(0);
     expect(downloadFileMock).toHaveBeenCalledTimes(1);
   });
+
+  test("handles click on Reset button", async () => {
+    // Render the component
+    renderTransformCombineWithDefaultProps(defaultProps);
+
+    // Interact with the component
+    await userEvent.click(screen.getByText("Reset"));
+
+    // Assertions
+    expect(defaultProps.setBasename).toHaveBeenCalledTimes(1);
+    expect(defaultProps.setBasename).toHaveBeenCalledWith("");
+  });
 });
