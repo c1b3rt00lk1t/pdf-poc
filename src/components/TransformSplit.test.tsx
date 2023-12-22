@@ -137,4 +137,36 @@ describe("Test TransformSplit component", () => {
     expect(splitFiles).toHaveBeenCalledTimes(1);
     expect(downloadFile).toHaveBeenCalledTimes(filesArray.length);
   });
+
+  test("handle click on Split files (keep output)", async () => {
+    // Render the component
+    render(<TransformSplit {...defaultProps} />);
+
+    // Interact with the input text
+    const pageRangesInput = screen.getByRole("textbox", {
+      name: /Page ranges/i,
+    });
+
+    // Change the input text
+    await userEvent.type(pageRangesInput, "1,2,3-5");
+
+    // Interact with the checkbox
+    const checkbox = screen.getByRole("checkbox", {
+      name: /Keep output as next input/i,
+    });
+
+    // Check the checkbox
+    await userEvent.click(checkbox);
+
+    // Interact with the buttons
+    const splitButton = screen.getByRole("button", { name: /Split files/i });
+
+    // Click on the buttons
+    await userEvent.click(splitButton);
+
+    // Assertions
+    expect(defaultProps.handleKeepOutputAsInput).toHaveBeenCalledTimes(1);
+    expect(splitFiles).toHaveBeenCalledTimes(1);
+    expect(downloadFile).toHaveBeenCalledTimes(0);
+  });
 });
