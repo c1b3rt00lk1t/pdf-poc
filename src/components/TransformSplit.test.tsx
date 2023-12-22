@@ -3,7 +3,7 @@ import "@testing-library/jest-dom";
 
 import TransformSplit, { TransformSplitProps } from "./TransformSplit";
 
-const props: TransformSplitProps = {
+const defaultProps: TransformSplitProps = {
   file: new File(["test"], "test.pdf"),
   handleKeepOutputAsInput: jest.fn(),
   basename: "basename",
@@ -14,7 +14,7 @@ const props: TransformSplitProps = {
 describe("Test TransformSplit component", () => {
   test("it renders", () => {
     // Render the component
-    render(<TransformSplit {...props} />);
+    render(<TransformSplit {...defaultProps} />);
 
     // Assertions
     expect(screen.getByText("Split files")).toBeInTheDocument();
