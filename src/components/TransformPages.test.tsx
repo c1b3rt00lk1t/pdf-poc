@@ -2,6 +2,8 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 
+import { addPageDefaultOptions } from "../utils/pdf-utils";
+
 import TransformPages from "./TransformPages";
 import { TransformPagesProps } from "./TransformPages";
 
@@ -48,5 +50,55 @@ describe("Test TransformPages component", () => {
 
     // Assertion
     expect(checkbox).not.toBeChecked();
+  });
+
+  test("changes options and reset", async () => {
+    // Render the component
+    render(<TransformPages {...defaultrops} />);
+
+    // Change initial page
+    const initialPageInput = screen.getByRole("spinbutton", {
+      name: /Initial page/i,
+    });
+    await userEvent.type(initialPageInput, "3");
+    expect(initialPageInput).toHaveValue(23);
+
+    // Change start number
+    const startNumberInput = screen.getByRole("spinbutton", {
+      name: /Start number/i,
+    });
+    await userEvent.type(startNumberInput, "3");
+    expect(startNumberInput).toHaveValue(23);
+
+    // Change horizontal alignment
+    const xPositionSelect = screen.getByRole("combobox", {
+      name: /Horizontal alignment/i,
+    });
+    await userEvent.selectOptions(xPositionSelect, "right");
+    expect(xPositionSelect).toHaveValue("right");
+
+    // Change font size
+    const fontSizeInput = screen.getByRole("spinbutton", {
+      name: /Font size/i,
+    });
+    await userEvent.type(fontSizeInput, "3");
+    expect(fontSizeInput).toHaveValue(123);
+
+    // Change font
+    const fontSelect = screen.getByRole("combobox", {
+      name: /Font/i,
+    });
+    await userEvent.selectOptions(fontSelect, "Times-Roman");
+    expect(fontSelect).toHaveValue("Times-Roman");
+
+    // Click Reset button
+    await userEvent.click(screen.getByText("Reset"));
+
+    // Assertions
+    expect(initialPageInput).toHaveValue(addPageDefaultOptions.initialPage);
+    expect(startNumberInput).toHaveValue(addPageDefaultOptions.startNumber);
+    expect(xPositionSelect).toHaveValue(addPageDefaultOptions.xPosition);
+    expect(fontSizeInput).toHaveValue(addPageDefaultOptions.fontSize);
+    expect(fontSelect).toHaveValue(addPageDefaultOptions.fontType);
   });
 });
