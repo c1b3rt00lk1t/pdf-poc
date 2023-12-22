@@ -17,7 +17,7 @@ jest.mock("../utils/pdf-utils", () => ({
   }),
 }));
 
-const props: TransformCombineProps = {
+const defaultProps: TransformCombineProps = {
   files: [new File(["hello"], "hello.pdf"), new File(["bye"], "bye.pdf")],
   orderFiles: [1, 0],
   handleKeepOutputAsInput: jest.fn(),
@@ -36,7 +36,7 @@ describe("Test TransformCombine", () => {
   });
   test("it renders", () => {
     // Render the component
-    renderTransformCombineWithDefaultProps(props);
+    renderTransformCombineWithDefaultProps(defaultProps);
     // Assertions
     expect(screen.getByText("2 files selected")).toBeInTheDocument();
     expect(screen.getByLabelText("Base name")).toBeInTheDocument();
@@ -49,7 +49,7 @@ describe("Test TransformCombine", () => {
 
   test("handles click on Keep output as next input", async () => {
     // Render the component
-    renderTransformCombineWithDefaultProps(props);
+    renderTransformCombineWithDefaultProps(defaultProps);
 
     // Interact with the checkbox
     const checkbox = screen.getByRole("checkbox", {
@@ -72,7 +72,7 @@ describe("Test TransformCombine", () => {
 
   test("handles click on Combine files button keeping the output", async () => {
     // Render the component
-    renderTransformCombineWithDefaultProps(props);
+    renderTransformCombineWithDefaultProps(defaultProps);
 
     // Interact with the checkbox
     const checkbox = screen.getByRole("checkbox", {
@@ -88,7 +88,7 @@ describe("Test TransformCombine", () => {
     await userEvent.click(screen.getByText("Combine files"));
 
     // Assertion
-    expect(props.handleKeepOutputAsInput).toHaveBeenCalledTimes(1);
+    expect(defaultProps.handleKeepOutputAsInput).toHaveBeenCalledTimes(1);
   });
 
   test("handles click on Combine files button downloading the output", async () => {
@@ -96,7 +96,7 @@ describe("Test TransformCombine", () => {
     const downloadFileMock = jest.spyOn(pdfUtils, "downloadFile");
 
     // Render the component
-    renderTransformCombineWithDefaultProps(props);
+    renderTransformCombineWithDefaultProps(defaultProps);
 
     // Interact with the checkbox
     const checkbox = screen.getByRole("checkbox", {
@@ -110,7 +110,7 @@ describe("Test TransformCombine", () => {
     await userEvent.click(screen.getByText("Combine files"));
 
     // Assertions
-    expect(props.handleKeepOutputAsInput).toHaveBeenCalledTimes(0);
+    expect(defaultProps.handleKeepOutputAsInput).toHaveBeenCalledTimes(0);
     expect(downloadFileMock).toHaveBeenCalledTimes(1);
   });
 });
