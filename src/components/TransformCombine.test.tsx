@@ -5,6 +5,7 @@ import "@testing-library/jest-dom";
 import TransformCombine from "./TransformCombine";
 import { TransformCombineProps } from "./TransformCombine";
 import * as pdfUtils from "../utils/pdf-utils";
+import { useState } from "react";
 
 jest.mock("../utils/pdf-utils", () => ({
   combineFiles: jest
@@ -140,5 +141,26 @@ describe("Test TransformCombine", () => {
 
     // Assertion
     expect(setBasenameSpy).toHaveBeenCalledTimes(4);
+  });
+
+  test("types new basename (wrapper)", async () => {
+    // Render the component
+    function TestWrapper() {
+      const [basename, setBasename] = useState("basename");
+      const props = {
+        ...defaultProps,
+        basename: basename,
+        setBasename: setBasename,
+      };
+      return <TransformCombine {...props} />;
+    }
+    render(<TestWrapper />);
+
+    // Interact with the input
+    const input = screen.getByRole("textbox", { name: /Base name/i });
+    await userEvent.type(input, "ABCD");
+
+    // Assertion
+    expect(input).toHaveValue("basenameABCD");
   });
 });
