@@ -3,9 +3,9 @@ import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 
 import {
-  // addPageNumbers as addPageNumbersMock,
+  addPageNumbers as addPageNumbersMock,
   addPageDefaultOptions,
-  // downloadFile as downloadFileMock,
+  downloadFile as downloadFileMock,
 } from "../utils/pdf-utils";
 
 import TransformPages from "./TransformPages";
@@ -13,12 +13,12 @@ import { TransformPagesProps } from "./TransformPages";
 
 jest.mock("../utils/pdf-utils", () => ({
   ...jest.requireActual("../utils/pdf-utils"),
-  addPageNumbers: jest
+  addPageNumbersMock: jest
     .fn()
     .mockImplementation(async (_files, _orderFiles, _basename) => {
       return new File(["pages content"], "pages.pdf");
     }),
-  downloadFile: jest.fn().mockImplementation((_file, _basename) => {
+  downloadFileMock: jest.fn().mockImplementation((_file, _basename) => {
     return;
   }),
 }));
