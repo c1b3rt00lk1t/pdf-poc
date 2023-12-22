@@ -30,6 +30,10 @@ const defaultProps: TransformPagesProps = {
 };
 
 describe("Test TransformPages component", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   test("it renders", () => {
     // Render the component
     render(<TransformPages {...defaultProps} />);
