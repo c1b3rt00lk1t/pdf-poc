@@ -78,6 +78,8 @@ const TransformSplit = ({
           Page ranges
         </label>
         <input
+          id="pageRanges"
+          name="pageRanges"
           onChange={(ev) => {
             setPageRanges(ev.target.value);
           }}
