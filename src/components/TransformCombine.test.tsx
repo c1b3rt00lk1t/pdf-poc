@@ -17,18 +17,23 @@ jest.mock("../utils/pdf-utils", () => ({
   }),
 }));
 
+const props: TransformCombineProps = {
+  files: [new File(["hello"], "hello.pdf"), new File(["bye"], "bye.pdf")],
+  orderFiles: [1, 0],
+  handleKeepOutputAsInput: jest.fn(),
+  basename: "basename",
+  setBasename: jest.fn(),
+  isMobile: true,
+};
+
+function renderTransformCombineWithDefaultProps(props: TransformCombineProps) {
+  render(<TransformCombine {...props} />);
+}
+
 describe("Test TransformCombine", () => {
   test("it renders", () => {
-    const props: TransformCombineProps = {
-      files: [new File(["hello"], "hello.pdf"), new File(["bye"], "bye.pdf")],
-      orderFiles: [1, 0],
-      handleKeepOutputAsInput: jest.fn(),
-      basename: "basename",
-      setBasename: jest.fn(),
-      isMobile: true,
-    };
-    render(<TransformCombine {...props} />);
-
+    // Render the component
+    renderTransformCombineWithDefaultProps(props);
     // Assertions
     expect(screen.getByText("2 files selected")).toBeInTheDocument();
     expect(screen.getByLabelText("Base name")).toBeInTheDocument();
@@ -40,15 +45,8 @@ describe("Test TransformCombine", () => {
   });
 
   test("handles click on Keep output as next input", async () => {
-    const props: TransformCombineProps = {
-      files: [new File(["hello"], "hello.pdf"), new File(["bye"], "bye.pdf")],
-      orderFiles: [1, 0],
-      handleKeepOutputAsInput: jest.fn(),
-      basename: "basename",
-      setBasename: jest.fn(),
-      isMobile: true,
-    };
-    render(<TransformCombine {...props} />);
+    // Render the component
+    renderTransformCombineWithDefaultProps(props);
 
     // Interact with the checkbox
     const checkbox = screen.getByRole("checkbox", {
@@ -70,15 +68,8 @@ describe("Test TransformCombine", () => {
   });
 
   test("handles click on Combine files button keeping the output", async () => {
-    const props: TransformCombineProps = {
-      files: [new File(["hello"], "hello.pdf"), new File(["bye"], "bye.pdf")],
-      orderFiles: [1, 0],
-      handleKeepOutputAsInput: jest.fn(),
-      basename: "basename",
-      setBasename: jest.fn(),
-      isMobile: true,
-    };
-    render(<TransformCombine {...props} />);
+    // Render the component
+    renderTransformCombineWithDefaultProps(props);
 
     // Interact with the checkbox
     const checkbox = screen.getByRole("checkbox", {
@@ -101,15 +92,8 @@ describe("Test TransformCombine", () => {
     // Mock the downloadFile function
     const downloadFileMock = jest.spyOn(pdfUtils, "downloadFile");
 
-    const props: TransformCombineProps = {
-      files: [new File(["hello"], "hello.pdf"), new File(["bye"], "bye.pdf")],
-      orderFiles: [1, 0],
-      handleKeepOutputAsInput: jest.fn(),
-      basename: "basename",
-      setBasename: jest.fn(),
-      isMobile: true,
-    };
-    render(<TransformCombine {...props} />);
+    // Render the component
+    renderTransformCombineWithDefaultProps(props);
 
     // Interact with the checkbox
     const checkbox = screen.getByRole("checkbox", {
