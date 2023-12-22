@@ -7,15 +7,18 @@ import { splitFiles, downloadFile } from "../utils/pdf-utils";
 
 import TransformSplit, { TransformSplitProps } from "./TransformSplit";
 
+const filesArray = [
+  new File(["split content 1"], "split content 1.pdf"),
+  new File(["split content 2"], "split content 2.pdf"),
+  new File(["split content 3"], "split content 3.pdf"),
+];
+
 jest.mock("../utils/pdf-utils", () => ({
   ...jest.requireActual("../utils/pdf-utils"),
   splitFiles: jest
     .fn()
     .mockImplementation(async (_files, _orderFiles, _basename) => {
-      return [
-        new File(["split content 1"], "split content 1.pdf"),
-        new File(["split content 2"], "split content 2.pdf"),
-      ];
+      return filesArray;
     }),
   downloadFile: jest.fn().mockImplementation((_file, _basename) => {
     return;
@@ -132,6 +135,6 @@ describe("Test TransformSplit component", () => {
     // Assertions
     expect(defaultProps.handleKeepOutputAsInput).toHaveBeenCalledTimes(0);
     expect(splitFiles).toHaveBeenCalledTimes(1);
-    expect(downloadFile).toHaveBeenCalledTimes(2);
+    expect(downloadFile).toHaveBeenCalledTimes(filesArray.length);
   });
 });
