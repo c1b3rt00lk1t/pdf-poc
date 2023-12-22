@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 
 import TransformSplit, { TransformSplitProps } from "./TransformSplit";
@@ -22,5 +23,27 @@ describe("Test TransformSplit component", () => {
     expect(screen.getByText("Keep output as next input")).toBeInTheDocument();
     expect(screen.getByText("Base name")).toBeInTheDocument();
     expect(screen.getByText("Page ranges")).toBeInTheDocument();
+  });
+  test("handles click on Keep output as next input", async () => {
+    // Render the component
+    render(<TransformSplit {...defaultProps} />);
+
+    // Interact with the checkbox
+    const checkbox = screen.getByRole("checkbox", {
+      name: /Keep output as next input/i,
+    });
+    console.log(checkbox);
+
+    // Check the checkbox
+    await userEvent.click(checkbox);
+
+    // Assertion
+    expect(checkbox).toBeChecked();
+
+    // Uncheck the checkbox
+    await userEvent.click(checkbox);
+
+    // Assertion
+    expect(checkbox).not.toBeChecked();
   });
 });
