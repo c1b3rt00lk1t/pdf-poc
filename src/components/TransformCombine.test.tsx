@@ -37,7 +37,7 @@ describe("Test TransformCombine", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
-  xtest("it renders", () => {
+  test("it renders", () => {
     // Render the component
     renderTransformCombineWithDefaultProps(defaultProps);
     // Assertions
@@ -50,7 +50,7 @@ describe("Test TransformCombine", () => {
     ).toBeInTheDocument();
   });
 
-  xtest("handles click on Keep output as next input", async () => {
+  test("handles click on Keep output as next input", async () => {
     // Render the component
     renderTransformCombineWithDefaultProps(defaultProps);
 
@@ -73,7 +73,7 @@ describe("Test TransformCombine", () => {
     expect(checkbox).not.toBeChecked();
   });
 
-  xtest("handles click on Combine files button keeping the output", async () => {
+  test("handles click on Combine files button keeping the output", async () => {
     // Render the component
     renderTransformCombineWithDefaultProps(defaultProps);
 
@@ -94,7 +94,7 @@ describe("Test TransformCombine", () => {
     expect(defaultProps.handleKeepOutputAsInput).toHaveBeenCalledTimes(1);
   });
 
-  xtest("handles click on Combine files button downloading the output", async () => {
+  test("handles click on Combine files button downloading the output", async () => {
     // Mock the downloadFile function
     const downloadFileMock = jest.spyOn(pdfUtils, "downloadFile");
 
@@ -117,7 +117,7 @@ describe("Test TransformCombine", () => {
     expect(downloadFileMock).toHaveBeenCalledTimes(1);
   });
 
-  xtest("handles click on Reset button", async () => {
+  test("handles click on Reset button", async () => {
     // Render the component
     renderTransformCombineWithDefaultProps(defaultProps);
 
