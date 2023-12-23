@@ -207,8 +207,10 @@ export async function splitFiles(
  * it accepts a parameter to rotate all pages
  */
 
+export const allowedDegreeAngles = [-180, -90, 90, 180] as const;
+
 export type RotateOptions = {
-  degreeAngle: -180 | -90 | 90 | 180;
+  degreeAngle: (typeof allowedDegreeAngles)[number];
   pages: number[];
   allPages: boolean;
 };
