@@ -44,5 +44,13 @@ describe("Test FileList component", () => {
   test("renders FileList component with files and orderFiles", () => {
     // Render the component
     render(<FileList {...defaultProps} files={files} orderFiles={[1, 2, 0]} />);
+
+    // Check if the files are in the right order
+    const list = document.querySelector("ul")!;
+    const items = list.querySelectorAll("li");
+    expect(items.length).toBe(3);
+    expect(items[0].querySelector("a")!.textContent).toBe("test2.pdf");
+    expect(items[1].querySelector("a")!.textContent).toBe("test3.pdf");
+    expect(items[2].querySelector("a")!.textContent).toBe("test1.pdf");
   });
 });
