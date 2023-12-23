@@ -18,7 +18,7 @@ describe("Test combine action page", () => {
     cy.get("div")
       .contains("Combine")
       .parent()
-      .should("have.css", "background-color", "rgba(84, 172, 128, 0.2)");
+      .should("have.css", "background-color", "rgba(84, 138, 172, 0.2)");
   });
 
   it("follows a complete combine flow", () => {

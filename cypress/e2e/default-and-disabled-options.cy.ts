@@ -18,7 +18,7 @@ describe("Test default and disabled options spec", () => {
     cy.get("div")
       .contains("Combine")
       .parent()
-      .should("have.css", "background-color", "rgba(84, 172, 128, 0.2)");
+      .should("have.css", "background-color", "rgba(84, 138, 172, 0.2)");
   });
 
   it("has the remove and watermark actions disabled", () => {
