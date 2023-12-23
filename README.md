@@ -6,7 +6,7 @@
 
 ### Basic description
 
-PWA · TYPESCRIPT · VITE · REACT · CSS MODULES · CYPRESS · JEST · TESTING LIBRARY
+PWA · TYPESCRIPT · VITE · REACT · CSS MODULES · CYPRESS · JEST · TESTING LIBRARY  
 Desktop and mobile PWA to enable useful manipulation of pdf files such as combine or split files and number or rotates pages.
 
 ### Available demo online
