@@ -15,4 +15,27 @@ describe("Test useDeviceType", () => {
     // Assert
     expect(result.current).toBe("Mobile");
   });
+  it("returns Mobile if device has pointer:coarse", () => {
+    // Arrange
+
+    Object.defineProperty(window, "matchMedia", {
+      writable: true,
+      value: jest.fn().mockImplementation((query) => ({
+        matches: true, // a match is a mobile device
+        media: query,
+        onchange: null,
+        addListener: jest.fn(), // deprecated
+        removeListener: jest.fn(), // deprecated
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn(),
+        dispatchEvent: jest.fn(),
+      })),
+    });
+    const mQ = matchMedia("(pointer:coarse)");
+    expect(mQ.matches).toBe(true);
+    const { result } = renderHook(useDeviceType, { initialProps: {} });
+
+    // Assert
+    expect(result.current).toBe("Mobile");
+  });
 });
