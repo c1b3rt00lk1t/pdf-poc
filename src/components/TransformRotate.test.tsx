@@ -3,10 +3,14 @@ import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 import { useState } from "react";
 
-import { rotatePages, downloadFile } from "../utils/pdf-utils";
+import {
+  rotatePages,
+  downloadFile,
+  rotateDefaultOptions,
+} from "../utils/pdf-utils";
 
 import TransformRotate from "./TransformRotate";
-import { TransformRotateProps } from "./TransformRotate";
+import { TransformRotateProps, rotatePagesReducer } from "./TransformRotate";
 
 jest.mock("../utils/pdf-utils", () => ({
   ...jest.requireActual("../utils/pdf-utils"),
@@ -147,5 +151,34 @@ describe("Test TransformRotate component", () => {
     expect(defaultProps.handleKeepOutputAsInput).toHaveBeenCalledTimes(1);
     expect(rotatePages).toHaveBeenCalledTimes(1);
     expect(downloadFile).toHaveBeenCalledTimes(0);
+  });
+
+  test("degree angle rotation", async () => {
+    // Correct degree angle
+    let newState = rotatePagesReducer(rotateDefaultOptions, {
+      type: "degreeAngle",
+      value: 90,
+    });
+
+    // Assertion
+    expect(newState.degreeAngle).toEqual(90);
+
+    // Incorrect degree angle
+    newState = rotatePagesReducer(rotateDefaultOptions, {
+      type: "degreeAngle",
+      value: 190,
+    });
+
+    // Assertion (should not change)
+    expect(newState.degreeAngle).toEqual(rotateDefaultOptions.degreeAngle);
+
+    // Incorrect degree angle
+    newState = rotatePagesReducer(rotateDefaultOptions, {
+      type: "degreeAngle",
+      value: 46,
+    });
+
+    // Assertion (should not change)
+    expect(newState.degreeAngle).toEqual(rotateDefaultOptions.degreeAngle);
   });
 });
