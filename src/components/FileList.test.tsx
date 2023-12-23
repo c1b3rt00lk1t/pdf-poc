@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import FileList from "./FileList";
 import { FileListProps } from "./FileList";
@@ -52,5 +52,19 @@ describe("Test FileList component", () => {
     expect(items[0].querySelector("a")!.textContent).toBe("test2.pdf");
     expect(items[1].querySelector("a")!.textContent).toBe("test3.pdf");
     expect(items[2].querySelector("a")!.textContent).toBe("test1.pdf");
+  });
+
+  test("removes a file from the list", async () => {
+    // Render the component
+    render(<FileList {...defaultProps} files={files} orderFiles={[1, 2, 0]} />);
+
+    // Remove file
+    const deleteButton = await screen.findByTestId("delete-1");
+    console.log(deleteButton);
+    fireEvent.click(deleteButton);
+
+    // Assertions
+    expect(defaultProps.setFiles).toHaveBeenCalledTimes(1);
+    expect(defaultProps.setFiles).toHaveBeenCalledWith([files[0], files[2]]);
   });
 });
