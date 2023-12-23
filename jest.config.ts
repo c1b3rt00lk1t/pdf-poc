@@ -8,5 +8,8 @@ export default {
   moduleNameMapper: {
     "^.+\\.(css)$": "<rootDir>/__mocks__/styleMock.js",
   },
-  setupFiles: ["<rootDir>/__mocks__/arrayBuffer.mock.ts"],
+  setupFiles: [
+    "<rootDir>/__mocks__/arrayBuffer.mock.ts",
+    "<rootDir>/__mocks__/matchMedia.mock.ts",
+  ],
 };
