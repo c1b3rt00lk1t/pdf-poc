@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 
 import TransformRotate from "./TransformRotate";
@@ -21,5 +22,27 @@ describe("Test TransformRotate component", () => {
     expect(screen.getByText("Keep output as next input")).toBeInTheDocument();
     expect(screen.getByText("Degree angle")).toBeInTheDocument();
     expect(screen.getByText("Page ranges (optional)")).toBeInTheDocument();
+  });
+
+  test("handles click on Keep output as next input", async () => {
+    // Render the component
+    render(<TransformRotate {...defaultProps} />);
+
+    // Interact with the checkbox
+    const checkbox = screen.getByRole("checkbox", {
+      name: /Keep output as next input/i,
+    });
+
+    // Check the checkbox
+    await userEvent.click(checkbox);
+
+    // Assertion
+    expect(checkbox).toBeChecked();
+
+    // Uncheck the checkbox
+    await userEvent.click(checkbox);
+
+    // Assertion
+    expect(checkbox).not.toBeChecked();
   });
 });
