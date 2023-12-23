@@ -15,7 +15,10 @@ A working version of the mobile/desktop app can be found <a href='https://idylli
 
 ### Basic usage
 
+- After cloning the repo: <code>$ npm install</code>
 - To run the app in local: <code>$ npm run dev</code>
+- To run the unit tests: <code>$ npm run test</code>
+- To check the coverage in unit tests: <code>$ npm run test:coverage</code>
 - To run the e2e test in local: <code>$ npm run cypress:open</code>
 
 ### Cloc stats
