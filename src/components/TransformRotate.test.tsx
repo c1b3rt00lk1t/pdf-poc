@@ -181,4 +181,18 @@ describe("Test TransformRotate component", () => {
     // Assertion (should not change)
     expect(newState.degreeAngle).toEqual(rotateDefaultOptions.degreeAngle);
   });
+
+  test("wrong action type", async () => {
+    try {
+      // @ts-ignore
+      let newState = rotatePagesReducer(rotateDefaultOptions, {
+        type: "wrong",
+      });
+      // Assertion (should not change)
+      expect(newState.degreeAngle).toEqual(rotateDefaultOptions.degreeAngle);
+    } catch (error) {
+      //Assertion
+      expect(error).toEqual(new Error());
+    }
+  });
 });
