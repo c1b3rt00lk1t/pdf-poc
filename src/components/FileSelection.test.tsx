@@ -8,7 +8,7 @@ import userEvent from "@testing-library/user-event";
 const defaultProps: FileSelectionProps = {
   files: [],
   setFiles: jest.fn(),
-  orderFiles: [0, 1, 2],
+  orderFiles: [2, 0, 1],
   setOrderFiles: jest.fn(),
   handleClickReset: jest.fn(),
   action: "combine",
@@ -49,6 +49,14 @@ describe("Test FileSelection component", () => {
     expect(screen.getByText("test1.pdf")).toBeInTheDocument();
     expect(screen.getByText("test2.pdf")).toBeInTheDocument();
     expect(screen.getByText("test3.pdf")).toBeInTheDocument();
+
+    // Check if the files are in the right order
+    const list = document.querySelector("ul")!;
+    const items = list.querySelectorAll("li");
+    expect(items.length).toBe(3);
+    expect(items[0].querySelector("a")!.textContent).toBe("test3.pdf");
+    expect(items[1].querySelector("a")!.textContent).toBe("test1.pdf");
+    expect(items[2].querySelector("a")!.textContent).toBe("test2.pdf");
   });
 
   test("handle click on reset button", async () => {
@@ -61,5 +69,17 @@ describe("Test FileSelection component", () => {
 
     // Assertion
     expect(defaultProps.handleClickReset).toHaveBeenCalledTimes(1);
+  });
+
+  test("handle click order button", async () => {
+    // Render the component
+    render(<FileSelection {...defaultProps} files={files} />);
+
+    // Interact with the component
+    const orderBtn = screen.getByText("Order");
+    await userEvent.click(orderBtn);
+
+    // Assertion
+    expect(defaultProps.setOrderFiles).toHaveBeenCalledTimes(1);
   });
 });
