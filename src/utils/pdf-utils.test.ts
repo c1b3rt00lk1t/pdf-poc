@@ -12,10 +12,7 @@ describe("combineFiles", () => {
 
   test("should combine files in the correct order", async () => {
     // Arrange
-    const pdfContent = "file1 content"; // Replace this with your actual PDF content
-
     // Create a File with content as an array of strings
-    const fileContent = [pdfContent];
     const file1 = createPdfFile("file1.pdf");
     const file2 = createPdfFile("file2.pdf");
 
