@@ -12,7 +12,7 @@ const defaultProps: TransformRotateProps = {
 
 describe("Test TransformRotate component", () => {
   test("it renders", () => {
-    // Rednder the component
+    // Render the component
     render(<TransformRotate {...defaultProps} />);
 
     // Assertions
