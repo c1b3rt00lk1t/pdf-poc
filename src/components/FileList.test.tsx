@@ -4,7 +4,11 @@ import FileList from "./FileList";
 import { FileListProps } from "./FileList";
 
 const defaultProps: FileListProps = {
-  files: [],
+  files: [
+    new File(["test"], "test1.pdf"),
+    new File(["test"], "test2.pdf"),
+    new File(["test"], "test3.pdf"),
+  ],
   setFiles: jest.fn(),
   orderFiles: [],
   setOrderFiles: jest.fn(),
@@ -13,7 +17,20 @@ const defaultProps: FileListProps = {
 };
 
 describe("Test FileList component", () => {
+  // Store the original implementation of createObjectURL
+  const originalCreateObjectURL = global.URL.createObjectURL;
+
+  beforeEach(() => {
+    // Mock global.URL.createObjectURL
+    global.URL.createObjectURL = jest.fn();
+  });
+
+  afterEach(() => {
+    // Restore global.URL.createObjectURL to the original implementation
+    global.URL.createObjectURL = originalCreateObjectURL;
+  });
   test("renders FileList component", () => {
+    // Render the component
     render(<FileList {...defaultProps} />);
   });
 });
