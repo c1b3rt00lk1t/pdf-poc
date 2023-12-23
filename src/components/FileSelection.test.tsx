@@ -22,6 +22,19 @@ const files = [
 ];
 
 describe("Test FileSelection component", () => {
+  // Store the original implementation of createObjectURL
+  const originalCreateObjectURL = global.URL.createObjectURL;
+
+  beforeEach(() => {
+    // Mock global.URL.createObjectURL
+    global.URL.createObjectURL = jest.fn();
+  });
+
+  afterEach(() => {
+    // Restore global.URL.createObjectURL to the original implementation
+    global.URL.createObjectURL = originalCreateObjectURL;
+  });
+
   test("renders FileSelection component", () => {
     // Render the component
     render(<FileSelection {...defaultProps} />);
