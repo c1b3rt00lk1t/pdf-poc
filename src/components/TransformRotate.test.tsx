@@ -120,4 +120,32 @@ describe("Test TransformRotate component", () => {
     expect(rotatePages).toHaveBeenCalledTimes(1);
     expect(downloadFile).toHaveBeenCalledTimes(1);
   });
+
+  test("handle click on Rotate pages button (keep output as input)", async () => {
+    // Render the component
+    render(<TransformRotate {...defaultProps} />);
+
+    // Interact with the input text
+    const pageRangesInput = screen.getByRole("textbox", {
+      name: "Page ranges (optional)",
+    });
+    await userEvent.type(pageRangesInput, "1,2,3-5");
+
+    // Interact with the checkbox
+    const checkbox = screen.getByRole("checkbox", {
+      name: /Keep output as next input/i,
+    });
+    await userEvent.click(checkbox);
+
+    // Interact with the button
+    const rotatePagesButton = screen.getByRole("button", {
+      name: /Rotate pages/i,
+    });
+    await userEvent.click(rotatePagesButton);
+
+    // Assertions
+    expect(defaultProps.handleKeepOutputAsInput).toHaveBeenCalledTimes(1);
+    expect(rotatePages).toHaveBeenCalledTimes(1);
+    expect(downloadFile).toHaveBeenCalledTimes(0);
+  });
 });
