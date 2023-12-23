@@ -31,6 +31,10 @@ describe("Test TransformRotate component", () => {
     jest.clearAllMocks();
   });
 
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
   test("it renders", () => {
     // Render the component
     render(<TransformRotate {...defaultProps} />);
