@@ -88,6 +88,7 @@ const FileList = ({
                 </a>
               </span>
               <MdDelete
+                data-testid={`delete-${idx}`}
                 className={styles.delete}
                 onClick={handleClickRemoveItem}
               />
