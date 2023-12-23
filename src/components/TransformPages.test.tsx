@@ -61,7 +61,6 @@ describe("Test TransformPages component", () => {
     const checkbox = screen.getByRole("checkbox", {
       name: /Keep output as next input/i,
     });
-    console.log(checkbox);
 
     // Check the checkbox
     await userEvent.click(checkbox);
