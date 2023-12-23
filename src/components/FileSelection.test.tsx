@@ -8,7 +8,7 @@ import userEvent from "@testing-library/user-event";
 const defaultProps: FileSelectionProps = {
   files: [],
   setFiles: jest.fn(),
-  orderFiles: [],
+  orderFiles: [0, 1, 2],
   setOrderFiles: jest.fn(),
   handleClickReset: jest.fn(),
   action: "combine",
@@ -44,6 +44,11 @@ describe("Test FileSelection component", () => {
   test("renders FileSelection component with files", () => {
     // Render the component
     render(<FileSelection {...defaultProps} files={files} />);
+
+    // Assertions
+    expect(screen.getByText("test1.pdf")).toBeInTheDocument();
+    expect(screen.getByText("test2.pdf")).toBeInTheDocument();
+    expect(screen.getByText("test3.pdf")).toBeInTheDocument();
   });
 
   test("handle click on reset button", async () => {
