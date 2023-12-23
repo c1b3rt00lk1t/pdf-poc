@@ -21,7 +21,7 @@ export interface TransformRotateProps {
   isMobile: boolean;
 }
 
-function rotatePagesReducer(state: RotateOptions, action: any) {
+export function rotatePagesReducer(state: RotateOptions, action: any) {
   switch (action.type) {
     case "degreeAngle":
       return action.value >= -180 && action.value <= 180
