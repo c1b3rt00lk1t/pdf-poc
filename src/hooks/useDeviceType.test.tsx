@@ -3,6 +3,10 @@ import { renderHook } from "@testing-library/react-hooks";
 
 describe("Test useDeviceType", () => {
   const originalNavigator = { ...window.navigator };
+  afterEach(() => {
+    // Restore the original navigator object before each test
+    window.navigator = { ...originalNavigator };
+  });
 
   it("returns Mobile if device has maxTouchPoints", () => {
     // Arrange
@@ -39,9 +43,6 @@ describe("Test useDeviceType", () => {
 
     // Assert
     expect(result.current).toBe("Mobile");
-
-    // Restore the original navigator object
-    window.navigator = originalNavigator;
   });
 
   it("returns Mobile if device has orientation", () => {
@@ -71,8 +72,5 @@ describe("Test useDeviceType", () => {
 
     // Assert
     expect(result.current).toBe("Mobile");
-
-    // Restore the original navigator object
-    window.navigator = originalNavigator;
   });
 });
