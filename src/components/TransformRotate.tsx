@@ -87,6 +87,8 @@ const TransformRotate = ({
           Page ranges (optional)
         </label>
         <input
+          id="pageRanges"
+          name="pageRanges"
           onChange={(ev) => {
             dispatch({
               type: "pages",
