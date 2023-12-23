@@ -40,4 +40,9 @@ describe("Test FileList component", () => {
     // Render the component
     render(<FileList {...defaultProps} files={files} />);
   });
+
+  test("renders FileList component with files and orderFiles", () => {
+    // Render the component
+    render(<FileList {...defaultProps} files={files} orderFiles={[1, 2, 0]} />);
+  });
 });
