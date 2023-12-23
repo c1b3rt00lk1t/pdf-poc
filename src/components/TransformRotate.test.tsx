@@ -27,6 +27,10 @@ const defaultProps: TransformRotateProps = {
 };
 
 describe("Test TransformRotate component", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   test("it renders", () => {
     // Render the component
     render(<TransformRotate {...defaultProps} />);
