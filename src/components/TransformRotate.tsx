@@ -12,6 +12,7 @@ import {
   rotatePages,
   rotateDefaultOptions,
   RotateOptions,
+  allowedDegreeAngles,
 } from "../utils/pdf-utils";
 import styles from "./Transformations.module.css";
 
@@ -24,7 +25,7 @@ export interface TransformRotateProps {
 export function rotatePagesReducer(state: RotateOptions, action: any) {
   switch (action.type) {
     case "degreeAngle":
-      return action.value >= -180 && action.value <= 180
+      return allowedDegreeAngles.includes(action.value)
         ? { ...state, degreeAngle: action.value }
         : state;
     case "pages":
