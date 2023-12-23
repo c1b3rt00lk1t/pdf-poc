@@ -2,6 +2,8 @@ import { useDeviceType } from "./useDeviceType";
 import { renderHook } from "@testing-library/react-hooks";
 
 describe("Test useDeviceType", () => {
+  const originalNavigator = { ...window.navigator };
+
   it("returns Mobile if device has maxTouchPoints", () => {
     // Arrange
     const maxTouchPoints = 1; // Greater than 0 for mobile
@@ -37,5 +39,40 @@ describe("Test useDeviceType", () => {
 
     // Assert
     expect(result.current).toBe("Mobile");
+
+    // Restore the original navigator object
+    window.navigator = originalNavigator;
+  });
+
+  it("returns Mobile if device has orientation", () => {
+    // Arrange
+    Object.defineProperty(window, "orientation", {
+      value: true,
+      writable: true,
+    });
+
+    Object.defineProperty(window, "matchMedia", {
+      writable: true,
+      value: jest.fn().mockImplementation((query) => ({
+        matches: false, // make no match
+        media: query,
+        onchange: null,
+        addListener: jest.fn(), // deprecated
+        removeListener: jest.fn(), // deprecated
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn(),
+        dispatchEvent: jest.fn(),
+      })),
+    });
+    const mQ = matchMedia("(pointer:coarse)");
+    expect(mQ.matches).toBe(false);
+
+    const { result } = renderHook(useDeviceType, { initialProps: {} });
+
+    // Assert
+    expect(result.current).toBe("Mobile");
+
+    // Restore the original navigator object
+    window.navigator = originalNavigator;
   });
 });
