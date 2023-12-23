@@ -6,3 +6,4 @@ breakpoints.css
 /dev-dist
 /dist
 /cypress/downloads
+/coverage
