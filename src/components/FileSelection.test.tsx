@@ -1,8 +1,9 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import { FileSelectionProps } from "./FileSelection";
 import FileSelection from "./FileSelection";
+import userEvent from "@testing-library/user-event";
 
 const defaultProps: FileSelectionProps = {
   files: [],
@@ -39,8 +40,21 @@ describe("Test FileSelection component", () => {
     // Render the component
     render(<FileSelection {...defaultProps} />);
   });
+
   test("renders FileSelection component with files", () => {
     // Render the component
     render(<FileSelection {...defaultProps} files={files} />);
+  });
+
+  test("handle click on reset button", async () => {
+    // Render the component
+    render(<FileSelection {...defaultProps} files={files} />);
+
+    // Interact with the component
+    const resetBtn = screen.getByText("Reset");
+    await userEvent.click(resetBtn);
+
+    // Assertion
+    expect(defaultProps.handleClickReset).toHaveBeenCalledTimes(1);
   });
 });
