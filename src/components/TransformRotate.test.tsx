@@ -3,8 +3,22 @@ import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 import { useState } from "react";
 
+import { rotatePages, downloadFile } from "../utils/pdf-utils";
+
 import TransformRotate from "./TransformRotate";
 import { TransformRotateProps } from "./TransformRotate";
+
+jest.mock("../utils/pdf-utils", () => ({
+  ...jest.requireActual("../utils/pdf-utils"),
+  rotatePages: jest
+    .fn()
+    .mockImplementation(async (_files, _orderFiles, _basename) => {
+      return new File(["test"], "test.pdf");
+    }),
+  downloadFile: jest.fn().mockImplementation((_file, _basename) => {
+    return;
+  }),
+}));
 
 const defaultProps: TransformRotateProps = {
   file: new File(["test"], "test.pdf"),
@@ -75,5 +89,27 @@ describe("Test TransformRotate component", () => {
 
     //Assertion
     expect(pageRangesInput).toHaveValue("");
+  });
+
+  test("handle click on Rotate pages button (download)", async () => {
+    // Render the component
+    render(<TransformRotate {...defaultProps} />);
+
+    // Interact with the input text
+    const pageRangesInput = screen.getByRole("textbox", {
+      name: "Page ranges (optional)",
+    });
+    await userEvent.type(pageRangesInput, "1,2,3-5");
+
+    // Interact with the button
+    const rotatePagesButton = screen.getByRole("button", {
+      name: /Rotate pages/i,
+    });
+    await userEvent.click(rotatePagesButton);
+
+    // Assertions
+    expect(defaultProps.handleKeepOutputAsInput).toHaveBeenCalledTimes(0);
+    expect(rotatePages).toHaveBeenCalledTimes(1);
+    expect(downloadFile).toHaveBeenCalledTimes(1);
   });
 });
