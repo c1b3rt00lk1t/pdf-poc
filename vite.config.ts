@@ -11,7 +11,7 @@ export default defineConfig({
       devOptions: {
         enabled: true,
       },
-      includeAssets: ["icon.png"],
+      // includeAssets: ["icon192.png", "icon512.png"],
       manifest: {
         name: "PDF Utils",
         short_name: "PDFUtils",
@@ -19,12 +19,12 @@ export default defineConfig({
         theme_color: "#ffffff",
         icons: [
           {
-            src: "icon.png",
+            src: "icon192.png",
             sizes: "192x192",
             type: "image/png",
           },
           {
-            src: "icon.png",
+            src: "icon512.png",
             sizes: "512x512",
             type: "image/png",
           },
