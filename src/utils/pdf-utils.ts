@@ -57,7 +57,6 @@ export async function combineFiles(
   }
 
   const blob = await createBlob(outputDoc);
-  // downloadFile(blob, "combined.pdf");
   const fileName = `${name.replace(/.pdf/i, "")} - combined.pdf`;
   const outputAsInputFile = new File([blob], fileName, { type: blob.type });
   return outputAsInputFile;
