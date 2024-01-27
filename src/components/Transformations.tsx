@@ -13,6 +13,7 @@ export interface TransformationsProps {
   isMobile: boolean;
   basename: string;
   setBasename: (basename: string) => void;
+  handleClickAction: (action: Action) => void;
 }
 
 const Transformations = ({
@@ -23,6 +24,7 @@ const Transformations = ({
   isMobile,
   basename,
   setBasename,
+  handleClickAction,
 }: TransformationsProps) => {
   return (
     <div
@@ -54,6 +56,7 @@ const Transformations = ({
           basename={basename}
           setBasename={setBasename}
           isMobile={isMobile}
+          handleClickAction={handleClickAction}
         />
       )}
       {action === "rotate" && (

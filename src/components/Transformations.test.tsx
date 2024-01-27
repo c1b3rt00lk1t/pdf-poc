@@ -14,6 +14,7 @@ describe("Test Transformations component", () => {
       isMobile: true,
       basename: "",
       setBasename: jest.fn(),
+      handleClickAction: jest.fn(),
     };
     render(<Transformations {...props} />);
   });
@@ -27,6 +28,7 @@ describe("Test Transformations component", () => {
       isMobile: true,
       basename: "basename",
       setBasename: jest.fn(),
+      handleClickAction: jest.fn(),
     };
     render(<Transformations {...props} />);
   });

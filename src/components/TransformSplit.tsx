@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { splitFiles, downloadFile } from "../utils/pdf-utils";
 import styles from "./Transformations.module.css";
+import { Action } from "../types";
 
 export interface TransformSplitProps {
   file: File;
@@ -8,6 +9,7 @@ export interface TransformSplitProps {
   basename: string;
   setBasename: (basename: string) => void;
   isMobile: boolean;
+  handleClickAction: (action: Action) => void;
 }
 
 const TransformSplit = ({
@@ -16,6 +18,7 @@ const TransformSplit = ({
   basename,
   setBasename,
   isMobile,
+  handleClickAction,
 }: TransformSplitProps) => {
   const [keepOutputAsInput, setKeepOutputAsInput] = useState<boolean>(false);
   const [pageRanges, setPageRanges] = useState<string>("");
@@ -31,6 +34,7 @@ const TransformSplit = ({
         console.log(files);
         if (keepOutputAsInput) {
           handleKeepOutputAsInput(files);
+          handleClickAction("combine");
         } else {
           files.forEach((file) => {
             downloadFile(file, file.name || placeholder);

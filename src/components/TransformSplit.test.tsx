@@ -31,6 +31,7 @@ const defaultProps: TransformSplitProps = {
   basename: "basename",
   setBasename: jest.fn(),
   isMobile: true,
+  handleClickAction: jest.fn(),
 };
 
 describe("Test TransformSplit component", () => {

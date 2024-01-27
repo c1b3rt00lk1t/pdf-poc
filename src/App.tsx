@@ -104,6 +104,7 @@ function App() {
             handleKeepOutputAsInput={handleKeepOutputAsInput}
             basename={basename}
             setBasename={setBasename}
+            handleClickAction={handleClickAction}
           />
         </main>
       )}
