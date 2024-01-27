@@ -21,18 +21,19 @@ const TransformSplit = ({
   const [pageRanges, setPageRanges] = useState<string>("");
 
   const disabled = !file;
+  const placeholder = !disabled ? file.name.replace(/.pdf/i, "") : "Basename";
 
   function handleClickSplitFiles(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
 
     if (file) {
-      splitFiles(pageRanges, file, basename).then((files) => {
+      splitFiles(pageRanges, file, basename || placeholder).then((files) => {
         console.log(files);
         if (keepOutputAsInput) {
           handleKeepOutputAsInput(files);
         } else {
           files.forEach((file) => {
-            downloadFile(file, file.name);
+            downloadFile(file, file.name || placeholder);
           });
         }
       });
@@ -59,7 +60,7 @@ const TransformSplit = ({
           name="basename"
           onChange={(ev) => setBasename(ev.target.value)}
           type="text"
-          placeholder={!disabled ? file.name.replace(/.pdf/i, "") : "Basename"}
+          placeholder={placeholder}
           value={!disabled ? basename : ""}
           disabled={disabled}
           className={styles.inputText}
