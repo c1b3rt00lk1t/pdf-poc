@@ -8,6 +8,8 @@ import {
   MdOutlineSortByAlpha,
 } from "react-icons/md";
 
+import { Tooltip } from "antd";
+
 export interface FileSelectionProps {
   files: File[];
   setFiles: (files: File[]) => void;
@@ -69,30 +71,48 @@ const FileSelection = ({
       className={isMobile ? styles.FileSelectionMobile : styles.FileSelection}
     >
       <div className={styles.buttonGroup}>
-        <button id="add-btn" className={styles.button} onClick={handleClickAdd}>
-          <MdAddCircleOutline />
-          <span className={styles.span}>Add</span>
-        </button>
-        <button
-          id="reset-file-btn"
-          className={styles.button}
-          onClick={() => {
-            handleClickReset();
-            resetInput(refInput);
-          }}
+        <Tooltip
+          placement="top"
+          title={`Add File${action === "combine" ? "s" : ""}`}
+          arrow={true}
         >
-          <MdOutlineReplay />
-          <span className={styles.span}>Reset </span>
-        </button>
-        {action === "combine" && (
           <button
-            id="sort-btn"
+            id="add-btn"
             className={styles.button}
-            onClick={handleClickOrder}
+            onClick={handleClickAdd}
           >
-            <MdOutlineSortByAlpha />
-            <span className={styles.span}>Order</span>
+            <MdAddCircleOutline />
+            <span className={styles.span}>Add</span>
           </button>
+        </Tooltip>
+        <Tooltip
+          placement="top"
+          title={`Reset File${action === "combine" ? "s" : ""}`}
+          arrow={true}
+        >
+          <button
+            id="reset-file-btn"
+            className={styles.button}
+            onClick={() => {
+              handleClickReset();
+              resetInput(refInput);
+            }}
+          >
+            <MdOutlineReplay />
+            <span className={styles.span}>Reset </span>
+          </button>
+        </Tooltip>
+        {action === "combine" && (
+          <Tooltip placement="top" title={"Order Files"} arrow={true}>
+            <button
+              id="sort-btn"
+              className={styles.button}
+              onClick={handleClickOrder}
+            >
+              <MdOutlineSortByAlpha />
+              <span className={styles.span}>Order</span>
+            </button>
+          </Tooltip>
         )}
       </div>
       <FileList
