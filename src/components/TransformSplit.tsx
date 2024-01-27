@@ -85,7 +85,14 @@ const TransformSplit = ({
       </div>
       <div>
         <button
-          disabled={disabled}
+          // checks that pageRanges is not empty string and is composed by numbers, comma or -
+          disabled={
+            disabled ||
+            pageRanges === "" ||
+            ![...pageRanges].every(
+              (char) => char === "," || char === "-" || !isNaN(+char)
+            )
+          }
           className={styles.button}
           onClick={handleClickSplitFiles}
         >
