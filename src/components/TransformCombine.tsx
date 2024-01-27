@@ -1,6 +1,3 @@
-/**
- * This component receives a set of pdf files to be combined into a single pdf file with an array which specifies the order of the files
- */
 import { useState } from "react";
 import { combineFiles, downloadFile } from "../utils/pdf-utils";
 import styles from "./Transformations.module.css";

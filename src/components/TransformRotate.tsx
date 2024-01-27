@@ -1,11 +1,3 @@
-/**
- * The TransformSplit component is responsible for rotating the pages of a PDF file.
- * The inputs and buttons are disabled when there is no file loaded.
- * When the button is clicked, the rotatePages function is called with the degree angle to rotate, the pages to rotate or an indication of all pages to be rotated.
- * One input allows to define the degree angle to rotate.
- * One input allows to define a series of pages or page ranges using ',' and '-'. If empty, all pages will be rotated.
- */
-
 import { useState, useReducer } from "react";
 import {
   downloadFile,

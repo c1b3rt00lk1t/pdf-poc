@@ -1,11 +1,3 @@
-/**
- * The TransformSplit component is responsible for managing the settings for the split operation.
- * The inputs and buttons are disabled when there is no file loaded.
- * When the button is clicked, the splitFiles function is called with the page ranges, the file and a base name.
- * One input allows to define a base name for the output files.
- * One input allows to define a series of pages or page ranges using ',' and '-'.
- */
-
 import { useState } from "react";
 import { splitFiles, downloadFile } from "../utils/pdf-utils";
 import styles from "./Transformations.module.css";

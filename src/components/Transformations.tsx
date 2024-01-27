@@ -1,10 +1,3 @@
-/**
- * The Transformations component will accept a set of pdf files and a general action that the user wants to do with them: combine, split, add page numbers.
- * In the first mvc it will only add page numbers to the pdf files
- * It will use the pdf-lib library
- * It will provide a button to download the modified pdf file
- */
-
 import TransformSplit from "./TransformSplit";
 import TransformPages from "./TransformPages";
 import TransformCombine from "./TransformCombine";

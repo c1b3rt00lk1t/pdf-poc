@@ -1,9 +1,3 @@
-/**
- * The component will receive a set of pdf files and an array which specifies the order of the files
- * The list of files will be displayed in the order specified by the array
- * The user will be able to change the order of the files by dragging and dropping the files
- */
-
 import styles from "./FileList.module.css";
 import { MdDelete } from "react-icons/md";
 
