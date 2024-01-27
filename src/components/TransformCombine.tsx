@@ -23,15 +23,18 @@ const TransformCombine = ({
 }: TransformCombineProps) => {
   const [keepOutputAsInput, setKeepOutputAsInput] = useState<boolean>(false);
   const disabled = !files.length;
+  const placeholder = !disabled
+    ? files[0].name.replace(/.pdf/i, "")
+    : "Basename";
 
   function handleClickCombineFiles(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
     if (files.length) {
-      combineFiles(files, orderFiles, basename).then((file) => {
+      combineFiles(files, orderFiles, basename || placeholder).then((file) => {
         if (keepOutputAsInput) {
           handleKeepOutputAsInput([file]);
         } else {
-          downloadFile(file, basename);
+          downloadFile(file, basename || placeholder);
         }
       });
     }
