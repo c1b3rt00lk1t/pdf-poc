@@ -6,8 +6,8 @@ import Sidebar from "./components/Sidebar";
 import Transformations from "./components/Transformations";
 import Cover from "./Cover";
 import styles from "./App.module.css";
-import { useDeviceType } from "./hooks/useDeviceType";
-import { useMatchMedia } from "./hooks/useMatchMedia";
+// import { useDeviceType } from "./hooks/useDeviceType";
+// import { useMatchMedia } from "./hooks/useMatchMedia";
 import { Action } from "./types";
 
 function App() {
@@ -19,9 +19,14 @@ function App() {
   );
   const [dragOverStatus, setDragOverStatus] = useState<boolean>(false);
 
-  const deviceType = useDeviceType();
-  const isNarrowScreen = useMatchMedia("(max-width: 768px)");
-  const isMobile = deviceType === "Mobile" || isNarrowScreen;
+  /** The commented code allows diferent layouts depending on the device type */
+
+  // const deviceType = useDeviceType();
+  // const isNarrowScreen = useMatchMedia("(max-width: 768px)");
+  // const isMobile = deviceType === "Mobile" || isNarrowScreen;
+
+  /** The layout for mobile is now used for all cases */
+  const isMobile = true;
 
   const handleClickReset = () => {
     setFiles([]);
