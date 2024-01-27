@@ -1,5 +1,6 @@
 import styles from "./FileList.module.css";
 import { MdDelete } from "react-icons/md";
+import { Tooltip } from "antd";
 
 export interface FileListProps {
   files: File[];
@@ -72,15 +73,22 @@ const FileList = ({
               onDrop={handleDrop}
               className={isMobile ? styles.liMobile : styles.li}
             >
-              <span className={styles.span}>
-                <a
-                  className={styles.a}
-                  href={URL.createObjectURL(arr[orderFiles[idx]])}
-                  target="_blank"
-                >
-                  {arr[orderFiles[idx]].name}
-                </a>
-              </span>
+              <Tooltip
+                placement="bottomLeft"
+                title={arr[orderFiles[idx]].name}
+                arrow={true}
+                color={"grey"}
+              >
+                <span className={styles.span}>
+                  <a
+                    className={styles.a}
+                    href={URL.createObjectURL(arr[orderFiles[idx]])}
+                    target="_blank"
+                  >
+                    {arr[orderFiles[idx]].name}
+                  </a>
+                </span>
+              </Tooltip>
               <MdDelete
                 data-testid={`delete-${idx}`}
                 className={styles.delete}
