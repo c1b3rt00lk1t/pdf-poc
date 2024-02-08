@@ -11,7 +11,11 @@ Desktop and mobile PWA to enable useful manipulation of pdf files such as combin
 
 ### Available demo online
 
-A working version of the mobile/desktop app can be found <a href='https://idyllic-capybara-5d7110.netlify.app'>here</a>.
+A working version of the mobile/desktop app can be found <a href='https://idyllic-capybara-5d7110.netlify.app'>here</a>. Check it in your mobile device scanning the QR code:
+
+<p align="center">
+<img src="https://github.com/c1b3rt00lk1t/pdf-poc/blob/background/images/qrcode_pdf_utils.png?raw=true" width="15%" height="15%" >
+</p>
 
 ### Basic usage
 
