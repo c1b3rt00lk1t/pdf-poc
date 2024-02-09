@@ -9,7 +9,6 @@
 }
 
 .SidebarMobile {
-  margin-top: 2vh;
   order: 2;
   display: flex;
   flex-direction: row;
