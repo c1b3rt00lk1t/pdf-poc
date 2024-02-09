@@ -12,7 +12,12 @@
   order: 2;
   display: flex;
   flex-direction: row;
-  height: fit-content;
+}
+
+@media screen and (min-width: 450px) {
+  .SidebarMobile {
+    align-items: center;
+  }
 }
 
 .selected {
