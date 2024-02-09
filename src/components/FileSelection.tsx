@@ -66,16 +66,13 @@ const FileSelection = ({
     );
   }
 
+  const plural = action === "combine" ? "s" : "";
   return (
     <div
       className={isMobile ? styles.FileSelectionMobile : styles.FileSelection}
     >
       <div className={styles.buttonGroup}>
-        <Tooltip
-          placement="top"
-          title={`Add File${action === "combine" ? "s" : ""}`}
-          arrow={true}
-        >
+        <Tooltip placement="top" title={`Add File${plural}`} arrow={true}>
           <button
             id="add-btn"
             className={styles.button}
@@ -85,11 +82,7 @@ const FileSelection = ({
             <span className={styles.span}>Add</span>
           </button>
         </Tooltip>
-        <Tooltip
-          placement="top"
-          title={`Reset File${action === "combine" ? "s" : ""}`}
-          arrow={true}
-        >
+        <Tooltip placement="top" title={`Reset File${plural}`} arrow={true}>
           <button
             id="reset-file-btn"
             className={styles.button}
