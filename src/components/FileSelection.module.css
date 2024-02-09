@@ -80,3 +80,16 @@
     min-width: 100px;
   }
 }
+
+.instruction {
+  height: 10vh;
+  line-height: 10vh;
+  margin: auto;
+  font-size: 0.9rem;
+  text-align: center;
+  color: rgb(25 17 169);
+  /* prevent select*/
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}

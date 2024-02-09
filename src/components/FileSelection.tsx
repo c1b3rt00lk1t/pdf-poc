@@ -108,14 +108,20 @@ const FileSelection = ({
           </Tooltip>
         )}
       </div>
-      <FileList
-        files={files}
-        setFiles={setFiles}
-        orderFiles={orderFiles}
-        setOrderFiles={setOrderFiles}
-        showList={action === "combine"}
-        isMobile={isMobile}
-      />
+      {files.length ? (
+        <FileList
+          files={files}
+          setFiles={setFiles}
+          orderFiles={orderFiles}
+          setOrderFiles={setOrderFiles}
+          showList={action === "combine"}
+          isMobile={isMobile}
+        />
+      ) : (
+        <p className={styles.instruction}>
+          {`Drop some file${plural} here, or click the button above`}
+        </p>
+      )}
     </div>
   );
 };
