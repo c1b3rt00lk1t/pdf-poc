@@ -9,11 +9,11 @@
 }
 
 .SidebarMobile {
+  margin-top: 2vh;
   order: 2;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  height: auto;
+  height: fit-content;
 }
 
 .selected {
