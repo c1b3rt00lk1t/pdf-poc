@@ -13,6 +13,7 @@
   order: 2;
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .selected {
@@ -36,7 +37,8 @@
   height: min-content;
   margin-right: 1vw;
   display: flex;
-  font-size: 2rem;
+  font-size: 2.25rem;
+  padding: 0.25rem 0.25rem;
 }
 
 .span {
