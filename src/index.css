@@ -350,3 +350,7 @@ template {
 [hidden] {
   display: none;
 }
+
+button {
+  color: black;
+}
