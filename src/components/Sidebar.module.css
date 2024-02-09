@@ -9,7 +9,6 @@
 }
 
 .SidebarMobile {
-  padding-top: 1vh;
   order: 2;
   display: flex;
   flex-direction: row;
