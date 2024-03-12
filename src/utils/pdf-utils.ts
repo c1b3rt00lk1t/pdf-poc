@@ -114,7 +114,7 @@ export async function addPageNumbers(file: File, options: AddPageOptions) {
           ? 50
           : page.getWidth() - 50;
 
-      page.drawText((index + startNumber - initialPage).toString(), {
+      page.drawText((index + startNumber - 1).toString(), {
         x: xPoints,
         y: yPoints,
         size: fontSize,
